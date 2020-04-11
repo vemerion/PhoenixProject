@@ -1,0 +1,16 @@
+[
+  {
+    "modid": "projectend",
+    "name": "Project End",
+    "description": "",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": ["GoogleTan"],
+    "credits": "SuperFluke for end provider from \"stygian\", Крокодил, hohserg",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
