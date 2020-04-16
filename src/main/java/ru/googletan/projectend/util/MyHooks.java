@@ -1,4 +1,4 @@
-package ru.googletan.projectend.Hooks;
+package ru.googletan.projectend.util;
 
 import gloomyfolken.hooklib.asm.Hook;
 import gloomyfolken.hooklib.asm.HookPriority;
@@ -27,11 +27,12 @@ public class MyHooks
         double d0 = (double)pos.getX() + 0.55D - (double)(rand.nextFloat() * 0.1F);
         double d1 = (double)pos.getY() + 0.55D - (double)(rand.nextFloat() * 0.1F);
         double d2 = (double)pos.getZ() + 0.55D - (double)(rand.nextFloat() * 0.1F);
-        double d3 = (double)(0.4F - (rand.nextFloat() + rand.nextFloat()) * 0.4F);
+        double d3 = (double)(0.4F   - (rand.nextFloat() + rand.nextFloat())* 0.4F);
         if(worldIn.getBlockState(pos.down().down()).getBlock() == Blocks.END_ROD)
-        {
-                worldIn.spawnParticle(EnumParticleTypes.END_ROD, d0 + (double) enumfacing.getXOffset() * d3, d1 + (double) enumfacing.getYOffset() * d3, d2 + (double) enumfacing.getZOffset() * d3,
-                        rand.nextGaussian() * 0.01D, rand.nextGaussian() * -0.005D, rand.nextGaussian() * 0.01D, 216, 191, 216, 600 + rand.nextInt(300));
-        }
+            worldIn.spawnParticle(EnumParticleTypes.END_ROD, d0 + (double) enumfacing.getXOffset() * d3, d1 + (double) enumfacing.getYOffset() * d3, d2 + (double) enumfacing.getZOffset() * d3,
+                    rand.nextGaussian() * 0.01D,  rand.nextGaussian() * -0.005D, rand.nextGaussian() * 0.01D, 216, 191, 216, 600 + rand.nextInt(300));
+        else if (rand.nextInt(5) == 0)
+            worldIn.spawnParticle(EnumParticleTypes.END_ROD, d0 + (double) enumfacing.getXOffset() * d3, d1 + (double)enumfacing.getYOffset() * d3, d2 + (double)enumfacing.getZOffset() * d3,
+                    rand.nextGaussian() * 0.005D, rand.nextGaussian() *  0.005D, rand.nextGaussian() * 0.005D);
     }
 }

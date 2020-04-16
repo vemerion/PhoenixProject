@@ -1,17 +1,17 @@
-package ru.googletan.projectend.TotalUpdatye;
+package ru.googletan.projectend.world.capablity;
 
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 
-public class Storage implements Capability.IStorage<IStager>
+public class StageStorage implements Capability.IStorage<IStager>
 {
     @Override
     public NBTBase writeNBT (Capability<IStager> capability, IStager instance, EnumFacing side)
     {
         final NBTTagCompound tag = new NBTTagCompound();
-        tag.setInteger("mana", instance.getStage());
+        tag.setInteger("projectendstage", instance.getStage());
         return tag;
     }
 
@@ -19,7 +19,7 @@ public class Storage implements Capability.IStorage<IStager>
     public void readNBT (Capability<IStager> capability, IStager instance, EnumFacing side, NBTBase nbt)
     {
         final NBTTagCompound tag = (NBTTagCompound) nbt;
-        instance.setStage(tag.getInteger("mana"));
+        instance.setStage(tag.getInteger("projectendstage"));
     }
 }
 

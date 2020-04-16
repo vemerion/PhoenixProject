@@ -15,8 +15,8 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ru.googletan.projectend.TotalUpdatye.IStager;
 import ru.googletan.projectend.proxy.Common;
+import ru.googletan.projectend.world.capablity.IStager;
 
 @Mod
 (

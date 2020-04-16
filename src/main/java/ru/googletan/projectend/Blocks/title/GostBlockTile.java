@@ -1,4 +1,4 @@
-package ru.googletan.projectend.Blocks.title.Unit01;
+package ru.googletan.projectend.Blocks.title;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -8,39 +8,31 @@ public class GostBlockTile extends TileEntity
     private int count;
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound tagCompound) {
-
+    public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
+    {
         tagCompound.setInteger("count", this.count);
-
         return super.writeToNBT(tagCompound);
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound tagCompound) {
-
+    public void readFromNBT(NBTTagCompound tagCompound)
+    {
         this.count = tagCompound.getInteger("count");
-
         super.readFromNBT(tagCompound);
     }
 
-    public int getCount() {
+    public int getCount() {  return this.count;  }
 
-        return this.count;
-    }
-
-    public void incrementCount() {
-
+    public void incrementCount()
+    {
         this.count++;
-
         this.markDirty();
     }
 
-    public void decrementCount() {
-
+    public void decrementCount()
+    {
         this.count--;
-
         this.markDirty();
     }
-
 
 }

@@ -1,4 +1,4 @@
-package ru.googletan.projectend.Blocks.Unit01;
+package ru.googletan.projectend.Blocks;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -15,7 +15,7 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import ru.googletan.projectend.Blocks.title.BlockTileEntity;
-import ru.googletan.projectend.Blocks.title.Unit01.GostBlockTile;
+import ru.googletan.projectend.Blocks.title.GostBlockTile;
 
 import javax.annotation.Nullable;
 
@@ -50,7 +50,7 @@ public class GostBlock extends BlockTileEntity
                                 worldIn.setBlockToAir(new BlockPos(x, y, z));
                                 if (worldIn instanceof WorldServer)
                                 {
-                                ((WorldServer)worldIn).spawnParticle(EnumParticleTypes.SMOKE_LARGE, (double)x + 0.5D, (double) y + 0.25D, (double)z + 0.5D, 8, 0.5D, 0.25D, 0.5D, 0.0D);
+                                ((WorldServer)worldIn).spawnParticle(EnumParticleTypes.BLOCK_CRACK, (double)x + 0.5D, (double) y + 0.25D, (double)z + 0.5D, 8, 0.5D, 0.25D, 0.5D, 0.0D);
                                 }
                             }
                         }

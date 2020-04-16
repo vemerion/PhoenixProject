@@ -3,8 +3,11 @@ package ru.googletan.projectend.Blocks.title.Unit01;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.WorldServer;
+import ru.googletan.projectend.Projectend;
 
 public class Updator01TitleEntity extends TileEntity implements ITickable
 {
@@ -32,6 +35,15 @@ public class Updator01TitleEntity extends TileEntity implements ITickable
                 iblockstate09.getBlock().getDefaultState() == Blocks.STAINED_GLASS.getDefaultState()   )
         {
             world.setBlockToAir(pos);
+            if (world.getCapability(Projectend.STAGER_CAPABILITY, null).getStageIn() > 3)
+            {
+                world.getCapability(Projectend.STAGER_CAPABILITY, null).setStageIn(1);
+                world.getCapability(Projectend.STAGER_CAPABILITY, null).addStage();
+            }
+            else
+            {
+                world.getCapability(Projectend.STAGER_CAPABILITY, null).addStageIn();
+            }
         }
     }
 

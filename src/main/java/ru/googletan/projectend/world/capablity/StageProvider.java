@@ -1,4 +1,4 @@
-package ru.googletan.projectend.TotalUpdatye;
+package ru.googletan.projectend.world.capablity;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -7,7 +7,7 @@ import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 
 import static ru.googletan.projectend.Projectend.STAGER_CAPABILITY;
 
-public class Provider implements ICapabilitySerializable<NBTTagCompound>
+public class StageProvider implements ICapabilitySerializable<NBTTagCompound>
 {
     IStager instance = STAGER_CAPABILITY.getDefaultInstance();
 

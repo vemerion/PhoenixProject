@@ -6,7 +6,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import ru.googletan.projectend.BlocksRegister;
-import ru.googletan.projectend.Effects.ParticleConfEndRodFactory;
+import ru.googletan.projectend.util.ParticleConfEndRodFactory;
 
 public class Client extends Common
 {
@@ -27,6 +27,6 @@ public class Client extends Common
     public void postInit(FMLPostInitializationEvent event)
     {
         super.postInit(event);
-        Minecraft.getMinecraft().effectRenderer.registerParticle(EnumParticleTypes.END_ROD.getParticleID(),new ParticleConfEndRodFactory());
+        Minecraft.getMinecraft().effectRenderer.registerParticle(EnumParticleTypes.END_ROD.getParticleID(), new ParticleConfEndRodFactory());
     }
 }

@@ -24,10 +24,12 @@ import net.minecraft.world.gen.feature.WorldGenEndGateway;
 import net.minecraft.world.gen.feature.WorldGenEndIsland;
 import net.minecraft.world.gen.structure.MapGenEndCity;
 import net.minecraftforge.event.ForgeEventFactory;
+import net.minecraftforge.event.terraingen.ChunkGeneratorEvent;
 import net.minecraftforge.event.terraingen.InitMapGenEvent;
 import net.minecraftforge.event.terraingen.InitNoiseGensEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import ru.googletan.projectend.BlocksRegister;
+import ru.googletan.projectend.Projectend;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -319,7 +321,7 @@ public class ChunkGeneratorEndBiomes extends ChunkGeneratorEnd
 
     public double[] getHeights(double[] p_185963_1_, int p_185963_2_, int p_185963_3_, int p_185963_4_, int p_185963_5_, int p_185963_6_, int p_185963_7_)
     {
-        net.minecraftforge.event.terraingen.ChunkGeneratorEvent.InitNoiseField event = new net.minecraftforge.event.terraingen.ChunkGeneratorEvent.InitNoiseField(this, p_185963_1_, p_185963_2_, p_185963_3_, p_185963_4_, p_185963_5_, p_185963_6_, p_185963_7_);
+        ChunkGeneratorEvent.InitNoiseField event = new ChunkGeneratorEvent.InitNoiseField(this, p_185963_1_, p_185963_2_, p_185963_3_, p_185963_4_, p_185963_5_, p_185963_6_, p_185963_7_);
         net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event);
         if (event.getResult() == net.minecraftforge.fml.common.eventhandler.Event.Result.DENY) return event.getNoisefield();
 
@@ -398,7 +400,7 @@ public class ChunkGeneratorEndBiomes extends ChunkGeneratorEnd
     public void populate(int x, int z)
     {
         BlockFalling.fallInstantly = true;
-        net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(true, this, this.world, this.rand, x, z, false);
+        ForgeEventFactory.onChunkPopulate(true, this, this.world, this.rand, x, z, false);
         BlockPos blockpos = new BlockPos(x * 16, 0, z * 16);
 
         if (this.mapFeaturesEnabled)
@@ -437,7 +439,9 @@ public class ChunkGeneratorEndBiomes extends ChunkGeneratorEnd
                     {
                         int k1 = j1 - 1;
 
-                        if (this.world.isAirBlock(blockpos.add(l, k1 + 1, i1)) && this.world.getBlockState(blockpos.add(l, k1, i1)).getBlock() == Blocks.END_STONE)
+                        if (this.world.isAirBlock(blockpos.add(l, k1 + 1, i1)) &&
+                            this.world.getBlockState(blockpos.add(l, k1, i1)).getBlock() == Blocks.END_STONE &&
+                            this.world.getCapability(Projectend.STAGER_CAPABILITY, null).getStage() >= 2)
                         {
                             BlockChorusFlower.generatePlant(this.world, blockpos.add(l, k1 + 1, i1), this.rand, 8);
                         }

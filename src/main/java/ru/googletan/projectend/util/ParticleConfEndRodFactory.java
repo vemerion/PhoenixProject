@@ -1,4 +1,4 @@
-package ru.googletan.projectend.Effects;
+package ru.googletan.projectend.util;
 
 import net.minecraft.client.particle.IParticleFactory;
 import net.minecraft.client.particle.Particle;
