@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "normal": {
+      "model": "phoenix:tank_dead"
+    },
+    "inventory": {
+      "model": "phoenix:tank_dead"
+    }
+  }
+}

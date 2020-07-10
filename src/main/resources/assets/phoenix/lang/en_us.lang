@@ -1,0 +1,28 @@
+#blocks
+tile.null.name=Namelessness
+tile.gost.name=Gost
+tile.updator.name=Updator
+tile.fertile_end_stone.name=Fertile end stone
+tile.mind_ore.name=Mind splinter
+tile.ceraomic.name=Grand сeraomic
+#entity
+entity.Uterus.name=Coronoworm
+#creative tab
+itemGroup.end_of_the_tabs=Project Phoenix
+#items
+item.null.name=Namelessness
+item.kassiesspeare.name=Sword of absolute speed
+item.gods_boots.name=Flash boots
+item.gods_chestplate.name=Flash chestplate
+item.gods_leggins.name=Flash leggins
+item.gods_halmet.name=Flash helmet
+#advancements
+advancements.phoenix.unit01.title=Welcome to the stage!
+advancements.phoenix.unit01.title.description=End of the start or start of the end?
+advancements.phoenix.unit01.corn.tile=Freude
+advancements.phoenix.unit01.corn.description=-How did you get brought to the past ignis monastery? “I took him for a End city.” Easy to confuse.
+#messages
+phoenix.massage.newstage=Welcome to the new stage!
+phoenix.massage.speare=Use battle sistem 1.8
+#fluid
+fluid.juise=Squeeze out kikin

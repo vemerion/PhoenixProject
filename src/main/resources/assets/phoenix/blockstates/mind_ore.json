@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "normal": {
+      "model": "phoenix:mind_ore"
+    },
+    "inventory": {
+      "model": "phoenix:mind_ore"
+    }
+  }
+}

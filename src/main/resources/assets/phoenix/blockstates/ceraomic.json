@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "normal": {  "model": "phoenix:ceraomic" },
+ "inventory": {  "model": "phoenix:ceraomic" }
+  }
+}

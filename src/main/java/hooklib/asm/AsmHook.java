@@ -110,7 +110,7 @@ public class AsmHook implements Cloneable, Comparable<AsmHook> {
     }
 
     protected void createMethod(HookInjectorClassVisitor classVisitor) {
-        ClassMetadataReader.MethodProjectend superMethod = classVisitor.transformer.classMetadataReader
+        ClassMetadataReader.Methodphoenix superMethod = classVisitor.transformer.classMetadataReader
                 .findVirtualMethod(getTargetClassInternalName(), targetMethodName, targetMethodDescription);
         // юзаем название суперметода, потому что findVirtualMethod может вернуть метод с другим названием
         MethodVisitor mv = classVisitor.visitMethod(Opcodes.ACC_PUBLIC,
@@ -216,7 +216,7 @@ public class AsmHook implements Cloneable, Comparable<AsmHook> {
         inj.visitVarInsn(opcode, variableId);
     }
 
-    private void injectSuperCall(HookInjectorMethodVisitor inj, ClassMetadataReader.MethodProjectend method) {
+    private void injectSuperCall(HookInjectorMethodVisitor inj, ClassMetadataReader.Methodphoenix method) {
         int variableId = 0;
         for (int i = 0; i <= targetMethodParameters.size(); i++) {
             Type parameterType = i == 0 ? TypeHelper.getType(targetClassName) : targetMethodParameters.get(i - 1);

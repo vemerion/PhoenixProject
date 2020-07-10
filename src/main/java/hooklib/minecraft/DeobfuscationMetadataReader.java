@@ -41,11 +41,11 @@ public class DeobfuscationMetadataReader extends ClassMetadataReader {
     // этот метод должен вызываться только во время загрузки сабклассов проверяемого класса,
     // так что все должно быть норм
     @Override
-    protected MethodProjectend getMethodProjectendASM(String type, String methodName, String desc) throws IOException {
+    protected Methodphoenix getMethodphoenixASM(String type, String methodName, String desc) throws IOException {
         FindMethodClassVisitor cv = new FindMethodClassVisitor(methodName, desc);
         byte[] bytes = getTransformedBytes(type);
         acceptVisitor(bytes, cv);
-        return cv.found ? new MethodProjectend(type, cv.targetName, cv.targetDesc) : null;
+        return cv.found ? new Methodphoenix(type, cv.targetName, cv.targetDesc) : null;
     }
 
     static byte[] deobfuscateClass(String className, byte[] bytes) {

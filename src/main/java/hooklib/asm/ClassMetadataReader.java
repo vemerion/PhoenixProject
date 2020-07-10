@@ -39,42 +39,42 @@ public class ClassMetadataReader {
         acceptVisitor(getClassData(className), visitor);
     }
 
-    public MethodProjectend findVirtualMethod(String owner, String name, String desc) {
+    public Methodphoenix findVirtualMethod(String owner, String name, String desc) {
         ArrayList<String> superClasses = getSuperClasses(owner);
         for (int i = superClasses.size() - 1; i > 0; i--) { // чекать текущий класс смысла нет
             String className = superClasses.get(i);
-            MethodProjectend methodProjectend = getMethodProjectend(className, name, desc);
-            if (methodProjectend != null) {
-                System.out.println("found virtual method: " + methodProjectend);
-                return methodProjectend;
+            Methodphoenix methodphoenix = getMethodphoenix(className, name, desc);
+            if (methodphoenix != null) {
+                System.out.println("found virtual method: " + methodphoenix);
+                return methodphoenix;
             }
         }
         return null;
     }
 
-    private MethodProjectend getMethodProjectend(String type, String methodName, String desc) {
+    private Methodphoenix getMethodphoenix(String type, String methodName, String desc) {
         try {
-            return getMethodProjectendASM(type, methodName, desc);
+            return getMethodphoenixASM(type, methodName, desc);
         } catch (Exception e) {
-            return getMethodProjectendReflect(type, methodName, desc);
+            return getMethodphoenixReflect(type, methodName, desc);
         }
     }
 
-    protected MethodProjectend getMethodProjectendASM(String type, String methodName, String desc) throws IOException {
+    protected Methodphoenix getMethodphoenixASM(String type, String methodName, String desc) throws IOException {
         FindMethodClassVisitor cv = new FindMethodClassVisitor(methodName, desc);
         acceptVisitor(type, cv);
         if (cv.found) {
-            return new MethodProjectend(type, cv.targetName, cv.targetDesc);
+            return new Methodphoenix(type, cv.targetName, cv.targetDesc);
         }
         return null;
     }
 
-    protected MethodProjectend getMethodProjectendReflect(String type, String methodName, String desc) {
+    protected Methodphoenix getMethodphoenixReflect(String type, String methodName, String desc) {
         Class loadedClass = getLoadedClass(type);
         if (loadedClass != null) {
             for (Method m : loadedClass.getDeclaredMethods()) {
                 if (checkSameMethod(methodName, desc, m.getName(), Type.getMethodDescriptor(m))) {
-                    return new MethodProjectend(type, m.getName(), Type.getMethodDescriptor(m));
+                    return new Methodphoenix(type, m.getName(), Type.getMethodDescriptor(m));
                 }
             }
         }
@@ -173,13 +173,13 @@ public class ClassMetadataReader {
         }
     }
 
-    public static class MethodProjectend {
+    public static class Methodphoenix {
 
         public final String owner;
         public final String name;
         public final String desc;
 
-        public MethodProjectend(String owner, String name, String desc) {
+        public Methodphoenix(String owner, String name, String desc) {
             this.owner = owner;
             this.name = name;
             this.desc = desc;
@@ -190,7 +190,7 @@ public class ClassMetadataReader {
         }
 
         @Override public String toString() {
-            return "MethodProjectend{" +
+            return "Methodphoenix{" +
                     "owner='" + owner + '\'' +
                     ", name='" + name + '\'' +
                     ", desc='" + desc + '\'' +

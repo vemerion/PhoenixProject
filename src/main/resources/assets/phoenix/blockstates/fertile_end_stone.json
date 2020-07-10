@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "normal": {
+      "model": "phoenix:fertile_end_stone"
+    },
+    "inventory": {
+      "model": "phoenix:item/fertile_end_stone"
+    }
+  }
+}
