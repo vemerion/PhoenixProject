@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import phoenix.Phoenix;
 
 @Mod.EventBusSubscriber
-public class PESounds
+public class PhoenixSounds
 {
     //Это наш звук, `test_sound` это название звука указанного в sounds.json
     public static final SoundEvent trans[] = {reg("zero_one"), reg("one_two")};

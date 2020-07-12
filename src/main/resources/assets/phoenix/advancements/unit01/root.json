@@ -10,7 +10,7 @@
     "description": {
       "translate": "advancements.phoenix.unit01.title.description"
     },
-    "background": "minecraft:textures/blocks/end_stone.png",
+    "background": "minecraft:textures/blocks/obsidian.png",
     "show_toast": false,
     "announce_to_chat": false
   },

@@ -12,6 +12,7 @@ public class GenLayerReduceFrequency extends GenLayer
         this.parent = parent;
     }
 
+    @Override
     public int[] getInts(int areaX, int areaY, int areaWidth, int areaHeight)
     {
         int i = areaX - 1;
@@ -25,13 +26,9 @@ public class GenLayerReduceFrequency extends GenLayer
         {
             for (int x = 0; x < areaWidth; ++x)
             {
-//                int north = inLayer[x + 1 + (z + 1 - 1) * (areaWidth + 2)];
-//                int east = inLayer[x + 1 + 1 + (z + 1) * (areaWidth + 2)];
-//                int west = inLayer[x + 1 - 1 + (z + 1) * (areaWidth + 2)];
-//                int south = inLayer[x + 1 + (z + 1 + 1) * (areaWidth + 2)];
                 int current = inLayer[x + 1 + (z + 1) * k];
                 outLayer[x + z * areaWidth] = current;
-                this.initChunkSeed((long)(x + areaX), (long)(z + areaY));
+                this.initChunkSeed(x + areaX, z + areaY);
 
                 if (current != 0 && this.nextInt(100) < Configs.worldgen.biomeReducer)
                 {

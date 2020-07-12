@@ -16,12 +16,12 @@ import phoenix.blocks.BlockGost;
 import phoenix.blocks.BlockUpdater;
 import phoenix.blocks.death.BlockJuiser;
 import phoenix.blocks.death.BlockTank;
-import phoenix.blocks.rebirth.BlockFarforCeraomic;
-import phoenix.blocks.rebirth.BlockGoodEndStone;
-import phoenix.blocks.rebirth.BlockKikiNBody;
-import phoenix.blocks.rebirth.BlockKikiNFruit;
-import phoenix.blocks.redo.BlockCeraomicOld;
-import phoenix.blocks.redo.BlockMindOre;
+import phoenix.blocks.redo.BlockFarforCeraomic;
+import phoenix.blocks.redo.BlockGoodEndStone;
+import phoenix.blocks.redo.BlockKikiNBody;
+import phoenix.blocks.redo.BlockKikiNFruit;
+import phoenix.blocks.rebirth.BlockCeraomicOld;
+import phoenix.blocks.rebirth.BlockMindOre;
 import phoenix.fluid.blocks.BlockChorusJuise;
 import phoenix.fluid.blocks.BlockKikinJuise;
 

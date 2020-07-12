@@ -23,36 +23,29 @@ public abstract class EndGenLayer
 
     public static GenLayer[] initializeAllBiomeGenerators(long seed, WorldType worldType, ChunkGeneratorSettings genSettings)
     {
-        GenLayer genlayer = new GenLayerIsland(1L);
-        genlayer = new GenLayerFuzzyZoom(2000L, genlayer);
-        GenLayer genlayeraddisland = new GenLayerAddIsland(1L, genlayer);
-        GenLayer genlayerzoom = new GenLayerZoom(2001L, genlayeraddisland);
-        GenLayer genlayeraddisland1 = new GenLayerAddIsland(2L, genlayerzoom);
-        genlayeraddisland1 = new GenLayerAddIsland(50L, genlayeraddisland1);
-        genlayeraddisland1 = new GenLayerAddIsland(70L, genlayeraddisland1);
-        //GenLayer genlayerremovetoomuchocean = new GenLayerRemoveTooMuchOcean(2L, genlayeraddisland1);
-        GenLayer genlayerremovetoomuchocean = new GenLayerRemoveSomeOcean(2L, genlayeraddisland1);
-        //GenLayer genlayerremovetoomuchocean = genlayeraddisland1;
-        GenLayer genlayeraddsnow = new GenLayerAddSnow(2L, genlayerremovetoomuchocean);
-        GenLayer genlayeraddisland2 = new GenLayerAddIsland(3L, genlayeraddsnow);
-    	GenLayer reduceBiomes = new GenLayerReduceFrequency(10L, genlayeraddisland2);
-        //GenLayer genlayeredge = new GenLayerEdge(2L, genlayeraddisland2, GenLayerEdge.Mode.COOL_WARM);
-        //genlayeredge = new GenLayerEdge(2L, genlayeredge, GenLayerEdge.Mode.HEAT_ICE);
-        //genlayeredge = new GenLayerEdge(3L, genlayeredge, GenLayerEdge.Mode.SPECIAL);
-        GenLayer genlayeredge = reduceBiomes;
-        GenLayer genlayerzoom1 = new GenLayerZoom(2002L, genlayeredge);
-        genlayerzoom1 = new GenLayerZoom(2003L, genlayerzoom1);
-        GenLayer genlayeraddisland3 = new GenLayerAddIsland(4L, genlayerzoom1);
-        GenLayer genlayerdeepocean = genlayeraddisland3;
-        GenLayer genlayer4 = GenLayerZoom.magnify(1000L, genlayerdeepocean, 0);
-        int biomeSize = Configs.worldgen.endBiomeSize;
+        int biomeSize = 7;
         int riverSize = 4;
-        GenLayer genlayerriverinit = GenLayerZoom.magnify(1000L, genlayer4, 0);
-        GenLayer genlayerendbiomes = new GenLayerEndBiomes(200L, genlayer4);
-        GenLayer lvt_9_1_ = GenLayerZoom.magnify(1000L, genlayerriverinit, 2);
-        GenLayer genlayer5 = GenLayerZoom.magnify(1000L, genlayerriverinit, 2);
-        genlayer5 = GenLayerZoom.magnify(1000L, genlayer5, riverSize);
-        GenLayer genlayersmooth = new GenLayerSmooth(1000L, genlayer5);
+        GenLayer genlayer                   = new GenLayerIsland(1L);
+        genlayer                            = new GenLayerFuzzyZoom(2000L, genlayer);
+        GenLayer genlayeraddisland          = new GenLayerAddIsland(1L, genlayer);
+        GenLayer genlayerzoom               = new GenLayerZoom(2001L, genlayeraddisland);
+        GenLayer genlayeraddisland1         = new GenLayerAddIsland(2L, genlayerzoom);
+        genlayeraddisland1                  = new GenLayerAddIsland(50L, genlayeraddisland1);
+        genlayeraddisland1                  = new GenLayerAddIsland(70L, genlayeraddisland1);
+        GenLayer genlayerremovetoomuchocean = new GenLayerRemoveSomeOcean(2L, genlayeraddisland1);
+        GenLayer genlayeraddsnow            = new GenLayerAddSnow(2L, genlayerremovetoomuchocean);
+        GenLayer genlayeraddisland2         = new GenLayerAddIsland(3L, genlayeraddsnow);
+    	GenLayer reduceBiomes               = new GenLayerReduceFrequency(10L, genlayeraddisland2);
+        GenLayer genlayeredge               = reduceBiomes;
+        GenLayer genlayerzoom1              = new GenLayerZoom(2002L, genlayeredge);
+        genlayerzoom1                       = new GenLayerZoom(2003L, genlayerzoom1);
+        GenLayer genlayeraddisland3         = new GenLayerAddIsland(4L, genlayerzoom1);
+        GenLayer genlayerdeepocean          = genlayeraddisland3;
+        GenLayer genlayer4                  = GenLayerZoom.magnify(1000L, genlayerdeepocean, 0);
+        GenLayer genlayerriverinit          = GenLayerZoom.magnify(1000L, genlayer4, 0);
+        GenLayer genlayerendbiomes          = new GenLayerEndBiomes(200L, genlayer4);
+        GenLayer genlayer5                  = GenLayerZoom.magnify(1000L, genlayerriverinit, 2);
+        genlayer5                           = GenLayerZoom.magnify(1000L, genlayer5, riverSize);
 
         for (int k = 0; k < biomeSize; ++k)
         {

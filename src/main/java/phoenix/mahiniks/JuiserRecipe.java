@@ -12,7 +12,7 @@ import java.util.List;
 
 public class JuiserRecipe
 {
-    private static List<JuiserRecipe> recipes = new ArrayList<JuiserRecipe>(); // Лист всех рецептов.
+    private static List<JuiserRecipe> recipes = new ArrayList<>(); // Лист всех рецептов.
     public static JuiserRecipe EMPTY = new JuiserRecipe(null, null, ItemStack.EMPTY);
     public static List<JuiserRecipe> getRecipes() { // Получатель всех рецептов.
         return recipes;
@@ -37,17 +37,24 @@ public class JuiserRecipe
     public static JuiserRecipe addRecipe(FluidStack input, FluidStack output, ItemStack stack) { // Метод добавления рецепта.
         JuiserRecipe recipe = new JuiserRecipe(input, output, stack); // Создаем рецепт.
         if (recipes.contains(recipe)) // Если он есть уже в рецептах - игнорим.
+        {
             return EMPTY;
+        }
         recipes.add(recipe); // Если же нет - добавляем.
         return recipe;
     }
 
     public static JuiserRecipe getRecipe(FluidStack inputFluid, ItemStack inputItem) { // Получатель рецепта через входной предмет.
-        if (inputFluid == null || inputFluid.amount == 0 || inputItem.isEmpty() || inputItem.getItem() == Items.AIR)
+        if (inputFluid == null || inputFluid.amount == 0 || inputItem.isEmpty() || inputItem.getItem() == Items.AIR) {
             return EMPTY;
+        }
         for (JuiserRecipe recipe : recipes) // Проходим по списку всех рецептов.
+        {
             if (recipe.matchesInput(inputFluid, inputItem)) // Сравниваем входные элементы.
+            {
                 return recipe; // Возвращаем рецепт, если входные элементы одинаковые.
+            }
+        }
         return EMPTY;
     }
 

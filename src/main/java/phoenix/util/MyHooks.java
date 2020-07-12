@@ -24,7 +24,7 @@ public class MyHooks
     @Hook(targetMethod= "randomDisplayTick", returnCondition = ReturnCondition.ALWAYS, priority = HookPriority.HIGH)
     public static void randomDisplayTick(BlockEndRod ber, IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
     {
-        EnumFacing enumfacing = (EnumFacing)stateIn.getValue(FACING);
+        EnumFacing enumfacing = stateIn.getValue(FACING);
         double d0 = (double)pos.getX() + 0.55D - (double)(rand.nextFloat() * 0.1F);
         double d1 = (double)pos.getY() + 0.55D - (double)(rand.nextFloat() * 0.1F);
         double d2 = (double)pos.getZ() + 0.55D - (double)(rand.nextFloat() * 0.1F);

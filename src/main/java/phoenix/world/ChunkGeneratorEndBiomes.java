@@ -29,6 +29,8 @@ import net.minecraftforge.event.terraingen.InitMapGenEvent;
 import net.minecraftforge.event.terraingen.InitNoiseGensEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import phoenix.Phoenix;
+import phoenix.blocks.redo.BlockKikiNFruit;
+import phoenix.init.BlocksRegister;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -322,6 +324,17 @@ public class ChunkGeneratorEndBiomes extends ChunkGeneratorEnd
         return f2;
     }
 
+    public float getIslandDownValue(World world, BlockPos pos)
+    {
+        for (int i = 0; i < 30; ++i) {
+            if(!world.isAirBlock(new BlockPos(pos.getX(), i, pos.getZ())))
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     @Override
     public boolean isIslandChunk(int p_185961_1_, int p_185961_2_)
     {
@@ -493,7 +506,6 @@ public class ChunkGeneratorEndBiomes extends ChunkGeneratorEnd
                 }
             }
         }
-
         ForgeEventFactory.onChunkPopulate(false, this, this.world, this.rand, x, z, false);
         BlockFalling.fallInstantly = false;
     }
@@ -507,6 +519,7 @@ public class ChunkGeneratorEndBiomes extends ChunkGeneratorEnd
         return false;
     }
 
+    @Override
     public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
     {
         return this.world.getBiome(pos).getSpawnableList(creatureType);

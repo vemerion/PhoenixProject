@@ -1,4 +1,4 @@
-package phoenix.blocks.redo;
+package phoenix.blocks.rebirth;
 
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.state.IBlockState;

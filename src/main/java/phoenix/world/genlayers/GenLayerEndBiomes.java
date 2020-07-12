@@ -10,56 +10,42 @@ import phoenix.world.BiomeRegistrar;
 public class GenLayerEndBiomes extends GenLayer
 {
 	private final int SKY_ID;
-	//private final int END_FOREST_ID;
-	//private final int END_VOLCANO_ID;
     private final int END_UNDER_ID;
-	private final int PLACEHOLDER;
-	private final static int MAIN_ISLAND_SIZE;
-	
-	static 
-	{
-		MAIN_ISLAND_SIZE = (int) (80 / Math.pow(2, (Configs.worldgen.endBiomeSize-1)));
-//		SKY_ID = Biome.getIdForBiome(Biomes.SKY);
-//		END_FOREST_ID = Biome.getIdForBiome(Biomes.MESA);
-		//END_VOLCANO_ID = Biome.getIdForBiome(Biomes.MUSHROOM_ISLAND);
-//		PLACEHOLDER = SKY_ID;
-	}
-	
+	private final static int MAIN_ISLAND_SIZE = (int) (80 / Math.pow(2, 8));;
+
     public GenLayerEndBiomes(long seed, GenLayer parent)
     {
         super(seed);
         this.parent = parent;  
 		SKY_ID = Biome.getIdForBiome(Biomes.SKY);
-		//END_FOREST_ID = Biome.getIdForBiome(BiomeRegistrar.END_JUNGLE);
-		//END_VOLCANO_ID = Biome.getIdForBiome(BiomeRegistrar.END_VOLCANO);
         END_UNDER_ID = Biome.getIdForBiome(BiomeRegistrar.END_UNDER);
-		PLACEHOLDER = SKY_ID;
     }
     
+    @Override
     public int[] getInts(int areaX, int areaY, int areaWidth, int areaHeight)
     {
         int[] inLayer = this.parent.getInts(areaX, areaY, areaWidth, areaHeight);
         int[] outLayer = IntCache.getIntCache(areaWidth * areaHeight);
     
-        for (int i = 0; i < areaHeight; ++i)
+        for (int y = 0; y < areaHeight; ++y)
         {
-            for (int j = 0; j < areaWidth; ++j)
+            for (int z = 0; z < areaWidth; ++z)
             {
-            	this.initChunkSeed((long)(j + areaX), (long)(i + areaY));
-                int biomeInt = inLayer[j + i * areaWidth];
+            	this.initChunkSeed(z + areaX, y + areaY);
+                int biomeInt = inLayer[z + y * areaWidth];
 
                 if(biomeInt == 0 || (areaX < MAIN_ISLAND_SIZE && areaX > -MAIN_ISLAND_SIZE && areaY < MAIN_ISLAND_SIZE && areaY > -MAIN_ISLAND_SIZE))
                 {
-                	outLayer[j + i * areaWidth] = SKY_ID;
+                	outLayer[z + y * areaWidth] = SKY_ID;
                 }
                 else if(biomeInt == 1)
                 {
-                    outLayer[j + i * areaWidth] = END_UNDER_ID;
+                    outLayer[z + y * areaWidth] = END_UNDER_ID;
                 }
                 else
                 {
                     //System.out.println("Shit: biome id " + biomeInt + " found in genlayer");
-                	outLayer[j + i * areaWidth] = SKY_ID;
+                	outLayer[z + y * areaWidth] = SKY_ID;
                 }
             	
             }

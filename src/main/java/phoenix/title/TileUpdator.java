@@ -8,7 +8,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import phoenix.Phoenix;
-import phoenix.client.sound.PESounds;
+import phoenix.client.sound.PhoenixSounds;
 
 public class TileUpdator extends TileEntity implements ITickable
 {
@@ -25,7 +25,7 @@ public class TileUpdator extends TileEntity implements ITickable
         {
             world.getClosestPlayer(pos.getX(), pos.getY(), pos.getZ(), 100, false).rayTrace(100, 10);
             world.getClosestPlayer(pos.getX(), pos.getY(), pos.getZ(), 100, false).sendStatusMessage(new TextComponentTranslation("phoenix.massage.newstage"), true);
-            world.playSound(pos.getX(), pos.getY(), pos.getZ(), PESounds.trans[world.getCapability(Phoenix.STAGER_CAPABILITY, null).getStage() - 1], SoundCategory.MUSIC,  1, 1, false);
+            world.playSound(pos.getX(), pos.getY(), pos.getZ(), PhoenixSounds.trans[world.getCapability(Phoenix.STAGER_CAPABILITY, null).getStage() - 1], SoundCategory.MUSIC,  1, 1, false);
             world.getCapability(Phoenix.STAGER_CAPABILITY,  null).setStageIn(1);
             world.getCapability(Phoenix.STAGER_CAPABILITY, null).addStage();
         }

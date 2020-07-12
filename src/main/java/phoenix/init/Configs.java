@@ -15,15 +15,12 @@ public class Configs
 	
 	public static class ConfigWorldGen 
 	{
-		@Config.Comment({"Controls size of end biomes. Larger number = larger biomes", "Default: 4"})
-		@Config.RequiresWorldRestart
-		public int endBiomeSize = 7;
 		
 		@Config.Comment({"Reduce number of end biomes by percent (range 0-99). e.g. 40 would generate 40% fewer end biomes", "Default: 0"})
 		@Config.RequiresWorldRestart
 		public int biomeReducer = 0;
 
-		@Config.Comment({"Game mode. \"false\" for normal, true for \"Liahim\"  mode"})
+		@Config.Comment({"Hard mode. \"false\" for normal, true for \"Liahim\"  mode"})
 		@Config.RequiresWorldRestart
 		public boolean Liahim_Mode = false;
 

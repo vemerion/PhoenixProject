@@ -28,7 +28,7 @@ public class Phoenix
 {
     public static final String MOD_ID = "phoenix";
     public static final String MOD_NAME = "Project Phoenix";
-    public static final String VERSION = "0.0.4b";
+    public static final String VERSION = "0.0.4B";
     public static final CreativeTabs            TheEndOfCreativeTabs = new PhenixTab(CreativeTabs.getNextID(), "end_of_the_tabs");
     public static final Item.ToolMaterial       siliconlife          = EnumHelper.addToolMaterial ("phoenix:silinonlife", 2, 9000, 0.0F, 1.0F, 12);
     public static final ItemArmor.ArmorMaterial armorMaterial        = EnumHelper.addArmorMaterial("phoenix:lifedarmor", "phoenix:lifedarmor", 9000, new int[]{4, 7, 5, 4}, 10, SoundEvents.ITEM_ARMOR_EQIIP_ELYTRA, 1.0F);

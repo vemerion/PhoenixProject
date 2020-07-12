@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import phoenix.Phoenix;
+import phoenix.client.models.entity.ModelMTH;
 import phoenix.client.models.items.ModelMarkThree;
 import phoenix.items.air.ArmorMarkThree;
 import phoenix.items.air.ItemKassiysSpeaare;
@@ -49,10 +50,10 @@ public class ItemRegister
                         new ItemKassiysSpeaare(),
                         new ItemMindDust()
                 );
-        armorModels.put(MarkHead,  new ModelMarkThree(0));
-        armorModels.put(MarkChest, new ModelMarkThree(1));
-        armorModels.put(MarkLeggs, new ModelMarkThree(2));
-        armorModels.put(MarkBoots, new ModelMarkThree(3));
+        armorModels.put(MarkHead,  new ModelMTH());
+        armorModels.put(MarkChest, new ModelMTH());
+        armorModels.put(MarkLeggs, new ModelMTH());
+        armorModels.put(MarkBoots, new ModelMTH());
     }
 
     @SubscribeEvent

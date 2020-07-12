@@ -24,16 +24,17 @@ public class PEEventHandler
     }
 
     @SubscribeEvent
-    public static void onHurt(LivingHurtEvent event)
+    public static void onHurt(LivingHurtEvent event)//при нанесении урона
     {
-        if (event.getSource().getTrueSource() instanceof EntityPlayer)
+        if (event.getSource().getImmediateSource() instanceof EntityPlayer)//если наносит игрок
         {
-            if (((EntityPlayer) event.getSource().getImmediateSource()).getHeldItemMainhand().getItem() instanceof ItemKassiysSpeaare)
+            if (((EntityPlayer) event.getSource().getImmediateSource()).getHeldItemMainhand().getItem() instanceof ItemKassiysSpeaare)//если особый меч
             {
-                event.getEntity().hurtResistantTime = 0;
+                event.getEntity().hurtResistantTime = 0;//убираем таймер защиты от урона
             }
         }
-        if (event.getEntity() instanceof EntityPlayer)
+
+        if (event.getEntity() instanceof EntityPlayer)//если игроку наносят урон
         {
             EntityPlayer player = (EntityPlayer) event.getEntity();
 

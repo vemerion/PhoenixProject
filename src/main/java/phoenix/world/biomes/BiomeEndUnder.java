@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeEndDecorator;
+import phoenix.blocks.redo.BlockKikiNFruit;
 import phoenix.init.BlocksRegister;
 
 import java.util.Random;
@@ -34,6 +35,7 @@ public class BiomeEndUnder extends Biome
     @Override
     public BiomeDecorator createBiomeDecorator(){ return new BiomeDecoratorEndBiomes(); }
 
+    @Override
     public void decorate(World world, Random rand, BlockPos pos)
     {
         for (int x = 0; x < 16; x++) {
@@ -48,16 +50,20 @@ public class BiomeEndUnder extends Biome
                 }
             }
         }
-        //System.out.println("Under generated at " + pos.getX() + " " + pos.getZ());
+        BlockPos position = new BlockPos(pos.getX() + rand.nextInt(5) + 8, 0, pos.getZ() + rand.nextInt(8) + 8);
+        int height = getEndDownSurfaceHeight(world, pos.getX(), pos.getZ());
+        if(height != -1 && world.getBlockState(new BlockPos(position.getX(), height, position.getZ())).getBlock() == BlocksRegister.FERTILE_END_STONE)
+        world.setBlockState(new BlockPos(position.getX(), height - 1, position.getZ()), BlocksRegister.KIKIN_FRUIT.getDefaultState());
+        System.out.println("Under generated at " + pos.getX() + " " + pos.getZ());
         super.decorate(world, rand, pos);
     }
 
     public static int getEndDownSurfaceHeight(World world, int x, int z)
     {
-        for (int i = 10; i < 30; i++)
+        for (int i = 5; i < 40; i++)
             if(!world.isAirBlock(new BlockPos(x, i, z)))
                 return i;
 
-        return 0;
+        return -1;
     }
 }

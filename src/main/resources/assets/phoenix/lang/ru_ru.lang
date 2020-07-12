@@ -16,8 +16,8 @@ item.gods_chestplate.name=Кириса из плоти
 item.gods_leggins.name=Штаны из плоти
 item.gods_halmet.name=Шлем из плоти
 #ачивки
-advancements.phoenix.unit01.title=Добро пожаловать на уровень!
-advancements.phoenix.unit01.title.description=Конец начала или начало конца?
+advancements.phoenix.unit01.title=Проект феникс
+advancements.phoenix.unit01.title.description=И тут начинается история
 advancements.phoenix.unit01.corn.tile=Возрадуемся!
 advancements.phoenix.unit01.corn.description=-Как тебя вообще занесло в этот храм? — Я принял его за город края. Легко спутать.
 #сообщения

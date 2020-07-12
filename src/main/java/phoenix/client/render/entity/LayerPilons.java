@@ -13,6 +13,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import phoenix.Phoenix;
+import phoenix.client.models.entity.ModelMTH;
 import phoenix.client.models.entity.ModelPilons;
 import phoenix.init.ItemRegister;
 
@@ -24,7 +25,7 @@ public class LayerPilons implements LayerRenderer<EntityPlayer>
     /** Instance of the player renderer. */
     protected final RenderLivingBase<?> renderPlayer;
     /** The model used by the Elytra. */
-    private final ModelPilons modelElytra = new ModelPilons();
+    private ModelMTH modelPilons = new ModelMTH();
 
     public LayerPilons(RenderLivingBase<?> render)
     {
@@ -34,6 +35,7 @@ public class LayerPilons implements LayerRenderer<EntityPlayer>
     @Override
     public void doRenderLayer(EntityPlayer player, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
     {
+        modelPilons = new ModelMTH();
         ItemStack itemstack = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
 
         if (itemstack.getItem() == ItemRegister.GODS_CHESTPLATE)
@@ -41,7 +43,7 @@ public class LayerPilons implements LayerRenderer<EntityPlayer>
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             GlStateManager.enableBlend();
             GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-
+            /*todo prme skins
             if (player instanceof AbstractClientPlayer)
             {
                 AbstractClientPlayer abstractclientplayer = (AbstractClientPlayer)player;
@@ -50,30 +52,25 @@ public class LayerPilons implements LayerRenderer<EntityPlayer>
                 {
                     this.renderPlayer.bindTexture(abstractclientplayer.getLocationElytra());
                 }
-                else if (abstractclientplayer.hasPlayerInfo() && abstractclientplayer.getLocationCape() != null && abstractclientplayer.isWearing(EnumPlayerModelParts.CAPE))
-                {
-                    this.renderPlayer.bindTexture(abstractclientplayer.getLocationCape());
-                }
                 else
                 {
                     this.renderPlayer.bindTexture(TEXTURE_ELYTRA);
                 }
             }
             else
-            {
+            {*/
                 this.renderPlayer.bindTexture(TEXTURE_ELYTRA);
-            }
+            //}
 
             GlStateManager.pushMatrix();
             GlStateManager.translate(0.0F, 0.0F, 0.125F);
-            this.modelElytra.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, player);
-            this.modelElytra.render(player, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+            this.modelPilons.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, player);
+            this.modelPilons.render(player, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
 
             if (itemstack.isItemEnchanted())
             {
-                LayerArmorBase.renderEnchantedGlint(this.renderPlayer, player, this.modelElytra, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch, scale);
+                LayerArmorBase.renderEnchantedGlint(this.renderPlayer, player, this.modelPilons, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch, scale);
             }
-
             GlStateManager.disableBlend();
             GlStateManager.popMatrix();
         }
