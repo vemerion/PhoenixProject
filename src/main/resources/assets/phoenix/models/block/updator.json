@@ -1,8 +1,0 @@
-{
-	"parent": "block/orientable",
-	"textures": {
-		"top": "phoenix:blocks/updator_top",
-		"front": "phoenix:blocks/updator_side",
-		"side": "phoenix:blocks/updator_side"
-	}
-}

@@ -6,9 +6,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class PhenixTab extends CreativeTabs
+public class PhoenixTab extends CreativeTabs
 {
-    public PhenixTab(int index, String label)
+    public PhoenixTab(int index, String label)
     {
         super(index, label);
         this.createIcon();

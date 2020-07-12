@@ -6,7 +6,7 @@
       "all": "phoenix:fluid/oil_flow"
     },
     "model": "forge:fluid",
-    "custom": { "fluid": "kikin_juise" },
+    "custom": { "fluid": "kikin_juice" },
     "uvlock": false
   },
   "variants": {

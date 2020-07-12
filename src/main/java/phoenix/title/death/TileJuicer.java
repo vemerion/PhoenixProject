@@ -10,12 +10,12 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import phoenix.mahiniks.JuiserRecipe;
+import phoenix.machinerecipes.JuicerRecipe;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class TileJuiser extends TileEntity implements ITickable
+public class TileJuicer extends TileEntity implements ITickable
 {
     private int time = 0;
     protected FluidTank tank = new FluidTank(Fluid.BUCKET_VOLUME *  10);
@@ -82,7 +82,7 @@ public class TileJuiser extends TileEntity implements ITickable
         {
             TileTank tankUp = (TileTank) world.getTileEntity(pos.up());
             TileTank tankDown = (TileTank) world.getTileEntity(pos.up());
-            JuiserRecipe recipe = JuiserRecipe.getRecipe(tankUp.getTank().getFluid(), stack);
+            JuicerRecipe recipe = JuicerRecipe.getRecipe(tankUp.getTank().getFluid(), stack);
             if(time >= 1000)
             {
                 if(tankDown.getTank().canFillFluidType(recipe.getOutput()))

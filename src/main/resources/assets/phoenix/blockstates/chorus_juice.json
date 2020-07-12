@@ -6,7 +6,7 @@
             "all": "phoenix:fluid/oil_flow"
         },
         "model": "forge:fluid",
-     	"custom": { "fluid": "chorus_juise" },
+     	"custom": { "fluid": "chorus_juice" },
      	"uvlock": false
     },
     "variants": {

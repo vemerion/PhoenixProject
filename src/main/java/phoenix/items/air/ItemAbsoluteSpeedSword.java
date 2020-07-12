@@ -14,13 +14,13 @@ import phoenix.Phoenix;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class ItemKassiysSpeaare extends ItemSword
+public class ItemAbsoluteSpeedSword extends ItemSword
 {
-    public ItemKassiysSpeaare()
+    public ItemAbsoluteSpeedSword()
     {
         super(Phoenix.siliconlife);
-        setRegistryName("absolute_swprd");
-        setTranslationKey("kassiesspeare");
+        setRegistryName("absolute_speed_sword");
+        setTranslationKey("absolutespeedsword");
         setCreativeTab(Phoenix.TheEndOfCreativeTabs);
     }
 

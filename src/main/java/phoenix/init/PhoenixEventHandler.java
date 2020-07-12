@@ -11,11 +11,11 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import phoenix.Phoenix;
 import phoenix.items.air.ArmorMarkThree;
-import phoenix.items.air.ItemKassiysSpeaare;
+import phoenix.items.air.ItemAbsoluteSpeedSword;
 import phoenix.world.capablity.StageProvider;
 
 @Mod.EventBusSubscriber
-public class PEEventHandler
+public class PhoenixEventHandler
 {
     @SubscribeEvent
     public static void attachCapabilities(AttachCapabilitiesEvent<World> event)
@@ -24,17 +24,16 @@ public class PEEventHandler
     }
 
     @SubscribeEvent
-    public static void onHurt(LivingHurtEvent event)//при нанесении урона
+    public static void onHurt(LivingHurtEvent event)
     {
-        if (event.getSource().getImmediateSource() instanceof EntityPlayer)//если наносит игрок
+        if (event.getSource().getTrueSource() instanceof EntityPlayer)
         {
-            if (((EntityPlayer) event.getSource().getImmediateSource()).getHeldItemMainhand().getItem() instanceof ItemKassiysSpeaare)//если особый меч
+            if (((EntityPlayer) event.getSource().getImmediateSource()).getHeldItemMainhand().getItem() instanceof ItemAbsoluteSpeedSword)
             {
-                event.getEntity().hurtResistantTime = 0;//убираем таймер защиты от урона
+                event.getEntity().hurtResistantTime = 0;
             }
         }
-
-        if (event.getEntity() instanceof EntityPlayer)//если игроку наносят урон
+        if (event.getEntity() instanceof EntityPlayer)
         {
             EntityPlayer player = (EntityPlayer) event.getEntity();
 

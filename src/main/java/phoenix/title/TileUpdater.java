@@ -10,7 +10,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 import phoenix.Phoenix;
 import phoenix.client.sound.PhoenixSounds;
 
-public class TileUpdator extends TileEntity implements ITickable
+public class TileUpdater extends TileEntity implements ITickable
 {
     @Override
     public void update()

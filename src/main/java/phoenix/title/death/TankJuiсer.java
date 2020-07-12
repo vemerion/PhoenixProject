@@ -8,14 +8,14 @@ import net.minecraftforge.fluids.FluidTank;
 
 import javax.annotation.Nullable;
 
-public class TankJuiser extends FluidTank
+public class TankJuiсer extends FluidTank
 {
     @Nullable
     protected FluidStack input, output;
     protected int input_capacity, output_capacity;
-    protected TileJuiser tile;
+    protected TileJuicer tile;
 
-    public TankJuiser(int capacity)
+    public TankJuiсer(int capacity)
     {
         super(capacity);
     }

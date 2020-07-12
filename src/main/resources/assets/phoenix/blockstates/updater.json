@@ -1,7 +1,7 @@
 {
     "variants": {
         "normal": [
-			{ "model": "phoenix:updator" }
+			{ "model": "phoenix:updater" }
 		]
     }
 }

@@ -8,7 +8,7 @@ import net.minecraft.util.ITickable;
 
 import java.util.Random;
 
-public class TileGost extends TileEntity implements ITickable
+public class TileFragileBlock extends TileEntity implements ITickable
 {
     private int count;
     int timer = -1;

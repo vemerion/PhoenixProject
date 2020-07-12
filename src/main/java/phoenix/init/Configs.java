@@ -25,7 +25,7 @@ public class Configs
 		public boolean Liahim_Mode = false;
 
 		@Config.Comment({"Graphics quality: true if high, false if off.", " Affects the number of particles"})
-		public boolean grafics = true;
+		public boolean graphics = true;
 	}
 
 	@SubscribeEvent

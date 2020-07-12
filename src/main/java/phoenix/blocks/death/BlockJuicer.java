@@ -4,44 +4,40 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import phoenix.Phoenix;
 import phoenix.title.BlockTileEntity;
-import phoenix.title.death.TileJuiser;
+import phoenix.title.death.TileJuicer;
 import phoenix.title.death.TileTank;
 
 import javax.annotation.Nullable;
 
-public class BlockJuiser extends BlockTileEntity
+public class BlockJuicer extends BlockTileEntity
 {
-    public BlockJuiser()
+    public BlockJuicer()
     {
-        super("juiser", Material.GLASS, 5, 5, SoundType.GLASS);
+        super("juicer", Material.GLASS, 5, 5, SoundType.GLASS);
         setCreativeTab(Phoenix.TheEndOfCreativeTabs);
     }
 
     @Override
     public Class getTileEntityClass()
     {
-        return TileJuiser.class;
+        return TileJuicer.class;
     }
 
     @Nullable
     @Override
     public TileEntity createTileEntity(World world, IBlockState blockState)
     {
-        return new TileJuiser();
+        return new TileJuicer();
     }
 
     @Override

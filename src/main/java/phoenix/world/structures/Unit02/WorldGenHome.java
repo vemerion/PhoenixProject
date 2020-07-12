@@ -10,7 +10,7 @@ import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import phoenix.Phoenix;
-import phoenix.world.GostTemplateProcessor;
+import phoenix.world.FragileBlockTemplateProcessor;
 
 import java.util.Random;
 
@@ -28,7 +28,7 @@ public class WorldGenHome implements IWorldGenerator
             if(world.isAirBlock(pos) && world.isAirBlock(pos.west()) && world.isAirBlock(pos.east()) && world.isAirBlock(pos.up()) && world.isAirBlock(pos.down())
                     && world.isAirBlock(pos.north()) && world.isAirBlock(pos.south()))
             //template.addBlocksToWorld(world, pos, settings);
-            template.addBlocksToWorld(world, pos, new GostTemplateProcessor(), settings, 0);
+            template.addBlocksToWorld(world, pos, new FragileBlockTemplateProcessor(), settings, 0);
         }
     }
 }

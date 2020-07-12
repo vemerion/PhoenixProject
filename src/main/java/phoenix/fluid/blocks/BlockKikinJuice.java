@@ -3,11 +3,11 @@ package phoenix.fluid.blocks;
 import net.minecraftforge.fluids.Fluid;
 import phoenix.fluid.BlockFluidClassicFix;
 
-public class BlockChorusJuise extends BlockFluidClassicFix
+public class BlockKikinJuice extends BlockFluidClassicFix
 {
-    public BlockChorusJuise(Fluid fluid)
+    public BlockKikinJuice(Fluid fluid)
     {
         super(fluid);
-        setRegistryName("chorus_juise");
+        setRegistryName("kikin_juice");
     }
 }

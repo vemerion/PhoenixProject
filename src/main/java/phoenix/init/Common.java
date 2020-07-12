@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import phoenix.world.BiomeRegistrar;
+import phoenix.world.BiomeRegister;
 import phoenix.world.WorldProviderEndBiomes;
 import phoenix.world.capablity.IStager;
 import phoenix.world.capablity.StageHandler;
@@ -25,7 +25,7 @@ public class Common
     public void init(FMLInitializationEvent event)
     {
         overrideEnd();
-        BiomeRegistrar.registerBiomes();
+        BiomeRegister.registerBiomes();
        // MapGenStructureIO.registerStructure(MapGenCorn.Start.class, "Corn");
         GameRegistry.registerWorldGenerator(new WorldGenCorn(), 5);
         GameRegistry.registerWorldGenerator(new WorldGenHome(), 3);

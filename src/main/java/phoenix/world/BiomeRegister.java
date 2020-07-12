@@ -6,7 +6,7 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import phoenix.world.biomes.BiomeEndUnder;
 
-public class BiomeRegistrar 
+public class BiomeRegister
 {
 	public static final Biome END_UNDER = new BiomeEndUnder();
 	

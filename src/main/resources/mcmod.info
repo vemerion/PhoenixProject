@@ -1,14 +1,15 @@
 [
   {
     "modid": "phoenix",
-    "name": "Phoenix project",
+    "name": "phoenix",
     "description": "Make end better and mysterious",
-    "version": "0.0.4B",
-    "mcversion": "1.12.2",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
     "url": "https://github.com/GoogeTan/phoenix",
     "updateUrl": "",
     "authorList": [
-      "WildTan"
+      "GoogleTan",
+      "Hardronix"
     ],
     "credits": "",
     "logoFile": "",

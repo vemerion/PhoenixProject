@@ -19,20 +19,20 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import phoenix.title.BlockTileEntity;
-import phoenix.title.TileGost;
+import phoenix.title.TileFragileBlock;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class BlockGost extends BlockTileEntity
+public class FragileBlock extends BlockTileEntity
 {
     public static final PropertyInteger TYPE = PropertyInteger.create("type", 0 , 15);
     protected static final AxisAlignedBB AABB_BOTTOM_HALF = new AxisAlignedBB(0.1D, 0.1D, 0.1D, 0.9D, 0.4D, 0.9D);
     protected static final AxisAlignedBB AABB_TOP_HALF = new AxisAlignedBB(0.1D, 0.4D, 0.1D, 0.9D, 0.9D, 0.9D);
 
-    public BlockGost()
+    public FragileBlock()
     {
-      super("gost", Material.ROCK, 3.0F,15.0F, SoundType.GROUND);
+      super("fragileblock", Material.ROCK, 3.0F,15.0F, SoundType.GROUND);
       setDefaultState(this.blockState.getBaseState().withProperty(TYPE, 0));
     }
 
@@ -49,11 +49,11 @@ public class BlockGost extends BlockTileEntity
                     {
                         for (int y = pos.getY() - 20; y < pos.getY() + 20; y++)
                         {
-                            if (worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() instanceof BlockGost)
+                            if (worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() instanceof FragileBlock)
                             {
-                                if (((TileGost) getTileEntity(worldIn, new BlockPos(x, y, z))).getTimer() == -1)
+                                if (((TileFragileBlock) getTileEntity(worldIn, new BlockPos(x, y, z))).getTimer() == -1)
                                 {
-                                    ((TileGost) getTileEntity(worldIn, new BlockPos(x, y, z))).setTimer(10 + new Random().nextInt(25));
+                                    ((TileFragileBlock) getTileEntity(worldIn, new BlockPos(x, y, z))).setTimer(10 + new Random().nextInt(25));
                                 }
                             }
                         }
@@ -68,7 +68,7 @@ public class BlockGost extends BlockTileEntity
 
         if (!world.isRemote)
         {
-            TileGost tileEntity = (TileGost) getTileEntity(world, position);
+            TileFragileBlock tileEntity = (TileFragileBlock) getTileEntity(world, position);
             if (side == EnumFacing.DOWN) {
                 tileEntity.decrementCount();
             }
@@ -80,7 +80,7 @@ public class BlockGost extends BlockTileEntity
         }
         return true;
     }
-    @Override  public Class getTileEntityClass() {  return TileGost.class;  }
+    @Override  public Class getTileEntityClass() {  return TileFragileBlock.class;  }
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
@@ -114,5 +114,5 @@ public class BlockGost extends BlockTileEntity
 
     @Nullable
     @Override
-    public TileEntity createTileEntity(World world, IBlockState blockState) { return new TileGost(); }
+    public TileEntity createTileEntity(World world, IBlockState blockState) { return new TileFragileBlock(); }
 }

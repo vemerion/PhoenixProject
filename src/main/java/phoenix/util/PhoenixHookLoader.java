@@ -3,7 +3,7 @@ package phoenix.util;
 import hooklib.minecraft.HookLoader;
 import hooklib.minecraft.PrimaryClassTransformer;
 
-public class PEHookLoader extends HookLoader
+public class PhoenixHookLoader extends HookLoader
 {
     // включает саму HookLib'у. Делать это можно только в одном из HookLoader'ов. При желании, можно включить hooklib.minecraft.HookLibPlugin и не указывать здесь это вовсе.
     @Override

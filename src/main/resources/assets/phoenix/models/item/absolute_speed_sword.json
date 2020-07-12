@@ -1,7 +1,7 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "phoenix:items/zaharas_speare"
+    "layer0": "phoenix:items/absolute_speed_sword"
   },
 
   "display": {

@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "normal": {  "model": "phoenix:ceramic_porcelain" },
+ "inventory": {  "model": "phoenix:ceramic_porcelain" }
+  }
+}

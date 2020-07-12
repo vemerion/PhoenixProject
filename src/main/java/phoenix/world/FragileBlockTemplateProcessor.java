@@ -17,9 +17,9 @@ import phoenix.init.BlocksRegister;
 
 import javax.annotation.Nullable;
 
-import static phoenix.blocks.BlockGost.TYPE;
+import static phoenix.blocks.FragileBlock.TYPE;
 
-public class GostTemplateProcessor implements ITemplateProcessor
+public class FragileBlockTemplateProcessor implements ITemplateProcessor
 {
     @Nullable
     @Override
@@ -29,19 +29,19 @@ public class GostTemplateProcessor implements ITemplateProcessor
         IBlockState state = blockInfoIn.blockState;
         if(worldIn.getBlockState(pos).getBlock() == Blocks.END_STONE)
         {
-            state =  BlocksRegister.GOST.getDefaultState().withProperty(TYPE, 0);
+            state =  BlocksRegister.FRAGILE_BLOCK.getDefaultState().withProperty(TYPE, 0);
         }
         else if(worldIn.getBlockState(pos).getBlock() == Blocks.END_BRICKS)
         {
-            state =  BlocksRegister.GOST.getDefaultState().withProperty(TYPE, 1);
+            state =  BlocksRegister.FRAGILE_BLOCK.getDefaultState().withProperty(TYPE, 1);
         }
         else if(worldIn.getBlockState(pos).getBlock() == Blocks.PURPUR_SLAB)
         {
-            state =  BlocksRegister.GOST.getDefaultState().withProperty(TYPE, 2);
+            state =  BlocksRegister.FRAGILE_BLOCK.getDefaultState().withProperty(TYPE, 2);
         }
         else if(worldIn.getBlockState(pos).getBlock() == Blocks.PURPUR_BLOCK)
         {
-            state = BlocksRegister.GOST.getDefaultState().withProperty(TYPE, 4);
+            state = BlocksRegister.FRAGILE_BLOCK.getDefaultState().withProperty(TYPE, 4);
         }
         else if(Item.getItemFromBlock(worldIn.getBlockState(pos).getBlock()) instanceof ItemShulkerBox)
         {
