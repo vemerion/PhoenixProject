@@ -4,8 +4,7 @@ import net.minecraft.init.Biomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
-import phoenix.init.Configs;
-import phoenix.world.BiomeRegistrar;
+import phoenix.world.BiomeRegister;
 
 public class GenLayerEndBiomes extends GenLayer
 {
@@ -18,7 +17,7 @@ public class GenLayerEndBiomes extends GenLayer
         super(seed);
         this.parent = parent;  
 		SKY_ID = Biome.getIdForBiome(Biomes.SKY);
-        END_UNDER_ID = Biome.getIdForBiome(BiomeRegistrar.END_UNDER);
+        END_UNDER_ID = Biome.getIdForBiome(BiomeRegister.END_UNDER);
     }
     
     @Override

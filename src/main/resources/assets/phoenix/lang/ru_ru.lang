@@ -4,14 +4,17 @@ tile.fragileblock.name=Хрупкий блок
 tile.updater.name=Улучшение
 tile.fertile_end_stone.name=Плодородный камень края
 tile.mind_ore.name=Осколок памяти
-tile.ceramic.name=Керамика мира прошлого
-tile.ceramic_porcelain.name=Фарфоровая керамика
+tile.ceraomic.name=Кераомика мира прошлого
+tile.ceraomic_porcelain.name=Фарфоровая кераомика
 tile.juicer.name=Соковыжималка
 tile.tank_dead.name=Канистра
+tile.kikin_stem.name=Стебель кикина
+tile.kikin_fruit.name=Фрукт кикина
 #мобы
 entity.Uterus.name=Короначервиус
 #креатив меню
 itemGroup.end_of_the_tabs=Проект Феникс
+#предметы
 item.null.name=Безымянность
 item.absolutespeedsword.name=Меч абсолютной скорости
 item.gods_boots.name=Сапоги из плоти

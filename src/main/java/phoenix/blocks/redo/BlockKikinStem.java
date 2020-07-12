@@ -10,6 +10,7 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -22,18 +23,22 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import phoenix.Phoenix;
 import phoenix.init.BlocksRegister;
+import phoenix.init.Common;
 
 import java.util.ArrayList;
 
-public class BlockKikiNBody extends BlockChorusPlant
+public class BlockKikinStem extends BlockChorusPlant
 {
 
-    public BlockKikiNBody()
+    public BlockKikinStem()
     {
         super();
-        setRegistryName("kikin_body");
-        setTranslationKey("kikin_body");
+        setRegistryName("kikin_stem");
+        setTranslationKey("kikin_stem");
         setCreativeTab(Phoenix.TheEndOfCreativeTabs);
+
+        Common.addBlock(this);
+        Common.addItem(Item.getItemFromBlock(this));
     }
 
     @Override

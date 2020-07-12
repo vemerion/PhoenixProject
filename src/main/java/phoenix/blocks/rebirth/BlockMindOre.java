@@ -1,20 +1,23 @@
 package phoenix.blocks.rebirth;
 
 import net.minecraft.block.BlockOre;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import phoenix.Phoenix;
+import phoenix.blocks.PhoenixBlock;
 import phoenix.init.ItemRegister;
 
 import java.util.Random;
 
-public class BlockMindOre extends BlockOre
+public class BlockMindOre extends PhoenixBlock
 {
     public BlockMindOre()
     {
+        super(Material.ROCK);
         setRegistryName("mind_ore");
         setTranslationKey("mind_ore");
         setCreativeTab(Phoenix.TheEndOfCreativeTabs);

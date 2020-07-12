@@ -8,10 +8,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import phoenix.blocks.PhoenixBlock;
 
 import javax.annotation.Nullable;
 
-public abstract class BlockTileEntity<T extends TileEntity> extends Block
+public abstract class BlockTileEntity<T extends TileEntity> extends PhoenixBlock
 {
 	public BlockTileEntity(String name, Material material, float hardness, float resistanse, SoundType soundType)
 	{

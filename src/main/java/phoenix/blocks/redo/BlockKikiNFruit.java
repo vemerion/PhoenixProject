@@ -11,6 +11,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -21,6 +22,7 @@ import net.minecraft.world.storage.WorldSavedData;
 import net.minecraftforge.common.ForgeHooks;
 import phoenix.Phoenix;
 import phoenix.init.BlocksRegister;
+import phoenix.init.Common;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -36,6 +38,9 @@ public class BlockKikiNFruit extends BlockChorusFlower
         setCreativeTab(Phoenix.TheEndOfCreativeTabs);
         this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, Integer.valueOf(0)));
         setTickRandomly(true);
+
+        Common.addBlock(this);
+        Common.addItem(Item.getItemFromBlock(this));
     }
 
 

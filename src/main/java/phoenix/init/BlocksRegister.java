@@ -12,34 +12,34 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import phoenix.Phoenix;
-import phoenix.blocks.BlockGost;
 import phoenix.blocks.BlockUpdater;
-import phoenix.blocks.death.BlockJuiser;
+import phoenix.blocks.FragileBlock;
+import phoenix.blocks.death.BlockJuicer;
 import phoenix.blocks.death.BlockTank;
-import phoenix.blocks.redo.BlockFarforCeraomic;
+import phoenix.blocks.rebirth.BlockCeramicPorcelain;
 import phoenix.blocks.redo.BlockGoodEndStone;
-import phoenix.blocks.redo.BlockKikiNBody;
 import phoenix.blocks.redo.BlockKikiNFruit;
 import phoenix.blocks.rebirth.BlockCeraomicOld;
 import phoenix.blocks.rebirth.BlockMindOre;
-import phoenix.fluid.blocks.BlockChorusJuise;
-import phoenix.fluid.blocks.BlockKikinJuise;
+import phoenix.blocks.redo.BlockKikinStem;
+import phoenix.fluid.blocks.BlockChorusJuice;
+import phoenix.fluid.blocks.BlockKikinJuice;
 
 @Mod.EventBusSubscriber(modid = Phoenix.MOD_ID)
 public class BlocksRegister
 {
     public static Block         MIND = new BlockMindOre();
-    public static BlockGost     GOST = new BlockGost();
+    public static FragileBlock FRAGILE_BLOCK = new FragileBlock();
     public static BlockUpdater  UPDATER = new BlockUpdater();
     public static Block         FERTILE_END_STONE = new BlockGoodEndStone();
     public static Block         CERAOMC_OLD = new BlockCeraomicOld();
-    public static Block         KIKIN_PLANT = new BlockKikiNBody();
+    public static Block         KIKIN_PLANT = new BlockKikinStem();
     public static Block         KIKIN_FRUIT = new BlockKikiNFruit();
-    public static BlockKikinJuise KIKIN_JUISE = new BlockKikinJuise(FluidRegister.KININ_FLUID);
-    public static BlockChorusJuise CHORUS_JUISE = new BlockChorusJuise(FluidRegister.CHORUS_FLUID);
-    public static Block CERAOMIC_FARFOR = new BlockFarforCeraomic();
+    public static BlockKikinJuice KIKIN_JUISE = new BlockKikinJuice(FluidRegister.KIKIN_FLUID);
+    public static BlockChorusJuice CHORUS_JUISE = new BlockChorusJuice(FluidRegister.CHORUS_FLUID);
+    public static Block CERAOMIC_FARFOR = new BlockCeramicPorcelain();
     public static BlockTank TANK = new BlockTank();
-    public static BlockJuiser JUISER = new BlockJuiser();
+    public static BlockJuicer JUISER = new BlockJuicer();
     //public static ModelResourceLocation gost_model;
 
     @SubscribeEvent
@@ -48,7 +48,7 @@ public class BlocksRegister
         event.getRegistry().registerAll
         (
                 MIND,
-                GOST,
+                FRAGILE_BLOCK,
                 UPDATER,
                 FERTILE_END_STONE,
                 CERAOMC_OLD,
@@ -61,7 +61,7 @@ public class BlocksRegister
                 JUISER
         );
         GameRegistry.registerTileEntity(UPDATER.getTileEntityClass(), UPDATER.getRegistryName().toString());
-        GameRegistry.registerTileEntity(GOST.getTileEntityClass(),       GOST.getRegistryName().toString());
+        GameRegistry.registerTileEntity(FRAGILE_BLOCK.getTileEntityClass(),       FRAGILE_BLOCK.getRegistryName().toString());
         GameRegistry.registerTileEntity(TANK.getTileEntityClass(),       TANK.getRegistryName().toString());
         GameRegistry.registerTileEntity(JUISER.getTileEntityClass(),   JUISER.getRegistryName().toString());
         //gost_model = new ModelResourceLocation(event.getRegistry().getKey(GOST), "normal");
@@ -77,7 +77,7 @@ public class BlocksRegister
         event.getRegistry().registerAll
         (
                new ItemBlock(MIND).setRegistryName(MIND.getRegistryName()),
-               new ItemBlock(GOST).setRegistryName(GOST.getRegistryName()),
+               new ItemBlock(FRAGILE_BLOCK).setRegistryName(FRAGILE_BLOCK.getRegistryName()),
                new ItemBlock(UPDATER).setRegistryName(UPDATER.getRegistryName()),
                new ItemBlock(FERTILE_END_STONE).setRegistryName(FERTILE_END_STONE.getRegistryName()),
                new ItemBlock(CERAOMC_OLD).setRegistryName(CERAOMC_OLD.getRegistryName()),
@@ -95,7 +95,7 @@ public class BlocksRegister
     public static void registerRender()
     {
         setRender(MIND);
-        setRender(GOST);
+        setRender(FRAGILE_BLOCK);
         setRender(UPDATER);
         setRender(FERTILE_END_STONE);
         setRender(CERAOMC_OLD);

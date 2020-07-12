@@ -52,6 +52,6 @@ public class BlockJuicer extends BlockTileEntity
 
     @SideOnly(Side.CLIENT)
     @Override public BlockRenderLayer getRenderLayer(){return BlockRenderLayer.CUTOUT; }
-    @Override public boolean isOpaqueCube(IBlockState state){  return false; }
+    @Override public boolean  isOpaqueCube(IBlockState state){  return false; }
     @Override public boolean isFullCube(IBlockState state)  { return false;  }
 }

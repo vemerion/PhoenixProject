@@ -1,6 +1,9 @@
 package phoenix.init;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.Item;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -23,7 +26,10 @@ public class Client extends Common
     public void init(FMLInitializationEvent event)
     {
         super.init(event);
-        BlocksRegister.registerRender();
+        for (Block block : blocks)
+        {
+            Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
+        }
         ClientRegistry.bindTileEntitySpecialRenderer(TileTank.class, new TankRender());
     }
 

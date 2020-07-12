@@ -3,8 +3,9 @@ package phoenix.blocks.redo;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import phoenix.Phoenix;
+import phoenix.blocks.PhoenixBlock;
 
-public class BlockGoodEndStone extends Block
+public class BlockGoodEndStone extends PhoenixBlock
 {
     public BlockGoodEndStone()
     {
