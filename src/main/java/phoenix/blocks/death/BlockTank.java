@@ -51,14 +51,14 @@ public class BlockTank extends BlockTileEntity
         {
             FluidStack stack = tileTank.getTank().drain(1000, true);
             playerIn.setHeldItem(hand, stack != null ? FluidUtil.getFilledBucket(stack) : new ItemStack(Items.BUCKET));
-            return false;
+            return true;
         }
 
         if(FluidUtil.getFluidContained(playerIn.getHeldItem(hand)) != null)
         {
             tileTank.getTank().fill(FluidUtil.getFluidContained(playerIn.getHeldItem(hand)), true);
             playerIn.setHeldItem(hand, new ItemStack(Items.BUCKET));
-            return false;
+            return true;
         }
         return false;
     }

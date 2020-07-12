@@ -7,16 +7,16 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import phoenix.Phoenix;
 import phoenix.title. BlockTileEntity;
-import phoenix.title.TileUpdator;
+import phoenix.title.TileUpdater;
 
 import javax.annotation.Nullable;
 public class BlockUpdater extends BlockTileEntity
 {
     public BlockUpdater()
     {
-        super("updator", Material.BARRIER, 10, 10, SoundType.GLASS);
+        super("updater", Material.BARRIER, 10, 10, SoundType.GLASS);
         setCreativeTab(Phoenix.TheEndOfCreativeTabs);
-        setTranslationKey("updator");
+        setTranslationKey("updater");
     }
 
     @Override
@@ -33,13 +33,13 @@ public class BlockUpdater extends BlockTileEntity
     @Override
     public Class getTileEntityClass()
     {
-        return TileUpdator.class;
+        return TileUpdater.class;
     }
 
     @Nullable
     @Override
     public TileEntity createTileEntity(World world, IBlockState blockState)
     {
-        return new TileUpdator();
+        return new TileUpdater();
     }
 }

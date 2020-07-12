@@ -422,7 +422,7 @@ public class ChunkGeneratorEndBiomes extends ChunkGeneratorEnd
 
         this.world.getBiome(blockpos.add(16, 0, 16)).decorate(this.world, this.world.rand, blockpos);
 
-        if(this.world.getBiome(blockpos.add(16, 0, 16)) == BiomeRegistrar.END_UNDER)
+        if(this.world.getBiome(blockpos.add(16, 0, 16)) == BiomeRegister.END_UNDER)
         {
             if (this.world.getCapability(Phoenix.STAGER_CAPABILITY, null).getStage() >= 2)
             {

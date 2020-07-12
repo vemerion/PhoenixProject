@@ -7,7 +7,7 @@ public class ItemMindDust extends Item
 {
     public ItemMindDust()
     {
-        setRegistryName("dust_mind");
+        setRegistryName("mind_dust");
         setCreativeTab(Phoenix.TheEndOfCreativeTabs);
     }
 }

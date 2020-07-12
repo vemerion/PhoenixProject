@@ -42,7 +42,7 @@ public class BlockMindOre extends BlockOre
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return ItemRegister.DUST_MIND;
+        return ItemRegister.MIND_DUST;
     }
 
     @Override

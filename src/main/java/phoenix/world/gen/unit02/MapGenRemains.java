@@ -5,7 +5,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureStart;
-import phoenix.world.BiomeRegistrar;
+import phoenix.world.BiomeRegister;
 import phoenix.world.biomes.BiomeEndUnder;
 
 import javax.annotation.Nullable;
@@ -37,7 +37,7 @@ public class MapGenRemains extends MapGenStructure
     @Override
     protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ)
     {
-        return world.getBiome(new BlockPos(chunkX * 16, 0 ,chunkZ * 16)) == BiomeRegistrar.END_UNDER &&
+        return world.getBiome(new BlockPos(chunkX * 16, 0 ,chunkZ * 16)) == BiomeRegister.END_UNDER &&
                 BiomeEndUnder.getEndDownSurfaceHeight(world, chunkX * 16, chunkZ * 16) >= 14;
     }
 

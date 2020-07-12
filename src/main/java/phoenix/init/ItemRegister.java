@@ -16,7 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import phoenix.Phoenix;
 import phoenix.client.models.items.ModelMarkThree;
 import phoenix.items.air.ArmorMarkThree;
-import phoenix.items.air.ItemKassiysSpeaare;
+import phoenix.items.air.ItemAbsoluteSpeedSword;
 import phoenix.items.redo.ItemMindDust;
 
 import static phoenix.items.air.ArmorMarkThree.armorModels;
@@ -26,17 +26,17 @@ import static phoenix.items.air.ArmorMarkThree.armorModels;
 public class ItemRegister
 {
 
-    @GameRegistry.ObjectHolder("absolute_swprd")   public static final Item ABS_SWORD = null;
+    @GameRegistry.ObjectHolder("absolute_speed_sword")   public static final Item ABS_SWORD = null;
     @GameRegistry.ObjectHolder("gods_boots")      public static final Item GODS_BOOTS = null;
     @GameRegistry.ObjectHolder("gods_chestplate") public static final Item GODS_CHESTPLATE = null;
     @GameRegistry.ObjectHolder("gods_leggins")    public static final Item GODS_LEGGINS = null;
-    @GameRegistry.ObjectHolder("gods_halmet")     public static final Item GODS_HALMET = null;
-    @GameRegistry.ObjectHolder("dust_mind")     public static final Item DUST_MIND = null;
+    @GameRegistry.ObjectHolder("gods_helmet")     public static final Item GODS_HELMET = null;
+    @GameRegistry.ObjectHolder("mind_dust")     public static final Item MIND_DUST = null;
 
     @SubscribeEvent
     public static void onRegistryItem(RegistryEvent.Register<Item> e)
     {
-        ArmorMarkThree MarkHead = new ArmorMarkThree("gods_halmet", 1, EntityEquipmentSlot.HEAD),
+        ArmorMarkThree MarkHead = new ArmorMarkThree("gods_helmet", 1, EntityEquipmentSlot.HEAD),
                 MarkLeggs = new ArmorMarkThree("gods_leggins", 2, EntityEquipmentSlot.LEGS),
                 MarkChest = new ArmorMarkThree("gods_chestplate", 1, EntityEquipmentSlot.CHEST),
                 MarkBoots = new  ArmorMarkThree("gods_boots", 1, EntityEquipmentSlot.FEET);
@@ -46,7 +46,7 @@ public class ItemRegister
                         MarkLeggs,
                         MarkChest,
                         MarkBoots,
-                        new ItemKassiysSpeaare(),
+                        new ItemAbsoluteSpeedSword(),
                         new ItemMindDust()
                 );
         armorModels.put(MarkHead,  new ModelMarkThree(0));
@@ -63,7 +63,7 @@ public class ItemRegister
         registryModel(GODS_BOOTS);
         registryModel(GODS_CHESTPLATE);
         registryModel(GODS_LEGGINS);
-        registryModel(GODS_HALMET);
+        registryModel(GODS_HELMET);
     }
     @SideOnly(Side.CLIENT)
     private static void registryModel(Item item) {

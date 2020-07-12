@@ -31,7 +31,7 @@ public class Client extends Common
     public void postInit(FMLPostInitializationEvent event)
     {
         super.postInit(event);
-        if(Configs.worldgen.grafics) {
+        if(Configs.worldgen.graphics) {
             Minecraft.getMinecraft().effectRenderer.registerParticle(EnumParticleTypes.END_ROD.getParticleID(), new PCERFactory());
         }
     }
