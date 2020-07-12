@@ -1,11 +1,11 @@
 package phoenix.blocks.rebirth;
 
 import phoenix.Phoenix;
-import phoenix.blocks.AbstractCeramic;
+import phoenix.blocks.AbstractCeraomic;
 
-public class BlockCeramicPorcelain extends AbstractCeramic
+public class BlockCeraomicPorcelain extends AbstractCeraomic
 {
-    public BlockCeramicPorcelain()
+    public BlockCeraomicPorcelain()
     {
         super("ceramic_porcelain");
         setTranslationKey("ceraomic_porcelain");

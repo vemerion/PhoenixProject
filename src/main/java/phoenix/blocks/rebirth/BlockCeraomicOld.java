@@ -1,9 +1,9 @@
 package phoenix.blocks.rebirth;
 
 import phoenix.Phoenix;
-import phoenix.blocks.AbstractCeramic;
+import phoenix.blocks.AbstractCeraomic;
 
-public class BlockCeraomicOld extends AbstractCeramic
+public class BlockCeraomicOld extends AbstractCeraomic
 {
     public BlockCeraomicOld()
     {

@@ -36,9 +36,6 @@ public class BlockKikinStem extends BlockChorusPlant
         setRegistryName("kikin_stem");
         setTranslationKey("kikin_stem");
         setCreativeTab(Phoenix.TheEndOfCreativeTabs);
-
-        Common.addBlock(this);
-        Common.addItem(Item.getItemFromBlock(this));
     }
 
     @Override

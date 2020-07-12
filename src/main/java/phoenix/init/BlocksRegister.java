@@ -16,7 +16,7 @@ import phoenix.blocks.BlockUpdater;
 import phoenix.blocks.FragileBlock;
 import phoenix.blocks.death.BlockJuicer;
 import phoenix.blocks.death.BlockTank;
-import phoenix.blocks.rebirth.BlockCeramicPorcelain;
+import phoenix.blocks.rebirth.BlockCeraomicPorcelain;
 import phoenix.blocks.redo.BlockGoodEndStone;
 import phoenix.blocks.redo.BlockKikiNFruit;
 import phoenix.blocks.rebirth.BlockCeraomicOld;
@@ -37,7 +37,7 @@ public class BlocksRegister
     public static Block         KIKIN_FRUIT = new BlockKikiNFruit();
     public static BlockKikinJuice KIKIN_JUISE = new BlockKikinJuice(FluidRegister.KIKIN_FLUID);
     public static BlockChorusJuice CHORUS_JUISE = new BlockChorusJuice(FluidRegister.CHORUS_FLUID);
-    public static Block CERAOMIC_FARFOR = new BlockCeramicPorcelain();
+    public static Block CERAOMIC_FARFOR = new BlockCeraomicPorcelain();
     public static BlockTank TANK = new BlockTank();
     public static BlockJuicer JUISER = new BlockJuicer();
     //public static ModelResourceLocation gost_model;

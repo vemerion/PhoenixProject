@@ -12,9 +12,9 @@ import phoenix.client.sound.CeramicSoundType;
 
 import javax.annotation.Nullable;
 
-public abstract class AbstractCeramic extends Block
+public abstract class AbstractCeraomic extends PhoenixBlock
 {
-    public AbstractCeramic(String name)
+    public AbstractCeraomic(String name)
     {
         super(Material.ROCK);
         setRegistryName(name);

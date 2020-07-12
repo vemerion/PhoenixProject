@@ -26,10 +26,7 @@ public class Client extends Common
     public void init(FMLInitializationEvent event)
     {
         super.init(event);
-        for (Block block : blocks)
-        {
-            Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
-        }
+        BlocksRegister.registerRender();
         ClientRegistry.bindTileEntitySpecialRenderer(TileTank.class, new TankRender());
     }
 

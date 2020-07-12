@@ -14,7 +14,7 @@ import net.minecraft.world.IBlockAccess;
 
 import java.util.Random;
 
-public class BlockHelp extends Block
+public class BlockHelp extends PhoenixBlock
 {
     public static final PropertyInteger TYPE = PropertyInteger.create("type", 0 , 15);
     protected static final AxisAlignedBB AABB_BOTTOM_HALF = new AxisAlignedBB(0.1D, 0.1D, 0.1D, 0.9D, 0.4D, 0.9D);

@@ -5,6 +5,7 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 
 public class ModelMTH extends ModelBiped
 {
@@ -12,7 +13,6 @@ public class ModelMTH extends ModelBiped
     private final ModelRenderer leftWing  = new ModelRenderer(this, 0, 6);
     private final ModelRenderer rightEar = new ModelRenderer(this, 0, 0);
     private final ModelRenderer leftEar  = new ModelRenderer(this, 0, 6);
-
     public ModelMTH()
     {
         leftWing.addBox(-20.0F, 0.0F, -5.0F, 20, 5, 1);

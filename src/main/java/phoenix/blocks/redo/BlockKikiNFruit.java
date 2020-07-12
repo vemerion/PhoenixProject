@@ -38,9 +38,6 @@ public class BlockKikiNFruit extends BlockChorusFlower
         setCreativeTab(Phoenix.TheEndOfCreativeTabs);
         this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, Integer.valueOf(0)));
         setTickRandomly(true);
-
-        Common.addBlock(this);
-        Common.addItem(Item.getItemFromBlock(this));
     }
 
 

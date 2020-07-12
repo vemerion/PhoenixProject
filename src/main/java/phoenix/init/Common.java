@@ -31,12 +31,8 @@ import java.util.ArrayList;
 
 import static phoenix.init.BlocksRegister.JUISER;
 
-@Mod.EventBusSubscriber(modid = Phoenix.MOD_ID)
 public class Common
 {
-    static ArrayList<Block> blocks = new ArrayList<>();
-    static ArrayList<Item> items = new ArrayList<>();
-
     public void preInit(FMLPreInitializationEvent event)
     {
         FluidRegister.register();
@@ -56,24 +52,4 @@ public class Common
     }
 
     public void postInit(FMLPostInitializationEvent event) { }
-
-    @SubscribeEvent
-    public static void registerBlocks(RegistryEvent.Register<Block> event)
-    {
-        event.getRegistry().registerAll((Block[]) blocks.toArray());
-        for (Block block : blocks) {
-            if (block.hasTileEntity() && block instanceof BlockTileEntity) {
-                GameRegistry.registerTileEntity(((BlockTileEntity) block).getTileEntityClass(), block.getRegistryName().toString());
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event)
-    {
-        event.getRegistry().registerAll((Item[]) items.toArray());
-    }
-
-    public static void addBlock(Block block){ blocks.add(block); }
-    public static void addItem(Item item){ items.add(item); }
 }
