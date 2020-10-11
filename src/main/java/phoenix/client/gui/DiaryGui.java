@@ -27,8 +27,8 @@ public class DiaryGui extends ContainerScreen<DiaryContainer>
         xSize *= 1.8;
         ySize *= 1.8;
         ArrayList<IDiaryElement> par = new ArrayList<>();
-        par.add(new ImageElement(DIARY_TEXTURE, xSize - 30, ySize - 30));
-        par.addAll(DiaryUtils.makeParagraph(Minecraft.getInstance().fontRenderer, xSize,
+        par.add(new ImageElement(DIARY_TEXTURE_2, xSize - 30, ySize - 30));
+       /* par.addAll(DiaryUtils.makeParagraph(Minecraft.getInstance().fontRenderer, xSize,
                 "Hear me, hear me, friend. \n " +
                 "I’m very, no, seriously ill. \n " +
                 "What’s the reason? \n" +
@@ -36,7 +36,7 @@ public class DiaryGui extends ContainerScreen<DiaryContainer>
                 "As if wind whistles, listen \n " +
                 "Over desolate, vacant, still field. \n " +
                 "Like a grove, leaves blazing I feel. \n " +
-                "And the drink sheds my leaves as I bend. \n "));
+                "And the drink sheds my leaves as I bend. \n "));*/
         diaryChapter = new DiaryChapter(par, xSize, Minecraft.getInstance().fontRenderer);
         container = screenContainer;
     }

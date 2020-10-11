@@ -45,6 +45,7 @@ public class ImageElement implements IDiaryElement
     @Override
     public void render(ContainerScreen<DiaryContainer> gui, FontRenderer renderer, int xSize, int x, int y)
     {
+        System.out.println(w + " " +  h);
         RenderSystem.pushMatrix();
         double scale = makeScale();
         RenderSystem.scaled(scale, scale, scale);

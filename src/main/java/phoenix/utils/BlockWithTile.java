@@ -16,16 +16,8 @@ public abstract class BlockWithTile<T extends TileEntity> extends Block
 		super(properties);
 	}
 
-	public abstract Class<T> getTileEntityClass();
-
-	public T getTileEntity(World world, BlockPos position)
-	{
-		return (T) world.getTileEntity(position);
-	}
-
 	@Override public boolean hasTileEntity(BlockState state){ return true;	}
 
-	  
 	@Override
 	public abstract TileEntity createTileEntity(BlockState state, IBlockReader world);
 }

@@ -86,12 +86,6 @@ public class PipeBlock extends BlockWithTile<PipeTile>
         return BlockRenderType.INVISIBLE;
     }
 
-    @Override
-    public Class getTileEntityClass()
-    {
-        return PipeTile.class;
-    }
-
       
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world)
