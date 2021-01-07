@@ -1,9 +1,9 @@
 package phoenix.client.gui.diaryPages.elements;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import phoenix.containers.DiaryContainer;
-import phoenix.utils.StringUtils;
 
 public class RightAlignedTextElement extends TextElement
 {
@@ -18,10 +18,14 @@ public class RightAlignedTextElement extends TextElement
     }
 
     @Override
-    public void render(ContainerScreen<DiaryContainer> gui, FontRenderer font, int xSize, int x, int y)
+    public void render(MatrixStack stack, ContainerScreen<DiaryContainer> gui, FontRenderer font, int xSize, int ySize, int x, int y, int depth)
     {
-        //font.drawString(text, x + 15, y + 15, color);
-        StringUtils.drawRightAlignedString(font, text, x + 15, y + 15, color);
+        super.render(stack, gui, font, xSize, ySize, xSize - font.getStringWidth(text.toString()), y, depth);
     }
 
+    @Override
+    public String toString()
+    {
+        return "[r]" + text + "[R]";  
+    }
 }

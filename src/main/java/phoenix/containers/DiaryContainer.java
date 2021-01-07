@@ -1,25 +1,29 @@
 package phoenix.containers;
 
+import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import phoenix.client.gui.diaryPages.elements.ADiaryElement;
 import phoenix.init.PhoenixContainers;
 
-import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.ArrayList;
 
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 public class DiaryContainer extends Container implements INamedContainerProvider
 {
+    ITextComponent name = new StringTextComponent("Zahara");
+    ArrayList<ADiaryElement> allOpened;
     int page = 0;
-    public DiaryContainer(int id) {
-        super(PhoenixContainers.GUIDE.get(), id);
-    }
-
-    public DiaryContainer()
+    public DiaryContainer(int id)
     {
-        super(PhoenixContainers.GUIDE.get(), 0);
+        super(PhoenixContainers.GUIDE.get(), id);
     }
 
     public int getPage()
@@ -32,24 +36,14 @@ public class DiaryContainer extends Container implements INamedContainerProvider
         this.page = page;
     }
 
-    @Override
-    public boolean enchantItem(PlayerEntity playerIn, int id)
+    public DiaryContainer setName(ITextComponent nameIn)
     {
-        return super.enchantItem(playerIn, id);
+        this.name = nameIn;
+        return this;
     }
 
-    public void nextPage()
-    {
-        this.page++;
-    }
-
-    public void prevPage()
-    {
-        this.page--;
-    }
-
-    public static DiaryContainer fromNetwork(int id, PlayerInventory inventory) {
-        return new DiaryContainer(id);
+    public static ContainerType<DiaryContainer> fromNetwork() {
+        return new ContainerType<>((id, player) -> new DiaryContainer(id));
     }
 
     @Override
@@ -61,13 +55,14 @@ public class DiaryContainer extends Container implements INamedContainerProvider
     @Override
     public ITextComponent getDisplayName()
     {
-        return new StringTextComponent("DR L. Diary");
+        return new StringTextComponent(name.getString() + "'s Diary");
     }
 
-      
     @Override
     public Container createMenu(int id, PlayerInventory inventory, PlayerEntity entity)
     {
         return this;
     }
+
+
 }

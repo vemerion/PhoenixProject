@@ -1,0 +1,8 @@
+{
+  "variants":
+  {
+    "state=0": { "model": "phoenix:block/pottery_barrel"        },
+    "state=1":  { "model": "phoenix:block/pottery_barrel_water" },
+    "state=2":  { "model": "phoenix:block/pottery_barrel_clay"  }
+  }
+}

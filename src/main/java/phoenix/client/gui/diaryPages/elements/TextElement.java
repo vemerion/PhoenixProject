@@ -1,36 +1,58 @@
 package phoenix.client.gui.diaryPages.elements;
 
-import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
-import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import phoenix.containers.DiaryContainer;
 
-public class TextElement implements IDiaryElement
+public class TextElement extends ADiaryElement
 {
-    String text = "";
+    ITextComponent text = new StringTextComponent("");
     Integer color = TextFormatting.BLACK.getColor();
     public TextElement(String text)
+    {
+        this.text = new StringTextComponent(text);
+    }
+
+    public TextElement(ITextComponent text)
     {
         this.text = text;
     }
 
     public TextElement(String text, Integer color)
     {
-        this.text = text;
+        this.text = new StringTextComponent(text);
         this.color = color;
     }
 
     @Override
-    public int getHeight()
+    public int getHeight(int maxSizeXIn, int maxSizeYIn)
     {
         return 1;
     }
 
     @Override
-    public void render(ContainerScreen<DiaryContainer> gui, FontRenderer font, int xSize, int x, int y)
+    public void render(MatrixStack stack, ContainerScreen<DiaryContainer> gui, FontRenderer font, int xSize, int ySize, int x, int y, int depth)
     {
-        font.drawString(text, x + 15, y + 15, color);
+        font.drawString(stack, text.toString(), x + 15, y + 15, color);
+    }
+
+    @Override
+    public String toString()
+    {
+        return text.toString();
+    }
+
+    @Override
+    public CompoundNBT serialize()
+    {
+        CompoundNBT res = new CompoundNBT();
+        res.putString("text", text.toString());
+        res.putString("type", "string");
+        return res;
     }
 }

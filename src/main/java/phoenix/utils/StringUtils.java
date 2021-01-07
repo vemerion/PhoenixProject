@@ -1,36 +1,35 @@
 package phoenix.utils;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.util.text.LanguageMap;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
-import javax.annotation.Nonnull;
 import java.util.ArrayList;
 
 public class StringUtils
 {
       
-    public static ArrayList<String> stringToWords(   String s)
+    public static ArrayList<String> stringToWords(String s)
     {
         ArrayList<String> result = new ArrayList<>();
-        String currect = "";
+        String current = "";
         for (int i = 0; i < s.length(); i++)
         {
             if(s.charAt(i) == '\n')
             {
-                result.add(currect);
+                result.add(current);
                 result.add("[break]");
-                currect = "";
+                current = "";
             }
             else if(s.charAt(i) == ' ' || i == s.length() - 1)
             {
-                result.add(currect);
-                currect = "";
+                result.add(current);
+                current = "";
             }
             else
             {
-                currect += s.charAt(i);
+                current += s.charAt(i);
             }
         }
         return result;
@@ -46,13 +45,31 @@ public class StringUtils
     {
         ArrayList<String> res = new ArrayList<>();
         for (String string : strings) {
-            res.add(LanguageMap.getInstance().translateKey(string));
+            res.add(LanguageMap.getInstance().func_230503_a_(string));
         }
 
         return res;
     }
-    public static void drawRightAlignedString(FontRenderer font, String string, int x, int y, int colour)
+    public static String translate(String key)
     {
-        font.drawStringWithShadow(string, (float)(x - font.getStringWidth(string)), (float)y, colour);
+        return LanguageMap.getInstance().func_230503_a_(key);
+    }
+    public static void drawRightAlignedString(MatrixStack stack, FontRenderer font, String string, int x, int y, int colour)
+    {
+        font.drawStringWithShadow(stack, string, (float)(x - font.getStringWidth(string)), (float)y, colour);
+    }
+
+    static TextFormatting[] rainbow = {TextFormatting.RED, TextFormatting.YELLOW, TextFormatting.GREEN, TextFormatting.BLUE, TextFormatting.DARK_BLUE, TextFormatting.DARK_PURPLE};
+
+    public static String rainbowColor(String string)
+    {
+        StringBuilder s = new StringBuilder();
+        for (int i = 0; i < string.length(); i++)
+        {
+            if(string.charAt(i) != ' ' && string.charAt(i) != '\n')
+                s.append(rainbow[i % rainbow.length]);
+            s.append(string.charAt(i));
+        }
+        return s.toString();
     }
 }

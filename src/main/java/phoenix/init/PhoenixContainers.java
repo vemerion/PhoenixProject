@@ -14,19 +14,18 @@ import phoenix.containers.DiaryContainer;
 
 public class PhoenixContainers
 {
-    private static final DeferredRegister<ContainerType<?>> CONTAINERS = new DeferredRegister<>(ForgeRegistries.CONTAINERS, Phoenix.MOD_ID);
+    private static final DeferredRegister<ContainerType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.CONTAINERS, Phoenix.MOD_ID);
 
-    public static final RegistryObject<ContainerType<DiaryContainer>> GUIDE   = CONTAINERS.register("drls_diary", () -> new ContainerType<>(DiaryContainer::fromNetwork));
+    public static final RegistryObject<ContainerType<DiaryContainer>> GUIDE   = CONTAINERS.register("diary", DiaryContainer::fromNetwork);
 
     public static void register()
     {
         CONTAINERS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
-
     @OnlyIn(Dist.CLIENT)
-    public static void renderScreens()
+    public static void registerScreens()
     {
-        ScreenManager.registerFactory(GUIDE.get(), DiaryGui::new);
+        //ScreenManager.registerFactory(GUIDE.get(), DiaryGui::new);
     }
 }
