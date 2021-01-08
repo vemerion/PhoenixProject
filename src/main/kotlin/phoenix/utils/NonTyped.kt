@@ -18,7 +18,7 @@ import java.util.*
 data class Pair<M, V>(var v : V, var m : M)
 data class Tuple<M, V, K>(var first : V, var second : M, var third : K)
 
-fun World.destroyBlock(pos : BlockPos, shouldDrop : Boolean, entity : Entity, stack : ItemStack) : Boolean
+fun World.destroyBlock(pos : BlockPos, shouldDrop : Boolean, entity : Entity?, stack : ItemStack) : Boolean
 {
     val state = this.getBlockState(pos)
     return if (state.isAir(this, pos))
@@ -30,7 +30,11 @@ fun World.destroyBlock(pos : BlockPos, shouldDrop : Boolean, entity : Entity, st
         if (shouldDrop)
         {
             val tile = if (state.hasTileEntity()) this.getTileEntity(pos) else null
-            Block.spawnDrops(state, this, pos, tile, entity, stack)
+            try
+            {
+                Block.spawnDrops(state, this, pos, tile, entity, stack)
+            }catch (e : Exception){}
+
         }
         this.setBlockState(pos, fluidState.blockState, 3)
     }

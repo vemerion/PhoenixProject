@@ -29,7 +29,6 @@ import phoenix.Phoenix.REDO
 import phoenix.tile.redo.PipeTile
 import phoenix.utils.block.BlockWithTile
 import phoenix.utils.block.ICustomGroup
-import phoenix.utils.pipe.FluidGraphSaveData
 import phoenix.utils.pipe.IFluidPipe
 
 
@@ -153,21 +152,6 @@ object PipeBlock : BlockWithTile(Properties.create(Material.BAMBOO).notSolid()),
     ): VoxelShape
     {
         return NORMAL
-    }
-
-    override fun onBlockPlacedBy(
-        worldIn: World,
-        pos: BlockPos,
-        state: BlockState,
-        placer: LivingEntity?,
-        stack: ItemStack
-    )
-    {
-        if (!worldIn.isRemote)
-        {
-            FluidGraphSaveData.get(worldIn as ServerWorld).addBlock(worldIn, pos, false, false)
-        }
-        super.onBlockPlacedBy(worldIn, pos, state, placer, stack)
     }
 
     override fun getTab(): ItemGroup

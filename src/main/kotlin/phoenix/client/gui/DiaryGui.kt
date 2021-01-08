@@ -13,9 +13,9 @@ import phoenix.client.gui.diaryPages.DiaryBook
 import phoenix.client.gui.diaryPages.elements.DiaryChapter
 import phoenix.client.gui.diaryPages.elements.RightAlignedTextElement
 import phoenix.containers.DiaryContainer
-import phoenix.utils.DiaryUtils
 import phoenix.utils.IChapterReader
 import phoenix.utils.RenderUtils
+import phoenix.utils.pipe.DiaryUtils
 
 class DiaryGui(screenContainer: DiaryContainer, inv: PlayerInventory, titleIn: ITextComponent) : ContainerScreen<DiaryContainer>(screenContainer, inv, titleIn)
 {
@@ -35,7 +35,7 @@ class DiaryGui(screenContainer: DiaryContainer, inv: PlayerInventory, titleIn: I
         for (i in chapters)
         {
             val ch = Chapters.values()[i.m];
-            val els = DiaryUtils.makeParagraph(font, xSize, ch.getText())
+            val els = DiaryUtils.makeParagraph(font, xSize, arrayOf(ch.getText()))
             els.add(RightAlignedTextElement(i.v.toString()))
             book.add(DiaryChapter(xSize, ySize, els))
         }

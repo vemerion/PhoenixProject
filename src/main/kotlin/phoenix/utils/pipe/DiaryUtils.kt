@@ -14,7 +14,7 @@ import java.util.*
 object DiaryUtils
 {
     //принимает ключи параграфов
-    fun makeParagraphFromTranslate(xSizeIn: Int, font: FontRenderer, vararg keys: String?): ArrayList<ADiaryElement>
+    fun makeParagraphFromTranslate(xSizeIn: Int, font: FontRenderer, vararg keys: String): ArrayList<ADiaryElement>
     {
         return makeParagraph(font, xSizeIn, StringUtils.translateAll(*keys))
     }

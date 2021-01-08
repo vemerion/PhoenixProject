@@ -16,16 +16,15 @@ import javax.annotation.ParametersAreNonnullByDefault
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-class PipeTile : PhoenixTile<PotteryBarrelTile>(PhoenixTiles.POTTERY_BARREL), IFluidPipe
+class PipeTile() : PhoenixTile<PotteryBarrelTile>(PhoenixTiles.POTTERY_BARREL), IFluidPipe
 {
-    var number_in_graph = 0
+    private var number_in_graph = 0
 
-    override fun getNumberInGraph() = number_in_graph
-    override fun setNumberInGraph(number_in_graph: Int)
-    {
-        this.number_in_graph = number_in_graph
-    }
-
+    override var numberInGraph
+        get() = number_in_graph
+        set(value) {
+            number_in_graph = value
+        }
     override fun getBlockState(): BlockState = world!!.getBlockState(pos)
 
     override fun read(state: BlockState, tag: CompoundNBT)

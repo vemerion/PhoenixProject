@@ -69,7 +69,7 @@ class KnifeItem(tier: IItemTier, attackDamageIn: Float, attackSpeedIn: Float, ma
             shouldBroke = true
             break
         }
-        if(block == Blocks.TNT && item.getEnchantmentLevel(Enchantments.FLAME) > 0)
+        if(block == Blocks.TNT && item.getEnchantmentLevel(Enchantments.FLAME) > 0 && owner != null)
         {
             world.destroyBlock(pos, false, owner, item)
             world.createExplosion(knife, pos.x.toDouble(), pos.y.toDouble(), pos.z.toDouble(), 5F, true, Explosion.Mode.BREAK)

@@ -25,7 +25,6 @@ import phoenix.Phoenix
 import phoenix.tile.redo.TankTile
 import phoenix.utils.block.BlockWithTile
 import phoenix.utils.block.ICustomGroup
-import phoenix.utils.pipe.FluidGraphSaveData
 
 
 object TankBlock :
@@ -62,18 +61,6 @@ object TankBlock :
     }
 
     override fun createTileEntity(state: BlockState, world: IBlockReader) = TankTile()
-
-    override fun onBlockPlacedBy(
-        worldIn: World,
-        pos: BlockPos,
-        state: BlockState,
-        placer: LivingEntity?,
-        stack: ItemStack
-    )
-    {
-        if (!worldIn.isRemote) FluidGraphSaveData.get(worldIn as ServerWorld).addBlock(worldIn, pos, true, true)
-        super.onBlockPlacedBy(worldIn, pos, state, placer, stack)
-    }
 
     override fun getTab() = Phoenix.REDO
 
