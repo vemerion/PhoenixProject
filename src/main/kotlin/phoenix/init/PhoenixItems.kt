@@ -62,9 +62,9 @@ object PhoenixItems
     val STEEL_ARMOR_LEGG               by ITEMS.register("steel_armor_leggings")  { SteelArmorItem(EquipmentSlotType.LEGS, Item.Properties().group(Phoenix.ASH)) }
     val STEEL_ARMOR_BUTS               by ITEMS.register("steel_armor_boots")     { SteelArmorItem(EquipmentSlotType.FEET, Item.Properties().group(Phoenix.ASH)) }
 
-    private fun basicItem() : () -> Item =  { Item(Item.Properties().group(Phoenix.ASH)) }
+    private fun basicItem() : () -> Item =  basicItem(Item.Properties().group(Phoenix.ASH))
     private fun basicItem(prop : Item.Properties) : () -> Item =  { Item(prop) }
-    private fun basicFood(food: Food) : () -> Item =  { Item(Item.Properties().group(Phoenix.ASH).food(food)) }
+    private fun basicFood(food: Food) : () -> Item =  basicFood(food, Phoenix.ASH)
     private fun basicFood(food: Food, group : ItemGroup) : () -> Item =  { Item(Item.Properties().group(group).food(food)) }
     private fun form(contains: () -> Item) : () -> Item = { ItemWithContainer(contains) }
 }

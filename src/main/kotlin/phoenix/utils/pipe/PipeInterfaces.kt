@@ -4,7 +4,6 @@ import net.minecraftforge.fluids.capability.templates.FluidTank
 
 interface IFluidPipe
 {
-    var numberInGraph: Int
 }
 
 interface IFluidMechanism : IFluidPipe

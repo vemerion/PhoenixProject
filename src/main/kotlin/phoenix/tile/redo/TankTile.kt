@@ -26,7 +26,6 @@ class TankTile : PhoenixTile<OvenTile>(PhoenixTiles.OVEN), IFluidMechanism, ITic
 
     override val output: FluidTank = tank
     override val input: FluidTank = tank
-    override var numberInGraph: Int = 0
     private var stack = ItemStack.EMPTY
 
 
@@ -36,22 +35,12 @@ class TankTile : PhoenixTile<OvenTile>(PhoenixTiles.OVEN), IFluidMechanism, ITic
     {
     }
 
-    override fun toString(): String
-    {
-        var s = "TankTile{ stack= ";
-        s += stack;
-        s += " number in graph = "
-        s += numberInGraph
-        s += " tank = "
-        s += tank
-        return s
-    }
+    override fun toString() = "TankTile{ stack= $stack tank = $tank }"
 
     override fun read(state : BlockState, compound : CompoundNBT)
     {
         tank.readFromNBT(compound)
         stack = ItemStack.read(compound)
-        numberInGraph = compound.getInt("number_in_graph")
         super.read(state, compound)
     }
 
@@ -59,7 +48,6 @@ class TankTile : PhoenixTile<OvenTile>(PhoenixTiles.OVEN), IFluidMechanism, ITic
     {
         tank.writeToNBT(tagIn)
         stack.write(tagIn)
-        tagIn.putInt("number_in_graph", numberInGraph)
         return super.write(tagIn)
     }
 
@@ -70,13 +58,12 @@ class TankTile : PhoenixTile<OvenTile>(PhoenixTiles.OVEN), IFluidMechanism, ITic
 
     override fun getUpdatePacket(): SUpdateTileEntityPacket
     {
-        return UpdatePacket(tank, stack, numberInGraph)
+        return UpdatePacket(tank, stack)
     }
 
     override fun onDataPacket(net: NetworkManager, pkt: SUpdateTileEntityPacket)
     {
         val packet = pkt as UpdatePacket
-        this.numberInGraph = packet.numberInGraph
         this.tank = packet.tank
         this.stack = packet.stack
     }
@@ -86,14 +73,13 @@ class TankTile : PhoenixTile<OvenTile>(PhoenixTiles.OVEN), IFluidMechanism, ITic
         return if (capability === CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) holder.cast() else super.getCapability(capability, facing)
     }
 
-    class UpdatePacket(var tank: FluidTank, var stack: ItemStack, var numberInGraph: Int) : SUpdateTileEntityPacket()
+    class UpdatePacket(var tank: FluidTank, var stack: ItemStack) : SUpdateTileEntityPacket()
     {
         override fun writePacketData(buf: PacketBuffer)
         {
             super.writePacketData(buf)
             SerializeUtils.writeToBuf(tank, buf)
             buf.writeItemStack(stack)
-            buf.writeInt(numberInGraph)
         }
 
         override fun readPacketData(buf: PacketBuffer)
@@ -101,7 +87,6 @@ class TankTile : PhoenixTile<OvenTile>(PhoenixTiles.OVEN), IFluidMechanism, ITic
             super.readPacketData(buf)
             tank = SerializeUtils.readTank(buf)
             stack = buf.readItemStack()
-            numberInGraph = buf.readInt()
         }
     }
 }

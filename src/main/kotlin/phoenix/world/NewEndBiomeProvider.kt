@@ -18,6 +18,7 @@ import phoenix.world.genlayers.EndBiomeLayer
 import phoenix.world.genlayers.ParentLayer
 import phoenix.world.genlayers.UnderLayer
 import phoenix.world.genlayers.UnificationLayer
+import java.util.*
 import java.util.function.LongFunction
 
 class EndBiomeProvider(private val lookupRegistry: Registry<Biome>, val seed: Long) : net.minecraft.world.biome.provider.EndBiomeProvider(lookupRegistry, seed)
@@ -27,7 +28,11 @@ class EndBiomeProvider(private val lookupRegistry: Registry<Biome>, val seed: Lo
 
     init
     {
-        this.biomes.add(PhoenixBiomes.UNDER)
+        val biomesIn = ArrayList<Biome>()
+        biomesIn.addAll(biomes)
+        biomesIn.add(PhoenixBiomes.UNDER)
+        this.biomes = biomesIn
+        LogManager.error(this, biomes.toString())
     }
 
     @OnlyIn(Dist.CLIENT)

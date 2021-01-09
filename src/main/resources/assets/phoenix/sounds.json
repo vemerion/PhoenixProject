@@ -20,5 +20,17 @@
 				"stream": false
 			}
 		]
+	},
+	"under_the_world":
+	{
+		"category": "music",
+		"sounds":
+		[
+			{
+				"name": "phoenix:music/under_the_world",
+				"stream": true,
+                "volume": 0.6
+			}
+		]
 	}
 }

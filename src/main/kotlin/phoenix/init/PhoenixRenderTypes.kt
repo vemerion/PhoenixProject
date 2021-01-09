@@ -26,10 +26,10 @@ object PhoenixRenderTypes
         Minecraft.getInstance().getTextureManager().loadTexture(path, SimpleTexture(path))
         return createType(
             name, RenderType.State.getBuilder()
-                //.shadeModel(RenderState.SHADE_ENABLED)
-                //.lightmap(RenderState.LIGHTMAP_ENABLED)
+                .shadeModel(RenderState.SHADE_ENABLED)
+                .lightmap(RenderState.LIGHTMAP_ENABLED)
                 .texture(RenderState.TextureState(path, false, false))
-                //.alpha(RenderState.HALF_ALPHA)
+                .alpha(RenderState.HALF_ALPHA)
                 .build(true)
         )
     }

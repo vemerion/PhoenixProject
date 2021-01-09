@@ -7,14 +7,7 @@ import net.minecraft.tileentity.TileEntity
 import net.minecraft.tileentity.TileEntityType
 import net.minecraftforge.fml.RegistryObject
 
-abstract class PhoenixTile<T : PhoenixTile<T>> : TileEntity
+abstract class PhoenixTile<T : PhoenixTile<T>>(tileEntityTypeIn: TileEntityType<T>) : TileEntity(tileEntityTypeIn)
 {
-    constructor(tileEntityTypeIn: TileEntityType<T>) : super(tileEntityTypeIn)
-
-    constructor(electricBarrel: RegistryObject<TileEntityType<T>>) : super(electricBarrel.get())
-
     override fun getUpdateTag(): CompoundNBT = write(CompoundNBT())
-
-    abstract override fun getUpdatePacket(): SUpdateTileEntityPacket
-    abstract override fun onDataPacket(net: NetworkManager, pkt: SUpdateTileEntityPacket)
 }

@@ -39,6 +39,7 @@ object Phoenix
         PhoenixRecipeSerializers.RS.register(MOD_BUS)
         PhoenixBiomes.BIOMES.register(MOD_BUS)
         PhoenixFeatures.FEATURES.register(MOD_BUS)
+        PhoenixSounds.SOUNDS.register(MOD_BUS)
         PhoenixLootTables.init()
         MOD_BUS.addListener(PhoenixCommonEvents::onRegisterItems)
         MOD_BUS.addListener(PhoenixCommonEvents::init)

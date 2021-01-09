@@ -10,6 +10,6 @@ object PhoenixRecipeSerializers
 {
     val RS = KDeferredRegister(ForgeRegistries.RECIPE_SERIALIZERS, Phoenix.MOD_ID)
 
-    @JvmStatic val OVEN by RS.register("oven_recipe", ::OvenRecipeSerializer)
-    @JvmStatic val TANK by RS.register("tank_recipe", ::TankRecipeSerializer)
+    val OVEN by RS.register("oven_recipe", ::OvenRecipeSerializer)
+    val TANK by RS.register("tank_recipe", ::TankRecipeSerializer)
 }
