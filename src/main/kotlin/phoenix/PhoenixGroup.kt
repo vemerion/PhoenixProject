@@ -9,7 +9,6 @@ import net.minecraft.util.IItemProvider
 import net.minecraft.util.NonNullList
 import net.minecraftforge.fml.RegistryObject
 import java.util.*
-import kotlin.Comparator
 
 class PhoenixGroup : ItemGroup
 {

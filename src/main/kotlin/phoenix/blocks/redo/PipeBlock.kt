@@ -5,13 +5,11 @@ import net.minecraft.block.BlockRenderType
 import net.minecraft.block.BlockState
 import net.minecraft.block.IWaterLoggable
 import net.minecraft.block.material.Material
-import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.fluid.FluidState
 import net.minecraft.fluid.Fluids
 import net.minecraft.item.BlockItemUseContext
 import net.minecraft.item.ItemGroup
-import net.minecraft.item.ItemStack
 import net.minecraft.state.BooleanProperty
 import net.minecraft.state.StateContainer
 import net.minecraft.state.properties.BlockStateProperties
@@ -24,7 +22,6 @@ import net.minecraft.util.math.shapes.ISelectionContext
 import net.minecraft.util.math.shapes.VoxelShape
 import net.minecraft.world.IBlockReader
 import net.minecraft.world.World
-import net.minecraft.world.server.ServerWorld
 import phoenix.Phoenix.REDO
 import phoenix.tile.redo.PipeTile
 import phoenix.utils.block.BlockWithTile

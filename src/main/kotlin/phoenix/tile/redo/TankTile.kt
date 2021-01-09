@@ -19,7 +19,6 @@ import phoenix.tile.ash.OvenTile
 import phoenix.utils.SerializeUtils
 import phoenix.utils.block.PhoenixTile
 import phoenix.utils.pipe.IFluidMechanism
-import java.util.*
 
 class TankTile : PhoenixTile<OvenTile>(PhoenixTiles.OVEN), IFluidMechanism, ITickableTileEntity
 {

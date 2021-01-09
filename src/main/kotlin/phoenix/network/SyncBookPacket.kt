@@ -7,7 +7,6 @@ import phoenix.utils.Date
 import phoenix.utils.IChapterReader
 import phoenix.utils.readDate
 import phoenix.utils.writeDate
-import phoenix.utils.Pair
 
 class SyncBookPacket(var list : List<phoenix.utils.Pair<Integer, Date>>): NetworkHandler.Packet()
 {

@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableList
 import net.minecraft.entity.Entity
 import net.minecraft.entity.merchant.villager.VillagerProfession
 import net.minecraft.entity.merchant.villager.VillagerTrades
-import net.minecraft.entity.player.ServerPlayerEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
 import net.minecraft.item.MerchantOffer
@@ -16,7 +15,6 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.DimensionType
 import net.minecraft.world.IServerWorld
-import net.minecraft.world.World
 import net.minecraft.world.gen.feature.template.PlacementSettings
 import net.minecraft.world.server.ServerWorld
 import net.minecraftforge.event.LootTableLoadEvent
@@ -26,23 +24,16 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent
 import net.minecraftforge.event.entity.player.PlayerEvent
 import net.minecraftforge.event.village.VillagerTradesEvent
 import net.minecraftforge.event.village.WandererTradesEvent
-import net.minecraftforge.event.world.WorldEvent
 import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.common.Mod
 import org.apache.logging.log4j.Level
 import phoenix.Phoenix
 import phoenix.init.PhoenixBlocks
 import phoenix.init.PhoenixItems
-import phoenix.network.NetworkHandler
-import phoenix.network.NetworkHandler.sendTo
-import phoenix.network.SyncBookPacket
-import phoenix.network.SyncStagePacket
-import phoenix.utils.IChapterReader
 import phoenix.utils.LogManager
 import phoenix.utils.LogManager.error
 import phoenix.utils.Tuple
 import phoenix.world.GenSaveData
-import phoenix.world.StageManager
 import java.util.*
 
 @Mod.EventBusSubscriber
@@ -132,7 +123,7 @@ object PhoenixEvents
 
     @SubscribeEvent
     @JvmStatic
-    fun capa(event: LootTableLoadEvent)
+    fun lootTables(event: LootTableLoadEvent)
     {
         if(event.name == LootTables.CHESTS_JUNGLE_TEMPLE)
         {

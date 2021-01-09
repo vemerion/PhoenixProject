@@ -25,14 +25,11 @@ object Phoenix
 
     init
     {
-        //PhoenixLootTables.init()
-        //PhoenixBiomes.register()
-        //PhoenixFeatures.register()
-        //PhoenixRecipeSerializers.register()
         val specPair = ForgeConfigSpec.Builder().configure(::Common)
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, specPair.right)
         PhoenixConfiguration.COMMON_CONFIG = specPair.left
+
         PhoenixBlocks.BLOCKS.register(MOD_BUS)
         PhoenixContainers.CONTAINERS.register(MOD_BUS)
         PhoenixItems.ITEMS.register(MOD_BUS)
@@ -40,14 +37,17 @@ object Phoenix
         PhoenixTiles.TILE_ENTITIES.register(MOD_BUS)
         PhoenixEnchantments.ENCHANTMENTS.register(MOD_BUS)
         PhoenixRecipeSerializers.RS.register(MOD_BUS)
+        PhoenixBiomes.BIOMES.register(MOD_BUS)
+        PhoenixFeatures.FEATURES.register(MOD_BUS)
+        PhoenixLootTables.init()
         MOD_BUS.addListener(PhoenixCommonEvents::onRegisterItems)
         MOD_BUS.addListener(PhoenixCommonEvents::init)
         MOD_BUS.addListener(PhoenixClientEvents::onClientSetup)
-        MOD_BUS.addListener(PhoenixEvents::tradesVillager)
-        MOD_BUS.addListener(PhoenixEvents::tradesWanderer)
-        MOD_BUS.addListener(PhoenixEvents::capa)
-        MOD_BUS.addListener(PhoenixEvents::deferredTasks)
-        MOD_BUS.addListener(PhoenixEvents::onPlay)
-        MOD_BUS.addListener(PhoenixEvents::cornGen)
+        FORGE_BUS.addListener(PhoenixEvents::tradesVillager)
+        FORGE_BUS.addListener(PhoenixEvents::tradesWanderer)
+        FORGE_BUS.addListener(PhoenixEvents::lootTables)
+        FORGE_BUS.addListener(PhoenixEvents::deferredTasks)
+        FORGE_BUS.addListener(PhoenixEvents::onPlay)
+        FORGE_BUS.addListener(PhoenixEvents::cornGen)
     }
 }

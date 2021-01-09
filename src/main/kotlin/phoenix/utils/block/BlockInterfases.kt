@@ -1,8 +1,8 @@
 package phoenix.utils.block
 
-import net.minecraft.item.ItemGroup
 import net.minecraft.client.renderer.color.IBlockColor
 import net.minecraft.client.renderer.color.IItemColor
+import net.minecraft.item.ItemGroup
 import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.api.distmarker.OnlyIn
 

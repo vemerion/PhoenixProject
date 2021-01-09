@@ -4,7 +4,6 @@ import net.minecraft.block.Block
 import net.minecraft.block.FlowingFluidBlock
 import net.minecraft.item.BlockItem
 import net.minecraft.item.Item
-import net.minecraft.util.ResourceLocation
 import net.minecraftforge.event.RegistryEvent
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent
 import net.minecraftforge.registries.ForgeRegistries
@@ -13,6 +12,7 @@ import phoenix.init.PhoenixBiomes
 import phoenix.init.PhoenixBlocks.BLOCKS
 import phoenix.init.PhoenixRecipes
 import phoenix.network.NetworkHandler
+import phoenix.utils.LogManager
 import phoenix.utils.block.ICustomGroup
 import phoenix.utils.block.INonItem
 import thedarkcolour.kotlinforforge.forge.ObjectHolderDelegate
@@ -50,20 +50,4 @@ object PhoenixCommonEvents
         PhoenixRecipes.register()
         PhoenixBiomes.addBiomeTypes()
     }
-    /*
-    private fun addZirconiumOre(biome: Biome)
-    {
-        biome.addFeature(
-            GenerationStage.Decoration.UNDERGROUND_ORES,
-            Feature.ORE.withConfiguration(
-                OreFeatureConfig(
-                    OreFeatureConfig.FillerBlockType.NATURAL_STONE,
-                    ZIRCONIUM.get().defaultState,
-                    4
-                )
-            )
-                .withPlacement(Placement.COUNT_RANGE.configure(CountRangeConfig(20, 0, 0, 64)))
-        )
-    }
-     */
 }

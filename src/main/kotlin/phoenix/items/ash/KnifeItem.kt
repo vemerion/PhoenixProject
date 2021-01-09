@@ -14,7 +14,6 @@ import net.minecraft.item.IItemTier
 import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemStack
 import net.minecraft.item.ToolItem
-import net.minecraft.tags.Tag
 import net.minecraft.util.*
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.Explosion

@@ -1,7 +1,5 @@
 package phoenix.init
 
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext
-import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
 import phoenix.Phoenix
 import phoenix.recipes.OvenRecipeSerializer

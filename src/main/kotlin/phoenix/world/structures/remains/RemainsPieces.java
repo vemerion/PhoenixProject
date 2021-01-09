@@ -14,7 +14,6 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IServerWorld;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.structure.StructureManager;
@@ -26,7 +25,6 @@ import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 import phoenix.init.PhoenixLootTables;
 import phoenix.utils.BlockPosUtils;
-import phoenix.utils.SizedArrayList;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;

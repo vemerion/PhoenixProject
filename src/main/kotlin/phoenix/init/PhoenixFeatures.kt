@@ -1,24 +1,24 @@
 package phoenix.init
 
-import net.minecraft.world.gen.feature.NoFeatureConfig
-import net.minecraft.world.gen.feature.structure.Structure
-import net.minecraftforge.fml.RegistryObject
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext
-import net.minecraftforge.registries.DeferredRegister
+import net.minecraft.util.registry.Registry
+import net.minecraft.util.registry.WorldGenRegistries
+import net.minecraft.world.gen.feature.ConfiguredFeature
+import net.minecraft.world.gen.feature.Feature
+import net.minecraft.world.gen.feature.IFeatureConfig
 import net.minecraftforge.registries.ForgeRegistries
 import phoenix.Phoenix
-import phoenix.world.structures.remains.RemainsStructure
+import phoenix.world.feature.SetaFeature
+import thedarkcolour.kotlinforforge.forge.KDeferredRegister
 
 object PhoenixFeatures
 {
-    val FEATURES = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, Phoenix.MOD_ID)
+    val FEATURES = KDeferredRegister(ForgeRegistries.FEATURES, Phoenix.MOD_ID)
 
-    val REMAINS: RegistryObject<Structure<NoFeatureConfig>> = FEATURES.register("remains", ::RemainsStructure)
+    val SETA by FEATURES.register("seta") { SetaFeature }
+//    val CONF_SETA = register("seta", SETA.withConfiguration(NoFeatureConfig.NO_FEATURE_CONFIG) as ConfiguredFeature<NoFeatureConfig, SetaFeature>)
+}
 
-    // public static final RegistryObject<CustomEndSpike>             END_SPIKE   = FEATURES.register("new_end_spike", CustomEndSpike::new);
-    @JvmStatic
-    fun register()
-    {
-        FEATURES.register(FMLJavaModLoadingContext.get().modEventBus)
-    }
+private fun <FC : IFeatureConfig, T : Feature<FC>> register(key: String, configuredFeature: ConfiguredFeature<FC, T>): ConfiguredFeature<FC, T>
+{
+    return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, key, configuredFeature)
 }

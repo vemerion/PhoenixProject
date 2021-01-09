@@ -6,17 +6,16 @@ import net.minecraft.block.material.Material
 import net.minecraft.item.ItemStack
 import net.minecraft.loot.LootContext
 import net.minecraftforge.common.ToolType
-import net.minecraftforge.fml.RegistryObject
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext
-import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
 import phoenix.Phoenix
 import phoenix.blocks.UpdaterBlock
-import phoenix.blocks.ash.*
-import phoenix.blocks.redo.*
+import phoenix.blocks.ash.OvenBlock
+import phoenix.blocks.ash.PotteryBarrelBlock
+import phoenix.blocks.redo.ArmoredGlassBlock
+import phoenix.blocks.redo.ElectricBarrelBlock
+import phoenix.blocks.redo.SetaBlock
 import phoenix.utils.block.ICustomGroup
 import phoenix.utils.block.INonItem
-import thedarkcolour.kotlinforforge.KotlinModLoadingContext
 import thedarkcolour.kotlinforforge.forge.KDeferredRegister
 
 object PhoenixBlocks

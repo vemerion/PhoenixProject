@@ -4,7 +4,6 @@ import com.mojang.blaze3d.matrix.MatrixStack
 import net.minecraft.client.gui.FontRenderer
 import net.minecraft.util.text.LanguageMap
 import net.minecraft.util.text.TextFormatting
-import java.lang.StringBuilder
 import java.util.*
 
 object StringUtils

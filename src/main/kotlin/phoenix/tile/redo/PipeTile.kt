@@ -10,7 +10,6 @@ import phoenix.init.PhoenixTiles
 import phoenix.tile.ash.PotteryBarrelTile
 import phoenix.utils.block.PhoenixTile
 import phoenix.utils.pipe.IFluidPipe
-import java.io.IOException
 import javax.annotation.ParametersAreNonnullByDefault
 
 

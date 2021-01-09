@@ -16,7 +16,7 @@ class ParentLayer(var provider: EndBiomeProvider) : IAreaTransformer0
             -1
         } else
         {
-            val height = EndBiomeProvider.getRandomNoise(provider.generator, realX * 2 + 1, realZ * 2 + 1)
+            val height = net.minecraft.world.biome.provider.EndBiomeProvider.getRandomNoise(provider.generator, realX * 2 + 1, realZ * 2 + 1)
             if (height > 40.0f)
             {
                 3

@@ -8,13 +8,10 @@ import phoenix.world.structures.remains.RemainsPieces.Piece
 
 object PhoenixLootTables
 {
-    lateinit var REMAINS : ResourceLocation;
-    lateinit var REMAINS_PIECES : IStructurePieceType
+    lateinit var REMAINS : ResourceLocation
 
-    @JvmStatic
     fun init()
     {
-        //REMAINS = LootTables.register(ResourceLocation(Phoenix.MOD_ID, "remains_house"))
-        REMAINS_PIECES = IStructurePieceType.register(::Piece, "RemainsHouse")
+        REMAINS = LootTables.register(ResourceLocation(Phoenix.MOD_ID, "remains_house"))
     }
 }
