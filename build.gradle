@@ -4,11 +4,16 @@ buildscript {
         maven { url = 'https://files.minecraftforge.net/maven' }
         jcenter()
         mavenCentral()
+        maven {
+            name = 'sponge'
+            url = 'https://repo.spongepowered.org/maven'
+        }
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
         // Make sure this version matches the one included in Kotlin for Forge
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
@@ -68,9 +73,23 @@ minecraft {
 }
 
 repositories {
+    mavenCentral()
+    maven { // Мавен, который поддерживает JEI.
+        name = "Progwml6 maven"
+        url = "http://dvs1.progwml6.com/files/maven"
+    }
+    maven { // Мавен, который поддерживает JEI, для резерва.
+        name = "ModMaven"
+        url = "modmaven.k-4u.nl"
+    }
     maven {
         name = 'Kotlin for Forge'
         url = 'https://thedarkcolour.github.io/KotlinForForge/'
+    }
+    jcenter()
+    maven {
+        name = 'sponge'
+        url = 'http://repo.spongepowered.org/maven'
     }
 }
 
@@ -78,6 +97,10 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.16.4-35.1.29'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     fg.deobf(implementation('thedarkcolour:kotlinforforge:1.6.2'))
+    compileOnly "org.spongepowered:mixin:${mixin_version}-SNAPSHOT"
+    runtimeOnly "org.spongepowered:mixin:${mixin_version}-SNAPSHOT"
+    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
 }
 
 compileKotlin {
@@ -105,4 +128,19 @@ jar {
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
+}
+
+sourceSets {
+    main {
+        ext.refMap = 'mixins.phoenix.refmap.json'
+    }
+}
+
+jar {
+    manifest.attributes(
+            'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
+            'MixinConfigs': 'mixins.phoenix.json', // Файлы наших миксинов
+            'FMLCorePluginContainsFMLMod': 'true',         // Говорим, что наш джарник еще и мод
+            'ForceLoadAsMod': 'true',                      // Точно точно мод
+    )
 }
