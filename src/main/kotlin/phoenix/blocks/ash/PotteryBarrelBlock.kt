@@ -26,6 +26,7 @@ import net.minecraft.world.IBlockDisplayReader
 import net.minecraft.world.IBlockReader
 import net.minecraft.world.World
 import phoenix.init.PhoenixItems
+import phoenix.init.PhoenixSounds
 import phoenix.tile.ash.PotteryBarrelTile
 import phoenix.utils.SizedArrayList
 import phoenix.utils.block.BlockWithTile
@@ -89,6 +90,7 @@ class PotteryBarrelBlock : BlockWithTile(Properties.create(Material.BAMBOO).hard
                             player.setHeldItem(handIn, ItemStack(PhoenixItems.HIGH_QUALITY_CLAY_ITEM, maxOf(countOfJumps / 20, 3)))
                             setState(worldIn, pos, state, 0)
                             (worldIn.getTileEntity(pos) as PotteryBarrelTile?)?.nullifyJumpsCount()
+                            worldIn.playSound(null, pos, PhoenixSounds.PUT_SMTH_TO_BARREL, SoundCategory.BLOCKS, 1.0f, 1.0f)
                         }
                     }
                     ActionResultType.SUCCESS
@@ -99,7 +101,7 @@ class PotteryBarrelBlock : BlockWithTile(Properties.create(Material.BAMBOO).hard
                     {
                         itemStack.shrink(1)
                         (worldIn.getTileEntity(pos) as PotteryBarrelTile).setInventorySlotContents(0, ItemStack(Items.CLAY))
-                        worldIn.playSound(null, pos, SoundEvents.BLOCK_SAND_BREAK, SoundCategory.BLOCKS, 1.0f, 1.0f)
+                        worldIn.playSound(null, pos, PhoenixSounds.PUT_SMTH_TO_BARREL, SoundCategory.BLOCKS, 1.0f, 1.0f)
                     }
                     ActionResultType.SUCCESS
                 }

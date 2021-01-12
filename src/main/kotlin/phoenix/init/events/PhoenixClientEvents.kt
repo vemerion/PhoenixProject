@@ -4,20 +4,22 @@ import net.minecraft.block.Block
 import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.RenderTypeLookup
+import net.minecraft.util.ResourceLocation
+import net.minecraft.util.SoundEvent
+import net.minecraftforge.event.RegistryEvent
 import net.minecraftforge.fml.client.registry.ClientRegistry
 import net.minecraftforge.fml.client.registry.RenderingRegistry
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
+import net.minecraftforge.registries.ForgeRegistries
 import phoenix.client.render.OvenRenderer
 import phoenix.client.render.entity.KnifeRenderer
 import phoenix.client.render.entity.TalpaRenderer
-import phoenix.init.PhoenixBlocks
+import phoenix.init.*
 import phoenix.init.PhoenixBlocks.BLOCKS
-import phoenix.init.PhoenixContainers
 import phoenix.init.PhoenixEntities.KNIFE
 import phoenix.init.PhoenixEntities.TALPA
-import phoenix.init.PhoenixRenderTypes
-import phoenix.init.PhoenixTiles
 import phoenix.network.NetworkHandler
+import phoenix.other.PhoenixMusicTicker
 import phoenix.utils.block.IColoredBlock
 import thedarkcolour.kotlinforforge.forge.ObjectHolderDelegate
 
@@ -51,12 +53,11 @@ object PhoenixClientEvents
             {
                 val blockColor = block.getBlockColor()
                 val itemColor = block.getItemColor()
-                if (blockColor != null)
-                    Minecraft.getInstance().blockColors.register(blockColor, block)
-                if (itemColor != null)
-                    Minecraft.getInstance().itemColors.register(itemColor, block)
+                if (blockColor != null) Minecraft.getInstance().blockColors.register(blockColor, block)
+                if (itemColor  != null) Minecraft.getInstance().itemColors .register(itemColor,  block)
             }
         }
 
+        Minecraft.getInstance().musicTicker = PhoenixMusicTicker(Minecraft.getInstance().musicTicker)
     }
 }

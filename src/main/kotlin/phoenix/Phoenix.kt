@@ -20,6 +20,7 @@ object Phoenix
 {
     const val MOD_ID = "phoenix"
     val LOGGER = LogManager.getLogger()!!
+
     val ASH: ItemGroup = PhoenixGroup("$MOD_ID.ash", Blocks.END_PORTAL_FRAME)
     val REDO: ItemGroup = PhoenixGroup("$MOD_ID.redo") { PhoenixBlocks.SETA }
 

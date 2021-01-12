@@ -19,7 +19,8 @@ import phoenix.world.StageManager
 
 object UpdaterBlock : Block(Properties.create(Material.ROCK).setLightLevel { 5 }.hardnessAndResistance(-1f))
 {
-    override fun onBlockActivated(
+    override fun onBlockActivated
+    (
         state: BlockState,
         worldIn: World,
         pos: BlockPos,
@@ -28,16 +29,16 @@ object UpdaterBlock : Block(Properties.create(Material.ROCK).setLightLevel { 5 }
         hit: BlockRayTraceResult
     ): ActionResultType
     {
-        if (!worldIn.isRemote && worldIn.dimensionKey === DimensionType.THE_END_ID)
+        if (!worldIn.isRemote)
         {
-            val stageOld = StageManager.getStage()
+            val stageOld = StageManager.stage
             worldIn.playSound(pos.x.toDouble(), pos.y.toDouble(), pos.z.toDouble(), CHANGE_STAGE, SoundCategory.BLOCKS, 1f, 1f, true)
             StageManager.addPart()
             for (entity in worldIn.players)
             {
                 entity.sendStatusMessage(TranslationTextComponent("phoenix.message.newstage"), false)
                 entity.sendStatusMessage(
-                    StringTextComponent((StageManager.getStage() + 1).toString() + " " + (StageManager.getPart() + 1) + " "),
+                    StringTextComponent("${StageManager.stage + 1}  ${StageManager.part + 1}"),
                     false
                 )
             }

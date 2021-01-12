@@ -23,8 +23,8 @@ class SyncStagePacket(var stage : Int, var part : Int) : NetworkHandler.Packet()
 
     override fun client(player: ClientPlayerEntity?)
     {
-        StageManager.setStage(stage)
-        StageManager.setPart(part)
+        StageManager.stage = stage
+        StageManager.part = part
     }
 
     override fun server(player: ServerPlayerEntity?) {}

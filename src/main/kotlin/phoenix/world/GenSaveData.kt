@@ -16,7 +16,7 @@ class GenSaveData : WorldSavedData
     }
 
     //Это второй конструктор, на всякий. А первый нужен для того, чтобы ничего не упало)
-    constructor(s: String?) : super(s)
+    constructor(s: String) : super(s)
     {
         data = CompoundNBT()
         data.putBoolean("iscorngened", false)

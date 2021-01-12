@@ -10,7 +10,7 @@
 			}
 		]
 	},
-	"put_to_barrel":
+	"put_smth_to_barrel":
 	{
 		"category": "block",
 		"sounds":
@@ -21,7 +21,7 @@
 			}
 		]
 	},
-	"under_the_world":
+	"redo_music":
 	{
 		"category": "music",
 		"sounds":
