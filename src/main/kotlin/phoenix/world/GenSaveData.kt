@@ -34,11 +34,17 @@ class GenSaveData : WorldSavedData
             data = compound
             nbt.put("gen_nbt", compound)
         }
+        //Начало костыля
+        StageManager.read(nbt)
+        //конец костыля
     }
 
     override fun write(compound: CompoundNBT): CompoundNBT
     {
         compound.put("gen_nbt", data)
+        //начало костыля
+        StageManager.write(compound)
+        //конец костыля
         return compound
     }
 

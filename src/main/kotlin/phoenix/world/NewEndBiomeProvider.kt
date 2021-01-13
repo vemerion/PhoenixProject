@@ -33,6 +33,7 @@ class EndBiomeProvider(private val lookupRegistry: Registry<Biome>, val seed: Lo
         biomesIn.add(PhoenixBiomes.UNDER)
         this.biomes = biomesIn
         LogManager.error(this, biomes.toString())
+        biomes.add(PhoenixBiomes.UNDER)
     }
 
     @OnlyIn(Dist.CLIENT)
