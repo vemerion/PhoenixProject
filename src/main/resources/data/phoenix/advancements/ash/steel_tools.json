@@ -5,10 +5,10 @@
       "item": "phoenix:steel_axe"
     },
     "title": {
-      "translate": "advancements.phoenix.steel_tools"
+      "translate": "advancements.phoenix.ash.steel_tools"
     },
     "description": {
-      "translate": "advancements.phoenix.steel_tools.description"
+      "translate": "advancements.phoenix.ash.steel_tools.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -51,10 +51,8 @@
     }
   },
   "requirements": [
-    [
-      "steel_axe",
-      "steel_pickaxe",
-      "steel_sword"
-    ]
+    [ "steel_axe"    ],
+    [ "steel_pickaxe"],
+    [ "steel_sword"  ]
   ]
 }

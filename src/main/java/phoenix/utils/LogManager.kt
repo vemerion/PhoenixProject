@@ -7,7 +7,7 @@ import phoenix.init.PhoenixConfiguration
 object LogManager
 {
     @JvmStatic
-    fun log(obj : Any, message : String) : Unit
+    fun log(obj : Any, message : String)
     {
         if(PhoenixConfiguration.COMMON_CONFIG.debug.get())
         {
@@ -30,5 +30,14 @@ object LogManager
     {
         if(message != null)
             Phoenix.LOGGER.error("Exception in class ${obj.javaClass.name}: " + message.toString())
+    }
+
+    @JvmStatic
+    fun errorObjects(obj : Any, vararg objects : Any)
+    {
+        var message = ""
+        for (i in objects)
+            message += " $i"
+        error(obj, message)
     }
 }

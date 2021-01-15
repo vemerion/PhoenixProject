@@ -25,9 +25,9 @@ import phoenix.utils.pipe.IFluidMechanism
 import java.util.*
 import kotlin.math.min
 
-class TankTile : PhoenixTile(PhoenixTiles.TANK.get()), IFluidMechanism, ITickableTileEntity
+class TankTile : PhoenixTile<TankTile>(PhoenixTiles.TANK), IFluidMechanism, ITickableTileEntity
 {
-    private var stack = ItemStack.EMPTY;
+    private var stack = ItemStack.EMPTY
     private var numberInGraph = 0
     var tank = FluidTank(FluidAttributes.BUCKET_VOLUME * 5)
     private val holder = LazyOptional.of<IFluidHandler> { tank }
@@ -81,7 +81,6 @@ class TankTile : PhoenixTile(PhoenixTiles.TANK.get()), IFluidMechanism, ITickabl
         var color = 100000000;
         for (i in neighbors)
         {
-
             color = min(colorTmp[i].toInt(), color)
         }
         colorTmp.add(Integer(color))
@@ -124,7 +123,7 @@ class TankTile : PhoenixTile(PhoenixTiles.TANK.get()), IFluidMechanism, ITickabl
         return UpdatePacket(tank, stack, numberInGraph)
     }
 
-    override fun onDataPacket(net: NetworkManager?, pkt: SUpdateTileEntityPacket?)
+    override fun onDataPacket(net: NetworkManager, pkt: SUpdateTileEntityPacket)
     {
         val packet = pkt as UpdatePacket
         this.numberInGraph = packet.numberInGraph

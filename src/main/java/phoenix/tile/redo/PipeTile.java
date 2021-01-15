@@ -15,7 +15,7 @@ import java.io.IOException;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class PipeTile extends PhoenixTile implements IFluidPipe
+public class PipeTile extends PhoenixTile<PipeTile> implements IFluidPipe
 {
     int number_in_graph = 0;
 

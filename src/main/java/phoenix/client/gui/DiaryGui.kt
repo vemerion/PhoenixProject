@@ -6,19 +6,15 @@ import net.minecraft.client.gui.widget.Widget
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.text.ITextComponent
-import net.minecraftforge.api.distmarker.Dist
-import net.minecraftforge.api.distmarker.OnlyIn
 import phoenix.Phoenix
 import phoenix.client.gui.diaryPages.Chapters
 import phoenix.client.gui.diaryPages.DiaryBook
 import phoenix.client.gui.diaryPages.elements.DiaryChapter
-import phoenix.client.gui.diaryPages.elements.ImageElement
 import phoenix.client.gui.diaryPages.elements.RightAlignedTextElement
 import phoenix.containers.DiaryContainer
 import phoenix.utils.DiaryUtils
+import phoenix.utils.IChapterReader
 import phoenix.utils.RenderUtils
-import phoenix.utils.TextureUtils
-import phoenix.utils.capablity.IChapterReader
 
 class DiaryGui(screenContainer: DiaryContainer, inv: PlayerInventory, titleIn: ITextComponent) : ContainerScreen<DiaryContainer>(screenContainer, inv, titleIn)
 {
@@ -37,9 +33,9 @@ class DiaryGui(screenContainer: DiaryContainer, inv: PlayerInventory, titleIn: I
         val chapters = (player as IChapterReader).getOpenedChapters()
         for (i in chapters)
         {
-            val ch = Chapters.values()[i.first];
+            val ch = Chapters.values()[i.m];
             val els = DiaryUtils.makeParagraph(font, xSize, ch.getText())
-            els.add(RightAlignedTextElement(i.second.toString()))
+            els.add(RightAlignedTextElement(i.v.toString()))
             book.add(DiaryChapter(xSize, ySize, els))
         }
 

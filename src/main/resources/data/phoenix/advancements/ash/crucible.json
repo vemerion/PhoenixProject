@@ -1,14 +1,14 @@
 {
-  "parent": "phoenix:ash/root",
+  "parent": "phoenix:ash/clay",
   "display": {
     "icon": {
       "item": "phoenix:crucible"
     },
     "title": {
-      "translate": "advancements.phoenix.crucible"
+      "translate": "advancements.phoenix.ash.crucible"
     },
     "description": {
-      "translate": "advancements.phoenix.crucible.description"
+      "translate": "advancements.phoenix.ash.crucible.description"
     },
     "frame": "task",
     "show_toast": true,

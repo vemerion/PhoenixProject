@@ -1,10 +1,16 @@
+0.1.2.5B
+  Fix localisation
+  Fix seta growing
+0.1.2B
+  Fix mixin loading
+0.1B
 Added:
   Seta block
   Oven block
   Pottery barrel
   Zirconium ore
   Armored glass block
-  Crusible items
+  Cruсible items
   Zirconium ingot
   Steel ingot
   Knife tool type
@@ -13,5 +19,3 @@ Added:
   Added some sounds
 Removed:
    Kikin blocks
-
-
