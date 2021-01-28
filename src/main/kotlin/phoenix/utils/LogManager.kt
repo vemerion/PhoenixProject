@@ -11,32 +11,17 @@ object LogManager
     {
         if(PhoenixConfiguration.COMMON_CONFIG.debug.get())
         {
-            Phoenix.LOGGER.error("${obj.javaClass} " + message)
+            Phoenix.LOGGER.error("${obj.javaClass} $message")
         }
         else
         {
-            Phoenix.LOGGER.log(Level.DEBUG, "${obj.javaClass} " + message)
+            Phoenix.LOGGER.log(Level.DEBUG, "<${obj.javaClass.lastName()}> $message")
         }
     }
 
-    @JvmStatic
-    fun error(obj : String, message : String?)
-    {
-        Phoenix.LOGGER.error("$obj ${message ?: ""}")
-    }
-
-    @JvmStatic
-    fun error(obj : Any, message : String?)
-    {
-        Phoenix.LOGGER.error("${obj.javaClass} " + (message ?: ""))
-    }
-
-    @JvmStatic
-    fun error(obj : Any, message : Exception?)
-    {
-        if(message != null)
-            Phoenix.LOGGER.error("Exception in class ${obj.javaClass.name}: $message")
-    }
+    @JvmStatic fun error(from : String, message : String?)   = Phoenix.LOGGER.error("$from ${message ?: ""}")
+    @JvmStatic fun error(obj  : Any,    message : String?)   = Phoenix.LOGGER.error("<${obj.javaClass.lastName()}> ${message ?: ""}")
+    @JvmStatic fun error(obj  : Any,    message : Exception?)= Phoenix.LOGGER.error(if(message != null) "Exception in class <${obj.javaClass.lastName()}>: $message" else "Null exception in class <${obj.javaClass.lastName()}>")
 
     @JvmStatic
     fun errorObjects(obj : Any, vararg objects : Any)

@@ -6,6 +6,7 @@ import net.minecraft.util.Direction
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.ISeedReader
 import net.minecraft.world.gen.ChunkGenerator
+import net.minecraft.world.gen.feature.ConfiguredFeature
 import net.minecraft.world.gen.feature.Feature
 import net.minecraft.world.gen.feature.NoFeatureConfig
 import phoenix.init.PhoenixBlocks
@@ -35,5 +36,10 @@ object SetaFeature : Feature<NoFeatureConfig>(NoFeatureConfig.field_236558_a_)
             }
         }
         return true
+    }
+
+    override fun withConfiguration(config: NoFeatureConfig): ConfiguredFeature<NoFeatureConfig, SetaFeature>
+    {
+        return ConfiguredFeature(this, config)
     }
 }

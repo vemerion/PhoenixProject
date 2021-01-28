@@ -1,7 +1,11 @@
 package phoenix.world
 
+import com.mojang.datafixers.kinds.App
+import com.mojang.serialization.Codec
+import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.util.SharedSeedRandom
 import net.minecraft.util.registry.Registry
+import net.minecraft.util.registry.RegistryLookupCodec
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.gen.IExtendedNoiseRandom
 import net.minecraft.world.gen.LazyAreaLayerContext
@@ -19,6 +23,8 @@ import phoenix.world.genlayers.ParentLayer
 import phoenix.world.genlayers.UnderLayer
 import phoenix.world.genlayers.UnificationLayer
 import java.util.*
+import java.util.function.BiFunction
+import java.util.function.Function
 import java.util.function.LongFunction
 
 class EndBiomeProvider(private val lookupRegistry: Registry<Biome>, val seed: Long) : net.minecraft.world.biome.provider.EndBiomeProvider(lookupRegistry, seed)
@@ -39,11 +45,7 @@ class EndBiomeProvider(private val lookupRegistry: Registry<Biome>, val seed: Lo
     @OnlyIn(Dist.CLIENT)
     override fun getBiomeProvider(seed: Long) = EndBiomeProvider(lookupRegistry, seed)
 
-    override fun getNoiseBiome(x: Int, y: Int, z: Int) : Biome
-    {
-        LogManager.error(this, "$x $z")
-        return genBiomes.func_242936_a(lookupRegistry, x, z)
-    }
+    override fun getNoiseBiome(x: Int, y: Int, z: Int) : Biome = genBiomes.func_242936_a(lookupRegistry, x, z)
 
     init
     {
@@ -82,5 +84,17 @@ class EndBiomeProvider(private val lookupRegistry: Registry<Biome>, val seed: Lo
         for (i in 0..10)
             phoenixBiomes = ZoomLayer.NORMAL.apply(context.apply(200), phoenixBiomes)
         return UnificationLayer.apply(context.apply(10), vanilaBiomes, phoenixBiomes)
+    }
+
+    companion object
+    {
+        val CODEC: Codec<EndBiomeProvider> = RecordCodecBuilder.create { builder: RecordCodecBuilder.Instance<EndBiomeProvider> ->
+            builder.group(
+                RegistryLookupCodec.getLookUpCodec(Registry.BIOME_KEY).forGetter(EndBiomeProvider::lookupRegistry),
+                Codec.LONG.fieldOf("seed").stable().forGetter(EndBiomeProvider::seed)
+            ).apply(
+                builder, builder.stable(BiFunction<Registry<Biome>, Long, EndBiomeProvider> { lookupRegistry: Registry<Biome>, seed: Long -> EndBiomeProvider(lookupRegistry, seed) })
+            )
+        }
     }
 }

@@ -6,11 +6,13 @@ import net.minecraft.util.registry.WorldGenRegistries
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.BiomeGenerationSettings
 import net.minecraft.world.biome.BiomeMaker
+import net.minecraft.world.gen.GenerationStage
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders
 import net.minecraftforge.common.BiomeDictionary
 import net.minecraftforge.registries.ForgeRegistries
 import phoenix.Phoenix
 import phoenix.utils.ResourceUtils
+import phoenix.world.builders.Builders
 import thedarkcolour.kotlinforforge.forge.KDeferredRegister
 
 object PhoenixBiomes
@@ -31,8 +33,8 @@ object PhoenixBiomes
 
     val BIOMES = KDeferredRegister(ForgeRegistries.BIOMES, Phoenix.MOD_ID)
 
-    val UNDER by BIOMES.register("under") { BiomeMaker.makeEndBiome(BiomeGenerationSettings.Builder().withSurfaceBuilder(ConfiguredSurfaceBuilders.field_244178_j)) }
-       // .withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, PhoenixFeatures.CONF_SETA)) }
+    val UNDER      by BIOMES.register("under")      { BiomeMaker.makeEndBiome(BiomeGenerationSettings.Builder().withSurfaceBuilder { Builders.UNDER_CONF     }.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, PhoenixFeatures.CONF_SETA)) }
+    val HEART_VOID by BIOMES.register("heart_void") { BiomeMaker.makeEndBiome(BiomeGenerationSettings.Builder().withSurfaceBuilder { Builders.HEARTVOID_CONF }) }
 }
 
 private fun register(id: Int, key: RegistryKey<Biome>, biome: Biome): Biome

@@ -68,6 +68,10 @@ fun IWorld.getDownHeight(pos : BlockPos, max: Int): BlockPos
 
 fun Random.nextInt(min : Int, max : Int) = (min - 0.5 + this.nextDouble() * (max - min + 1)).toInt()
 
+fun<T> Class<T>.lastName() = name.split(".").last()
+fun<T> Array<T>.last() = this[size - 1]
+fun<T> List<T> .last() = this[size - 1]
+
 fun PacketBuffer.writeDate(date : Date)
 {
     this.writeInt(date.minute)

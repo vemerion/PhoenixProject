@@ -2,6 +2,8 @@ package phoenix
 
 import net.minecraft.block.Blocks
 import net.minecraft.item.ItemGroup
+import net.minecraft.util.registry.Registry
+import net.minecraft.world.biome.provider.EndBiomeProvider
 import net.minecraftforge.common.ForgeConfigSpec
 import net.minecraftforge.fml.ModLoadingContext
 import net.minecraftforge.fml.common.Mod
@@ -42,6 +44,7 @@ object Phoenix
         PhoenixFeatures.FEATURES.register(MOD_BUS)
         PhoenixSounds.SOUNDS.register(MOD_BUS)
         PhoenixLootTables.init()
+
         MOD_BUS.addListener(PhoenixCommonEvents::onRegisterItems)
         MOD_BUS.addListener(PhoenixCommonEvents::init)
         MOD_BUS.addListener(PhoenixClientEvents::onClientSetup)
@@ -51,5 +54,7 @@ object Phoenix
         FORGE_BUS.addListener(PhoenixEvents::deferredTasks)
         FORGE_BUS.addListener(PhoenixEvents::onPlay)
         FORGE_BUS.addListener(PhoenixEvents::cornGen)
+
+        Registry.register(Registry.BIOME_PROVIDER_CODEC, "the_end", phoenix.world.EndBiomeProvider.CODEC)
     }
 }
