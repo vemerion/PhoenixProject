@@ -31,9 +31,9 @@ class HeartVoidSurfaceBuilder(function: Codec<AdvancedSurfaceBuilderConfig>) : S
                 i = -1
             } else if (currectState.block === defaultBlock.block)
             {
-                if (!(isAir(chunkIn, currectPos.up(9)) || isAir(chunkIn, currectPos.down(9)) ||
-                                isAir(chunkIn, currectPos.south(9)) || isAir(chunkIn, currectPos.north(9)) ||
-                                isAir(chunkIn, currectPos.west(9)) || isAir(chunkIn, currectPos.east(9))))
+                if (!(isAir(chunkIn, currectPos.up(9))    || isAir(chunkIn, currectPos.down(9)) ||
+                      isAir(chunkIn, currectPos.south(9)) || isAir(chunkIn, currectPos.north(9)) ||
+                      isAir(chunkIn, currectPos.west(9))  || isAir(chunkIn, currectPos.east(9))))
                 {
                     if (currectState.block === Blocks.END_STONE)
                     {

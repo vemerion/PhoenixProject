@@ -25,7 +25,6 @@ class UnderSurfaceBuilder(codec: Codec<AdvancedSurfaceBuilderConfig>) : SurfaceB
         defaultBlock: BlockState, top: BlockState, middle: BlockState, under: BlockState
     )
     {
-        LogManager.error(this, "$x $z")
         var topBlock = top
         var middleBlock = middle
         val currentPos = BlockPos.Mutable()
@@ -47,6 +46,7 @@ class UnderSurfaceBuilder(codec: Codec<AdvancedSurfaceBuilderConfig>) : SurfaceB
                     if (currentState.block === Blocks.END_STONE)
                     {
                         chunkIn.setBlockState(currentPos, under, false)
+                        LogManager.error(this, "$x $z")
                     }
                 } else if (i == -1)
                 {
