@@ -21,7 +21,7 @@ object PhoenixConfiguration
                     ", but if \"hohserg\" it will be easier and more simple.")
                     .defineEnum("Game mode", GameMode.normal)
             BIOME_SIZE = builder.worldRestart().defineInRange("Biome size", 6, 1, 15)
-            debug = builder.worldRestart().define("is debug mode", false)
+            debug = builder.worldRestart().define("is debug mode", true)
             builder.pop()
         }
     }

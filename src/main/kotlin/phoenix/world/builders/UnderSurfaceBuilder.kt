@@ -7,6 +7,7 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.chunk.IChunk
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder
+import phoenix.utils.LogManager
 import java.util.*
 import javax.annotation.ParametersAreNonnullByDefault
 
@@ -14,40 +15,17 @@ import javax.annotation.ParametersAreNonnullByDefault
 @ParametersAreNonnullByDefault
 class UnderSurfaceBuilder(codec: Codec<AdvancedSurfaceBuilderConfig>) : SurfaceBuilder<AdvancedSurfaceBuilderConfig>(codec)
 {
-    override fun buildSurface(
-        random: Random,
-        chunkIn: IChunk,
-        biomeIn: Biome,
-        x: Int,
-        z: Int,
-        startHeight: Int,
-        noise: Double,
-        defaultBlock: BlockState,
-        defaultFluid: BlockState,
-        seaLevel: Int,
-        seed: Long,
-        config: AdvancedSurfaceBuilderConfig
-    )
+    override fun buildSurface(random: Random, chunkIn: IChunk, biomeIn: Biome, x: Int, z: Int, startHeight: Int, noise: Double, defaultBlock: BlockState, defaultFluid: BlockState, seaLevel: Int, seed: Long, config: AdvancedSurfaceBuilderConfig)
     {
-        this.buildSurface(
-            random,
-            chunkIn,
-            x,
-            z,
-            startHeight,
-            noise,
-            defaultBlock,
-            config.top,
-            config.under,
-            config.advanced
-        )
+        this.buildSurface(random, chunkIn, x, z, startHeight, noise, defaultBlock, config.top, config.under, config.getAdvanced())
     }
 
-    protected fun buildSurface(
+    private fun buildSurface(
         random: Random, chunkIn: IChunk, x: Int, z: Int, startHeight: Int, noise: Double,
         defaultBlock: BlockState, top: BlockState, middle: BlockState, under: BlockState
     )
     {
+        LogManager.error(this, "$x $z")
         var topBlock = top
         var middleBlock = middle
         val currentPos = BlockPos.Mutable()

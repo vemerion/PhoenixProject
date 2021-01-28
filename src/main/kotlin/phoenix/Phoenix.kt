@@ -3,7 +3,6 @@ package phoenix
 import net.minecraft.block.Blocks
 import net.minecraft.item.ItemGroup
 import net.minecraft.util.registry.Registry
-import net.minecraft.world.biome.provider.EndBiomeProvider
 import net.minecraftforge.common.ForgeConfigSpec
 import net.minecraftforge.fml.ModLoadingContext
 import net.minecraftforge.fml.common.Mod
@@ -14,6 +13,8 @@ import phoenix.init.PhoenixConfiguration.Common
 import phoenix.init.events.PhoenixClientEvents
 import phoenix.init.events.PhoenixCommonEvents
 import phoenix.init.events.PhoenixEvents
+import phoenix.world.builders.UNDER_CONF
+import phoenix.world.builders.registerBuilders
 import thedarkcolour.kotlinforforge.forge.FORGE_BUS
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
 
@@ -48,6 +49,8 @@ object Phoenix
         MOD_BUS.addListener(PhoenixCommonEvents::onRegisterItems)
         MOD_BUS.addListener(PhoenixCommonEvents::init)
         MOD_BUS.addListener(PhoenixClientEvents::onClientSetup)
+        MOD_BUS.addListener(::registerBuilders)
+        FORGE_BUS.addListener(::registerBuilders)
         FORGE_BUS.addListener(PhoenixEvents::tradesVillager)
         FORGE_BUS.addListener(PhoenixEvents::tradesWanderer)
         FORGE_BUS.addListener(PhoenixEvents::lootTables)

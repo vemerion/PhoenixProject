@@ -4,8 +4,7 @@
   "package": "phoenix.mixin",
   "refmap": "mixins.phoenix.refmap.json",
   "mixins": [
-    "DimensionTypeMixin",
-    "EntityMixin"
+    "DimensionTypeMixin"
   ],
   "client": [],
   "server": []

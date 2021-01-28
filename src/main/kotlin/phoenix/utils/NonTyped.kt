@@ -113,4 +113,15 @@ fun RegistryKey<Biome>.getId() : Int
 
 fun<T : IForgeRegistryEntry<T>> KDeferredRegister<T>.register(name : String, t : T) = register(name) {t}
 
+fun<T> IForgeRegistryEntry<T>.setRegistryName(nameIn: String) = setRegistryName(ResourceUtils.key(nameIn))
+
+fun<T> IForgeRegistryEntry<T>.validateRegistryName(nameIn: String)
+{
+    if(registryName == null) registryName = ResourceUtils.key(nameIn)
+}
+
+fun<T> IForgeRegistryEntry<T>.validateRegistryName(nameIn: ResourceLocation)
+{
+    if(registryName == null) registryName = nameIn
+}
 

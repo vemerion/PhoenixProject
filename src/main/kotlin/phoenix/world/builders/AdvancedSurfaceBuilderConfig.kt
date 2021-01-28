@@ -8,50 +8,52 @@ import net.minecraft.world.gen.surfacebuilders.ISurfaceBuilderConfig
 
 class AdvancedSurfaceBuilderConfig : ISurfaceBuilderConfig
 {
-    private val top: BlockState
-    private val under: BlockState
-    val underWater: BlockState
-    val advanced: BlockState
+    private val top: () -> Block
+    private val under: () -> Block
+    val underWater: () -> Block
+    val advanced: () -> Block
 
-    constructor(
-        topMaterial: BlockState,
-        underMaterial: BlockState,
-        underWaterMaterial: BlockState,
-        advancedMaterial: BlockState
-    )
-    {
-        top = topMaterial
-        under = underMaterial
-        underWater = underWaterMaterial
-        advanced = advancedMaterial
-    }
 
     constructor(topMaterial: Block, underMaterial: Block, underWaterMaterial: Block, advancedMaterial: Block)
     {
-        top = topMaterial.defaultState
-        under = underMaterial.defaultState
-        underWater = underWaterMaterial.defaultState
-        advanced = advancedMaterial.defaultState
+        top = { topMaterial}
+        under = { underMaterial }
+        underWater = { underWaterMaterial }
+        advanced = { advancedMaterial }
     }
 
-    override fun getTop(): BlockState
+    constructor(topMaterial: Block, underMaterial: Block, underWaterMaterial: Block, advancedMaterial: () -> Block)
     {
-        return top
+        top = { topMaterial}
+        under = { underMaterial }
+        underWater = { underWaterMaterial }
+        advanced = advancedMaterial
     }
 
-    override fun getUnder(): BlockState
+    constructor(topMaterial: BlockState, underMaterial: BlockState, underWaterMaterial: BlockState, advancedMaterial: BlockState)
     {
-        return under
+        top = { topMaterial.block }
+        under = { underMaterial.block }
+        underWater = { underWaterMaterial.block }
+        advanced = { advancedMaterial.block }
     }
+
+
+    override fun getTop() = top.invoke().defaultState
+
+    override fun getUnder() = under.invoke().defaultState
+
+    fun getUnderWater() = underWater.invoke().defaultState
+    fun getAdvanced() = underWater.invoke().defaultState
 
     companion object
     {
         val CODEC: Codec<AdvancedSurfaceBuilderConfig> = RecordCodecBuilder.create { kind: RecordCodecBuilder.Instance<AdvancedSurfaceBuilderConfig> ->
             kind.group(
-                BlockState.CODEC.fieldOf("top").forGetter(AdvancedSurfaceBuilderConfig::top),
-                BlockState.CODEC.fieldOf("under").forGetter(AdvancedSurfaceBuilderConfig::under),
-                BlockState.CODEC.fieldOf("underWater").forGetter(AdvancedSurfaceBuilderConfig::underWater),
-                BlockState.CODEC.fieldOf("advanced").forGetter(AdvancedSurfaceBuilderConfig::advanced)
+                BlockState.CODEC.fieldOf("top").forGetter(AdvancedSurfaceBuilderConfig::getTop),
+                BlockState.CODEC.fieldOf("under").forGetter(AdvancedSurfaceBuilderConfig::getUnder),
+                BlockState.CODEC.fieldOf("underWater").forGetter(AdvancedSurfaceBuilderConfig::getUnderWater),
+                BlockState.CODEC.fieldOf("advanced").forGetter(AdvancedSurfaceBuilderConfig::getAdvanced)
             ).apply(kind, ::AdvancedSurfaceBuilderConfig)
         }
     }

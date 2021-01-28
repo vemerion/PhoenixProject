@@ -7,8 +7,5 @@ import phoenix.utils.getId
 
 object UnderLayer : ICastleTransformer
 {
-    override fun apply(context: INoiseRandom, north: Int, west: Int, south: Int, east: Int, center: Int): Int
-    {
-        return PhoenixBiomes.UNDER.getId()// if (context.random(5) == 0) PhoenixBiomes.UNDER.getId() else center
-    }
+    override fun apply(context: INoiseRandom, north: Int, west: Int, south: Int, east: Int, center: Int) = PhoenixBiomes.UNDER.getId()
 }

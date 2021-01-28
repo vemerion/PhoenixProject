@@ -13,7 +13,7 @@ object UnificationLayer : IAreaTransformer2
     {
         val phoenix = area1.getValue(x, z)
         val vanila = area2.getValue(x, z)
-        return if (vanila == THE_END || vanila == SMALL_END_ISLANDS || vanila == END_BARRENS || phoenix != UNDER)// && phoenix != HEART_VOID)
+        return if (vanila == THE_END || vanila == SMALL_END_ISLANDS || vanila == END_BARRENS || phoenix != UNDER && phoenix != HEART_VOID)
         {
             vanila
         } else
@@ -29,5 +29,5 @@ object UnificationLayer : IAreaTransformer2
     private val THE_END: Int = Biomes.THE_END.getId()
     private val SMALL_END_ISLANDS: Int = Biomes.SMALL_END_ISLANDS.getId()
     private val UNDER: Int = PhoenixBiomes.UNDER.getId()
-    //private val HEART_VOID: Int = Registry.BIOME.getId(PhoenixBiomes.HEARTVOID.get())
+    private val HEART_VOID: Int = PhoenixBiomes.HEART_VOID.getId()
 }

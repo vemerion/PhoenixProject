@@ -13,7 +13,7 @@ class ParentLayer(var provider: EndBiomeProvider) : IAreaTransformer0
         val realZ = z shr 2
         res = if (realX.toLong() * realX.toLong() + realZ.toLong() * realZ.toLong() <= 1024L) //if dragon island
         {
-            -1
+            0
         } else
         {
             val height = net.minecraft.world.biome.provider.EndBiomeProvider.getRandomNoise(provider.generator, realX * 2 + 1, realZ * 2 + 1)

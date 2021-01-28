@@ -1,6 +1,5 @@
 package phoenix.world
 
-import com.mojang.datafixers.kinds.App
 import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.util.SharedSeedRandom
@@ -17,14 +16,11 @@ import net.minecraft.world.gen.layer.ZoomLayer
 import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.api.distmarker.OnlyIn
 import phoenix.init.PhoenixBiomes
+import phoenix.init.PhoenixConfiguration
 import phoenix.utils.LogManager
-import phoenix.world.genlayers.EndBiomeLayer
-import phoenix.world.genlayers.ParentLayer
-import phoenix.world.genlayers.UnderLayer
-import phoenix.world.genlayers.UnificationLayer
+import phoenix.world.genlayers.*
 import java.util.*
 import java.util.function.BiFunction
-import java.util.function.Function
 import java.util.function.LongFunction
 
 class EndBiomeProvider(private val lookupRegistry: Registry<Biome>, val seed: Long) : net.minecraft.world.biome.provider.EndBiomeProvider(lookupRegistry, seed)
@@ -37,9 +33,8 @@ class EndBiomeProvider(private val lookupRegistry: Registry<Biome>, val seed: Lo
         val biomesIn = ArrayList<Biome>()
         biomesIn.addAll(biomes)
         biomesIn.add(PhoenixBiomes.UNDER)
+        biomesIn.add(PhoenixBiomes.HEART_VOID)
         this.biomes = biomesIn
-        LogManager.error(this, biomes.toString())
-        biomes.add(PhoenixBiomes.UNDER)
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -54,20 +49,18 @@ class EndBiomeProvider(private val lookupRegistry: Registry<Biome>, val seed: Lo
         generator = SimplexNoiseGenerator(rand)
     }
 
-    fun createLayer(seed: Long): Layer
+    inline fun createLayer(seed: Long): Layer
     {
         val res = getLayersApply { dopSeed: Long -> LazyAreaLayerContext(25, seed, dopSeed) }
         return Layer(res)
     }
 
-    private fun <T : IArea, C : IExtendedNoiseRandom<T>> getLayersApply(context: LongFunction<C>): IAreaFactory<T>
+    inline fun <T : IArea, C : IExtendedNoiseRandom<T>> getLayersApply(context: LongFunction<C>): IAreaFactory<T>
     {
         var phoenixBiomes = ParentLayer(this).apply(context.apply(1L))
         var vanilaBiomes = ParentLayer(this).apply(context.apply(1L))
         vanilaBiomes = EndBiomeLayer.apply(context.apply(200L), vanilaBiomes)
-        phoenixBiomes = UnderLayer.apply(context.apply(200L), phoenixBiomes)
-        /*
-        val stage = StageManager.getStage()
+        val stage = StageManager.stage
 
         LogManager.log(this, stage.toString())
 
@@ -80,10 +73,11 @@ class EndBiomeProvider(private val lookupRegistry: Registry<Biome>, val seed: Lo
         for (i in 0..PhoenixConfiguration.COMMON_CONFIG.BIOME_SIZE.get())
             phoenixBiomes = ZoomLayer.NORMAL.apply(context.apply(200L), phoenixBiomes)
 
-         */
+
         for (i in 0..10)
             phoenixBiomes = ZoomLayer.NORMAL.apply(context.apply(200), phoenixBiomes)
-        return UnificationLayer.apply(context.apply(10), vanilaBiomes, phoenixBiomes)
+
+        return UnderLayer.apply(context.apply(100L), phoenixBiomes)
     }
 
     companion object
