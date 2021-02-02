@@ -8,12 +8,12 @@ import net.minecraftforge.fml.ModLoadingContext
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.config.ModConfig
 import org.apache.logging.log4j.LogManager
+import org.apache.logging.log4j.Logger
 import phoenix.init.*
 import phoenix.init.PhoenixConfiguration.Common
 import phoenix.init.events.PhoenixClientEvents
 import phoenix.init.events.PhoenixCommonEvents
 import phoenix.init.events.PhoenixEvents
-import phoenix.world.builders.UNDER_CONF
 import phoenix.world.builders.registerBuilders
 import thedarkcolour.kotlinforforge.forge.FORGE_BUS
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
@@ -22,7 +22,6 @@ import thedarkcolour.kotlinforforge.forge.MOD_BUS
 object Phoenix
 {
     const val MOD_ID = "phoenix"
-    val LOGGER = LogManager.getLogger()!!
 
     val ASH: ItemGroup = PhoenixGroup("$MOD_ID.ash", Blocks.END_PORTAL_FRAME)
     val REDO: ItemGroup = PhoenixGroup("$MOD_ID.redo") { PhoenixBlocks.SETA }

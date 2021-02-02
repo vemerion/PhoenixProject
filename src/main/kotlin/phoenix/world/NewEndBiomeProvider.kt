@@ -63,7 +63,7 @@ class EndBiomeProvider(private val lookupRegistry: Registry<Biome>, val seed: Lo
 
         val stage = StageManager.stage
 
-        LogManager.log(this, stage.toString())
+        LogManager.debug(stage.toString())
 
         if (stage >= 1)
         {

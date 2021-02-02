@@ -13,6 +13,8 @@ import net.minecraft.world.World
 import phoenix.tile.ash.PotteryBarrelTile
 import phoenix.utils.LogManager
 import phoenix.utils.block.BlockWithTile
+import java.lang.Math.max
+import java.lang.Math.min
 import javax.annotation.ParametersAreNonnullByDefault
 
 class ElectricBarrelBlock : BlockWithTile(Properties.create(Material.BAMBOO))
@@ -46,7 +48,7 @@ class ElectricBarrelBlock : BlockWithTile(Properties.create(Material.BAMBOO))
                         (worldIn.getTileEntity(pos) as PotteryBarrelTile).incrementJumpsCount()
                     } catch (e: Exception)
                     {
-                        LogManager.log(this, "Can not increment jump count at $pos")
+                        LogManager.debug("Can not increment jump count at $pos")
                     }
 
                 }
@@ -67,7 +69,7 @@ class ElectricBarrelBlock : BlockWithTile(Properties.create(Material.BAMBOO))
             countOfJumps = (worldIn.getTileEntity(pos) as PotteryBarrelTile).jumpsCount
         } catch (ignored: Exception) { }
 
-        return 15.coerceAtMost((countOfJumps / 40.0 * 15).toInt())
+        return min(15, ((countOfJumps / 40.0 * 15).toInt()))
     }
 
     override fun createTileEntity(state: BlockState, world: IBlockReader) = PotteryBarrelTile()

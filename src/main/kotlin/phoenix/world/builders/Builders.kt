@@ -34,7 +34,7 @@ fun registerBuilders(event : RegistryEvent.Register<SurfaceBuilder<*>>)
 {
     if(event.registry == ForgeRegistries.SURFACE_BUILDERS)
     {
-        LogManager.error("<registerBuilders> ", "registered")
+        LogManager.error("registered")
         UNDER.validateRegistryName("under")
         HEART_VOID.validateRegistryName("heart_void")
         event.registry.register(UNDER)

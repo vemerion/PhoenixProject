@@ -47,7 +47,7 @@ object PhoenixEvents
         {
             val world = event.player.world as ServerWorld
             val player = event.player
-            LogManager.log(this, "Particles!!!")
+            LogManager.debug("Particles!!!")
             world.spawnParticle(ParticleTypes.PORTAL, player.posX, player.posY, player.posZ, 32, 0.1, 2.0, 0.1, 0.5)
         }
     }
@@ -179,7 +179,7 @@ object PhoenixEvents
                 template.func_237144_a_(world as IServerWorld, BlockPos(1000, 100, -1000), PlacementSettings(), world.rand)
                 template.func_237144_a_(world as IServerWorld, BlockPos(-1000, 100, -1000), PlacementSettings(), world.rand
                 )
-                Phoenix.LOGGER.log(Level.DEBUG, "Corn genned ^)")
+                LogManager.debug("Corn genned ^)")
             } else
             {
                 error("Phoenix Events Other", "Corn was not genned ^(. template is null... I think it is bad.")

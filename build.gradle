@@ -94,8 +94,8 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.4-35.1.29'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    minecraft 'net.minecraftforge:forge:1.16.4-35.1.29'
     fg.deobf(implementation('thedarkcolour:kotlinforforge:1.6.2'))
     compileOnly "org.spongepowered:mixin:${mixin_version}-SNAPSHOT"
     runtimeOnly "org.spongepowered:mixin:${mixin_version}-SNAPSHOT"

@@ -1,34 +1,48 @@
 package phoenix.utils
 
-import org.apache.logging.log4j.Level
-import phoenix.Phoenix
-import phoenix.init.PhoenixConfiguration
+import org.apache.logging.log4j.LogManager
+import org.apache.logging.log4j.Logger
 
 object LogManager
 {
-    @JvmStatic
-    fun log(obj : Any, message : String)
-    {
-        if(PhoenixConfiguration.COMMON_CONFIG.debug.get())
-        {
-            Phoenix.LOGGER.error("${obj.javaClass} $message")
-        }
-        else
-        {
-            Phoenix.LOGGER.log(Level.DEBUG, "<${obj.javaClass.lastName()}> $message")
-        }
-    }
-
-    @JvmStatic fun error(from : String, message : String?)   = Phoenix.LOGGER.error("$from ${message ?: ""}")
-    @JvmStatic fun error(obj  : Any,    message : String?)   = Phoenix.LOGGER.error("<${obj.javaClass.lastName()}> ${message ?: ""}")
-    @JvmStatic fun error(obj  : Any,    message : Exception?)= Phoenix.LOGGER.error(if(message != null) "Exception in class <${obj.javaClass.lastName()}>: $message" else "Null exception in class <${obj.javaClass.lastName()}>")
+    val LOGGER : Logger = LogManager.getLogger()!!
 
     @JvmStatic
-    fun errorObjects(obj : Any, vararg objects : Any)
+    fun errorObjects(vararg objects : Any)
     {
         var message = ""
         for (i in objects)
             message += " $i"
-        error(obj, message)
+        val e = Exception()
+        val from = e.stackTrace[1].className.split(".").last()
+        LOGGER.error("<$from> $message")
+    }
+
+
+    @JvmStatic
+    fun debug(message : String)
+    {
+        val e = Exception()
+        val from = e.stackTrace[1].className.split(".").last()
+        LOGGER.debug("<$from> $message")
+    }
+
+    @JvmStatic
+    fun error(message : String)
+    {
+        val e = Exception()
+        val from = e.stackTrace[1].className.split(".").last()
+        LOGGER.error(from, message)
+    }
+
+    @JvmStatic
+    fun error(from : String, message : String) = LOGGER.error("<$from> $message")
+
+    @JvmStatic
+    fun error(message : Exception?)
+    {
+        val e = Exception()
+        val from = e.stackTrace[1].className.split(".").last()
+        LOGGER.error(if(message != null) "Exception in class <$from>: $message" else "Null exception in class <$from>")
     }
 }
