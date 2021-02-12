@@ -1,6 +1,5 @@
 package phoenix.blocks
 
-import com.mojang.serialization.Lifecycle
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
@@ -11,17 +10,12 @@ import net.minecraft.util.Hand
 import net.minecraft.util.SoundCategory
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.BlockRayTraceResult
-import net.minecraft.util.registry.Registry
-import net.minecraft.util.registry.SimpleRegistry
 import net.minecraft.util.text.StringTextComponent
 import net.minecraft.util.text.TranslationTextComponent
-import net.minecraft.world.Dimension
 import net.minecraft.world.World
-import net.minecraft.world.gen.settings.DimensionGeneratorSettings
 import phoenix.init.PhoenixSounds.CHANGE_STAGE
 import phoenix.world.EndBiomeProvider
 import phoenix.world.StageManager
-import java.util.function.Function
 
 object UpdaterBlock : Block(Properties.create(Material.ROCK).setLightLevel { 5 }.hardnessAndResistance(-1f))
 {

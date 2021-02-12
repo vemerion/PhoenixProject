@@ -9,7 +9,6 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder
 import net.minecraftforge.event.RegistryEvent
 import net.minecraftforge.registries.ForgeRegistries
 import phoenix.init.PhoenixBlocks
-import phoenix.utils.LogManager
 import phoenix.utils.validateRegistryName
 import phoenix.world.builders.AdvancedSurfaceBuilderConfig.Companion.CODEC
 
@@ -34,7 +33,6 @@ fun registerBuilders(event : RegistryEvent.Register<SurfaceBuilder<*>>)
 {
     if(event.registry == ForgeRegistries.SURFACE_BUILDERS)
     {
-        LogManager.error("registered")
         UNDER.validateRegistryName("under")
         HEART_VOID.validateRegistryName("heart_void")
         event.registry.register(UNDER)

@@ -17,8 +17,10 @@ import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.api.distmarker.OnlyIn
 import phoenix.init.PhoenixBiomes
 import phoenix.init.PhoenixConfiguration
-import phoenix.utils.LogManager
-import phoenix.world.genlayers.*
+import phoenix.world.genlayers.EndBiomeLayer
+import phoenix.world.genlayers.HeartVoidLayer
+import phoenix.world.genlayers.ParentLayer
+import phoenix.world.genlayers.UnderLayer
 import java.util.*
 import java.util.function.BiFunction
 import java.util.function.LongFunction
@@ -69,8 +71,6 @@ class EndBiomeProvider(private val lookupRegistry: Registry<Biome>, val seed: Lo
         vanilaBiomes = EndBiomeLayer.apply(context.apply(200L), vanilaBiomes)
 
         val stage = StageManager.stage
-
-        LogManager.debug(stage.toString())
 
         if (stage >= 1)
         {

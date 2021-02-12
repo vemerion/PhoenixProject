@@ -13,7 +13,6 @@ import net.minecraft.world.gen.feature.EndSpikeFeature
 import net.minecraft.world.gen.feature.EndSpikeFeature.EndSpike
 import phoenix.init.PhoenixBackgroundMusicTracks
 import phoenix.init.PhoenixBlocks.ARMORED_GLASS
-import phoenix.utils.LogManager
 
 object StageManager
 {

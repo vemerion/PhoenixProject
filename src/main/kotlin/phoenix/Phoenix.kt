@@ -7,8 +7,6 @@ import net.minecraftforge.common.ForgeConfigSpec
 import net.minecraftforge.fml.ModLoadingContext
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.config.ModConfig
-import org.apache.logging.log4j.LogManager
-import org.apache.logging.log4j.Logger
 import phoenix.init.*
 import phoenix.init.PhoenixConfiguration.Common
 import phoenix.init.events.PhoenixClientEvents
@@ -56,6 +54,7 @@ object Phoenix
         FORGE_BUS.addListener(PhoenixEvents::deferredTasks)
         FORGE_BUS.addListener(PhoenixEvents::onPlay)
         FORGE_BUS.addListener(PhoenixEvents::cornGen)
+        FORGE_BUS.addListener(PhoenixEvents::onOpenGui)
 
         Registry.register(Registry.BIOME_PROVIDER_CODEC, "the_end", phoenix.world.EndBiomeProvider.CODEC)
     }

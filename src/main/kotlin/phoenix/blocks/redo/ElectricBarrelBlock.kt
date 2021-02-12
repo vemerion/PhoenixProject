@@ -13,7 +13,6 @@ import net.minecraft.world.World
 import phoenix.tile.ash.PotteryBarrelTile
 import phoenix.utils.LogManager
 import phoenix.utils.block.BlockWithTile
-import java.lang.Math.max
 import java.lang.Math.min
 import javax.annotation.ParametersAreNonnullByDefault
 

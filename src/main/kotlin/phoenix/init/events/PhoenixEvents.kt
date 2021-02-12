@@ -1,6 +1,8 @@
 package phoenix.init.events
 
 import com.google.common.collect.ImmutableList
+import net.minecraft.client.Minecraft
+import net.minecraft.client.gui.screen.MainMenuScreen
 import net.minecraft.entity.Entity
 import net.minecraft.entity.merchant.villager.VillagerProfession
 import net.minecraft.entity.merchant.villager.VillagerTrades
@@ -13,10 +15,12 @@ import net.minecraft.loot.LootTables
 import net.minecraft.particles.ParticleTypes
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.math.BlockPos
+import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.DimensionType
 import net.minecraft.world.IServerWorld
 import net.minecraft.world.gen.feature.template.PlacementSettings
 import net.minecraft.world.server.ServerWorld
+import net.minecraftforge.client.event.GuiOpenEvent
 import net.minecraftforge.event.LootTableLoadEvent
 import net.minecraftforge.event.TickEvent
 import net.minecraftforge.event.TickEvent.WorldTickEvent
@@ -26,12 +30,10 @@ import net.minecraftforge.event.village.VillagerTradesEvent
 import net.minecraftforge.event.village.WandererTradesEvent
 import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.common.Mod
-import org.apache.logging.log4j.Level
-import phoenix.Phoenix
 import phoenix.init.PhoenixBlocks
 import phoenix.init.PhoenixItems
 import phoenix.utils.LogManager
-import phoenix.utils.LogManager.error
+import phoenix.utils.StringUtils
 import phoenix.utils.Tuple
 import phoenix.world.GenSaveData
 import java.util.*
@@ -47,43 +49,9 @@ object PhoenixEvents
         {
             val world = event.player.world as ServerWorld
             val player = event.player
-            LogManager.debug("Particles!!!")
             world.spawnParticle(ParticleTypes.PORTAL, player.posX, player.posY, player.posZ, 32, 0.1, 2.0, 0.1, 0.5)
         }
     }
-    /*
-    @JvmStatic
-    @SubscribeEvent
-    fun onSave(event: WorldEvent.Save)
-    {
-        val world = event.world
-        if(!event.world.isRemote && world is ServerWorld)
-        {
-            LogManager.log(this, "Phoenix is starting saving")
-            val nbt = event.world.worldInfo.getDimensionData(DimensionType.THE_END)
-            StageManager.write(nbt)
-            LogManager.log(this, "${StageManager.getStage()} ${StageManager.getPart()}")
-            event.world.worldInfo.setDimensionData(DimensionType.THE_END, nbt)
-            LogManager.log(this, "Phoenix has ended saving")
-        }
-    }
-
-    @JvmStatic
-    @SubscribeEvent
-    fun onLoad(event: WorldEvent.Load)
-    {
-        if(!event.world.isRemote)
-        {
-            LogManager.log(this, "Phoenix is starting loading")
-            val nbt = event.world.worldInfo.getDimensionData(DimensionType.THE_END)
-            StageManager.read(nbt)
-            LogManager.log(this, "${StageManager.getStage()} ${StageManager.getPart()}")
-            NetworkHandler.sendToAll(SyncStagePacket(StageManager.getStage(), StageManager.getPart()))
-            LogManager.log(this, "Phoenix has ended loading")
-        }
-    }
-
-     */
 
     @SubscribeEvent
     @JvmStatic
@@ -182,40 +150,23 @@ object PhoenixEvents
                 LogManager.debug("Corn genned ^)")
             } else
             {
-                error("Phoenix Events Other", "Corn was not genned ^(. template is null... I think it is bad.")
+                LogManager.error("Phoenix Events Other", "Corn was not genned ^(. template is null... I think it is bad.")
             }
         }
     }
-    /*
-    @SubscribeEvent
-    public static void onOpenGui(GuiOpenEvent event)
+    var once = false
+    fun onOpenGui(event: GuiOpenEvent)
     {
-        if(event.getGui() instanceof MainMenuScreen)
+        if(event.gui is MainMenuScreen && !once)
         {
-            Splashes splashes = Minecraft.getInstance().splashes;
-            splashes.possibleSplashes.add(StringUtils.rainbowColor("God is an artist, since there are so many \n colors in the world"));
-            splashes.possibleSplashes.add(TextFormatting.RED + "The essence of life is that it changes itself");
-            splashes.possibleSplashes.add(TextFormatting.BLUE + "Bridge station is absent");
-            splashes.possibleSplashes.add(TextFormatting.DARK_BLUE + "Third child is ann angel!!");
-            splashes.possibleSplashes.add(TextFormatting.BLACK + "Project E.N.D.");
-            splashes.possibleSplashes.add(TextFormatting.BLACK + "Нож в печень, FX вечен!");
+            once = true
+            val splashes = Minecraft.getInstance().splashes
+            splashes.possibleSplashes.add(StringUtils.rainbowColor("God is an artist, since there are so many \n colors in the world"))
+            splashes.possibleSplashes.add(TextFormatting.RED.toString() + "The essence of life is that it changes itself")
+            splashes.possibleSplashes.add(TextFormatting.BLUE.toString() + "Bridge station is absent")
+            splashes.possibleSplashes.add(TextFormatting.DARK_BLUE.toString() + "Third child is ann angel!!")
+            splashes.possibleSplashes.add(TextFormatting.BLACK.toString() + "Project E.N.D.")
+            splashes.possibleSplashes.add(TextFormatting.BLACK.toString() + "Нож в печень, FX вечен!")
         }
     }
-
-    @JvmStatic
-    @SubscribeEvent
-    fun onSave(event: PlayerEvent.PlayerChangedDimensionEvent)
-    {
-        if(!event.player.world.isRemote)
-        {
-            LogManager.log(this, "Phoenix is starting saving")
-            val nbt = event.player.world.worldInfo.getDimensionData(DimensionType.THE_END)
-            StageManager.write(nbt)
-            LogManager.log(this, "${StageManager.getStage()} ${StageManager.getPart()}")
-            event.player.world.worldInfo.setDimensionData(DimensionType.THE_END, nbt)
-            LogManager.log(this, "Phoenix has ended saving")
-        }
-    }
-
-     */
 }

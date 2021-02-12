@@ -1,19 +1,5 @@
 package phoenix.world.structures.remains;
 
-import mcp.MethodsReturnNonnullByDefault;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.util.registry.DynamicRegistries;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.IFeatureConfig;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraft.world.gen.feature.structure.Structure;
-import net.minecraft.world.gen.feature.structure.StructureStart;
-import net.minecraft.world.gen.feature.template.TemplateManager;
-
-import javax.annotation.ParametersAreNonnullByDefault;
 /*
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault

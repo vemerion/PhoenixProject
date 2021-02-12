@@ -6,14 +6,11 @@ import net.minecraft.block.Blocks
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.chunk.IChunk
-import net.minecraft.world.gen.surfacebuilders.ISurfaceBuilderConfig
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder
 import phoenix.init.PhoenixBlocks
-import phoenix.utils.LogManager
 import phoenix.utils.nextInt
 import java.util.*
 import javax.annotation.ParametersAreNonnullByDefault
-import kotlin.math.min
 
 @ParametersAreNonnullByDefault
 open class UnderSurfaceBuilder(codec: Codec<AdvancedSurfaceBuilderConfig>) : SurfaceBuilder<AdvancedSurfaceBuilderConfig>(codec)
