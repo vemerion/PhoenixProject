@@ -8,10 +8,10 @@ import net.minecraft.util.math.vector.Vector3f
 import phoenix.Phoenix
 import phoenix.client.models.entity.Cauda2Model
 import phoenix.client.models.entity.CaudaEyesLayer
-import phoenix.enity.CaudaEntity
+//import phoenix.enity.CaudaEntity
 import javax.annotation.Nonnull
 
-
+/*
 class CaudaRenderer(renderManager: EntityRendererManager) : MobRenderer<CaudaEntity, Cauda2Model<CaudaEntity>>(renderManager, Cauda2Model(), 1.5f)
 {
     @Nonnull
@@ -47,3 +47,5 @@ class CaudaRenderer(renderManager: EntityRendererManager) : MobRenderer<CaudaEnt
         addLayer(CaudaEyesLayer(this))
     }
 }
+
+ */

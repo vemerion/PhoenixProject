@@ -14,7 +14,7 @@ import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-
+/*
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
 public class RemainsStructure extends Structure<NoFeatureConfig>
@@ -58,3 +58,5 @@ public class RemainsStructure extends Structure<NoFeatureConfig>
         }
     }
 }
+
+ */

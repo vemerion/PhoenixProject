@@ -26,7 +26,7 @@ import java.util.function.LongFunction
 class EndBiomeProvider(private val lookupRegistry: Registry<Biome>, val seed: Long) : net.minecraft.world.biome.provider.EndBiomeProvider(lookupRegistry, seed)
 {
     val generator: SimplexNoiseGenerator
-    var genBiomes: Layer = createLayer(seed)
+    private lateinit var genBiomes: Layer
 
     init
     {
@@ -35,6 +35,8 @@ class EndBiomeProvider(private val lookupRegistry: Registry<Biome>, val seed: Lo
         biomesIn.add(PhoenixBiomes.UNDER)
         biomesIn.add(PhoenixBiomes.HEART_VOID)
         this.biomes = biomesIn
+        updateLayer()
+        INSTANCE = this
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -47,6 +49,11 @@ class EndBiomeProvider(private val lookupRegistry: Registry<Biome>, val seed: Lo
         val rand = SharedSeedRandom(seed)
         rand.skip(17292)
         generator = SimplexNoiseGenerator(rand)
+    }
+
+    fun updateLayer()
+    {
+        genBiomes = createLayer(seed)
     }
 
     fun createLayer(seed: Long): Layer
@@ -72,13 +79,14 @@ class EndBiomeProvider(private val lookupRegistry: Registry<Biome>, val seed: Lo
         }
 
         for (i in 0..PhoenixConfiguration.COMMON_CONFIG.BIOME_SIZE.get()) phoenixBiomes = ZoomLayer.NORMAL.apply(context.apply(200L), phoenixBiomes)
-        for (i in 0..10)                                                  phoenixBiomes = ZoomLayer.NORMAL.apply(context.apply(200),  phoenixBiomes)
+        for (i in 0..10)                                                  phoenixBiomes = ZoomLayer.NORMAL.apply(context.apply(200L),  phoenixBiomes)
 
-        return UnificationLayer.apply(context.apply(100L), vanilaBiomes, phoenixBiomes)
+        return HeartVoidLayer.apply(context.apply(200L), phoenixBiomes)
     }
 
     companion object
     {
+        lateinit var INSTANCE : EndBiomeProvider
         val CODEC: Codec<EndBiomeProvider> = RecordCodecBuilder.create { builder: RecordCodecBuilder.Instance<EndBiomeProvider> ->
             builder.group(
                 RegistryLookupCodec.getLookUpCodec(Registry.BIOME_KEY).forGetter(EndBiomeProvider::lookupRegistry),

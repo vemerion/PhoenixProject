@@ -30,7 +30,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
+/*
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class RemainsPieces
@@ -95,7 +95,7 @@ public class RemainsPieces
 
         /**
          * (abstract) Helper method to read subclass data from NBT
-         */
+         ///
         @Override
         protected void readAdditional(CompoundNBT tagCompound)
         {
@@ -121,7 +121,7 @@ public class RemainsPieces
 
         /**
          * Create Structure Piece
-         */
+         *
         @Override
         public boolean func_230383_a_(ISeedReader worldIn, StructureManager manager, ChunkGenerator generator,
                                       Random random, MutableBoundingBox box, ChunkPos pos, BlockPos blockPos)
@@ -145,3 +145,5 @@ public class RemainsPieces
         }
     }
 }
+
+ */

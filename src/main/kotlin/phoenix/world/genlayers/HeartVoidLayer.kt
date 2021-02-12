@@ -9,8 +9,8 @@ object HeartVoidLayer : ICastleTransformer
 {
     var HEART_VOID_ID = PhoenixBiomes.HEART_VOID.getId()
 
-    override fun apply(context: INoiseRandom, north: Int, west: Int, south: Int, east: Int, center: Int)
-                    = if (context.random(5) == 3 || isCurrect(north, west, east, south)) HEART_VOID_ID else center
+    override fun apply(context: INoiseRandom, north: Int, west: Int, south: Int, east: Int, center: Int) = HEART_VOID_ID
+                    //= if (context.random(5) == 3 || isCurrect(north, west, east, south)) HEART_VOID_ID else center
 
     private fun isCurrect(a : Int, b : Int, c : Int, d : Int): Boolean
     {

@@ -18,7 +18,7 @@ import phoenix.utils.entity.ThreeDimensionsMoveHelperController;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
-
+/*
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class CaudaEntity extends AbstractFlyingEntity
@@ -131,3 +131,6 @@ public class CaudaEntity extends AbstractFlyingEntity
         return entitysize.scale((entitysize.width + 0.2F * (float) this.getCaudaSize()) / entitysize.width);
     }
 }
+
+
+ */

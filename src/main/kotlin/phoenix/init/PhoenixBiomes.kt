@@ -11,6 +11,7 @@ import net.minecraftforge.common.BiomeDictionary
 import net.minecraftforge.registries.ForgeRegistries
 import phoenix.Phoenix
 import phoenix.utils.ResourceUtils
+import phoenix.world.builders.HEARTVOID_CONF
 import phoenix.world.builders.UNDER_CONF
 import thedarkcolour.kotlinforforge.forge.KDeferredRegister
 
@@ -30,5 +31,5 @@ object PhoenixBiomes
     val BIOMES = KDeferredRegister(ForgeRegistries.BIOMES, Phoenix.MOD_ID)
 
     val UNDER      by BIOMES.register("under")      { BiomeMaker.makeEndBiome(BiomeGenerationSettings.Builder().withSurfaceBuilder { UNDER_CONF }.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, PhoenixFeatures.CONF_SETA)) }
-    val HEART_VOID by BIOMES.register("heart_void") { BiomeMaker.makeEndBiome(BiomeGenerationSettings.Builder().withSurfaceBuilder { ConfiguredSurfaceBuilders.field_244172_d }) }
+    val HEART_VOID by BIOMES.register("heart_void") { BiomeMaker.makeEndBiome(BiomeGenerationSettings.Builder().withSurfaceBuilder { HEARTVOID_CONF }) }
 }
