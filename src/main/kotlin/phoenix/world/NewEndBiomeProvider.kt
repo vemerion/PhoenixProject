@@ -17,10 +17,7 @@ import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.api.distmarker.OnlyIn
 import phoenix.init.PhoenixBiomes
 import phoenix.init.PhoenixConfiguration
-import phoenix.world.genlayers.EndBiomeLayer
-import phoenix.world.genlayers.HeartVoidLayer
-import phoenix.world.genlayers.ParentLayer
-import phoenix.world.genlayers.UnderLayer
+import phoenix.world.genlayers.*
 import java.util.*
 import java.util.function.BiFunction
 import java.util.function.LongFunction
@@ -64,11 +61,10 @@ class EndBiomeProvider(private val lookupRegistry: Registry<Biome>, val seed: Lo
         return Layer(res)
     }
 
-    fun <T : IArea, C : IExtendedNoiseRandom<T>> getLayersApply(context: LongFunction<C>): IAreaFactory<T>
+    private fun <T : IArea, C : IExtendedNoiseRandom<T>> getLayersApply(context: LongFunction<C>): IAreaFactory<T>
     {
-        var phoenixBiomes = ParentLayer(this).apply(context.apply(1L))
-        var vanilaBiomes = ParentLayer(this).apply(context.apply(1L))
-        vanilaBiomes = EndBiomeLayer.apply(context.apply(200L), vanilaBiomes)
+        var phoenixBiomes = EndBiomeLayer.apply(context.apply(200L), ParentLayer(this).apply(context.apply(1L)))
+        val vanilaBiomes  = EndBiomeLayer.apply(context.apply(200L), ParentLayer(this).apply(context.apply(1L)))
 
         val stage = StageManager.stage
 
@@ -79,9 +75,9 @@ class EndBiomeProvider(private val lookupRegistry: Registry<Biome>, val seed: Lo
         }
 
         for (i in 0..PhoenixConfiguration.COMMON_CONFIG.BIOME_SIZE.get()) phoenixBiomes = ZoomLayer.NORMAL.apply(context.apply(200L), phoenixBiomes)
-        for (i in 0..10)                                                  phoenixBiomes = ZoomLayer.NORMAL.apply(context.apply(200L),  phoenixBiomes)
+        for (i in 0..8)                                                   phoenixBiomes = ZoomLayer.NORMAL.apply(context.apply(200L), phoenixBiomes)
 
-        return HeartVoidLayer.apply(context.apply(200L), phoenixBiomes)
+        return UnificationLayer.apply(context.apply(100L), vanilaBiomes, phoenixBiomes)
     }
 
     companion object

@@ -99,10 +99,7 @@ operator fun BlockPos.minus(s : BlockPos) : Double
 
 infix fun Int.until(int : Int) = this..int-1
 
-fun Biome.getId(): Int
-{
-    return (ForgeRegistries.BIOMES as ForgeRegistry<Biome>).getID(this)
-}
+fun Biome.getId(): Int = (ForgeRegistries.BIOMES as ForgeRegistry<Biome>).getID(this)
 
 fun RegistryKey<Biome>.getId() : Int
 {

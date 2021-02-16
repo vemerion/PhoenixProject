@@ -13,21 +13,14 @@ object UnificationLayer : IAreaTransformer2
     {
         val phoenix = area1.getValue(x, z)
         val vanila = area2.getValue(x, z)
-        return if (vanila == THE_END || vanila == SMALL_END_ISLANDS || vanila == END_BARRENS || phoenix != UNDER && phoenix != HEART_VOID)
-        {
-            vanila
-        } else
-        {
-            phoenix
-        }
+        return if ((vanila == END_MIDLANDS || vanila == END_HIGHLANDS) && (phoenix == UNDER || phoenix == HEART_VOID)) phoenix else vanila
     }
 
     override fun getOffsetX(x: Int) = x
     override fun getOffsetZ(z: Int) = z
 
-    private val END_BARRENS: Int = Biomes.END_BARRENS.getId()
-    private val THE_END: Int = Biomes.THE_END.getId()
-    private val SMALL_END_ISLANDS: Int = Biomes.SMALL_END_ISLANDS.getId()
-    private val UNDER: Int = PhoenixBiomes.UNDER.getId()
-    private val HEART_VOID: Int = PhoenixBiomes.HEART_VOID.getId()
+    private val END_HIGHLANDS: Int = Biomes.END_HIGHLANDS.getId()
+    private val END_MIDLANDS : Int = Biomes.END_MIDLANDS.getId()
+    private val UNDER        : Int = PhoenixBiomes.UNDER.getId()
+    private val HEART_VOID   : Int = PhoenixBiomes.HEART_VOID.getId()
 }
