@@ -5,6 +5,8 @@ import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.util.SharedSeedRandom
 import net.minecraft.util.registry.Registry
 import net.minecraft.util.registry.RegistryLookupCodec
+import net.minecraft.world.IWorld
+import net.minecraft.world.World
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.gen.IExtendedNoiseRandom
 import net.minecraft.world.gen.LazyAreaLayerContext
@@ -35,6 +37,7 @@ class EndBiomeProvider(private val lookupRegistry: Registry<Biome>, val seed: Lo
         biomesIn.add(PhoenixBiomes.UNDER)
         biomesIn.add(PhoenixBiomes.HEART_VOID)
         this.biomes = biomesIn
+        INSTANCE = this
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -58,8 +61,7 @@ class EndBiomeProvider(private val lookupRegistry: Registry<Biome>, val seed: Lo
     fun <T : IArea, C : IExtendedNoiseRandom<T>> getLayersApply(context: LongFunction<C>): IAreaFactory<T>
     {
         var phoenixBiomes = ParentLayer(this).apply(context.apply(1L))
-        var vanilaBiomes = ParentLayer(this).apply(context.apply(1L))
-        vanilaBiomes = EndBiomeLayer.apply(context.apply(200L), vanilaBiomes)
+        val vanilaBiomes = ParentLayer(this).apply(context.apply(1L))
 
         val stage = StageManager.stage
 
@@ -69,6 +71,7 @@ class EndBiomeProvider(private val lookupRegistry: Registry<Biome>, val seed: Lo
         {
             phoenixBiomes = UnderLayer.apply(context.apply(200L), phoenixBiomes)
             phoenixBiomes = HeartVoidLayer.apply(context.apply(200L), phoenixBiomes)
+            phoenixBiomes = UnderSmallIslandsLayer.apply(context.apply(200L), phoenixBiomes)
         }
 
         for (i in 0..PhoenixConfiguration.COMMON_CONFIG.BIOME_SIZE.get()) phoenixBiomes = ZoomLayer.NORMAL.apply(context.apply(200L), phoenixBiomes)
@@ -87,5 +90,6 @@ class EndBiomeProvider(private val lookupRegistry: Registry<Biome>, val seed: Lo
                 builder, builder.stable(BiFunction<Registry<Biome>, Long, EndBiomeProvider> { lookupRegistry: Registry<Biome>, seed: Long -> EndBiomeProvider(lookupRegistry, seed) })
             )
         }
+        lateinit var INSTANCE : EndBiomeProvider
     }
 }

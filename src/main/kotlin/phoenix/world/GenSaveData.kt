@@ -59,12 +59,14 @@ class GenSaveData : WorldSavedData
 
     companion object
     {
+        lateinit var INSTANCE : GenSaveData
         private const val DATA_NAME = "phoenix_gen"
 
         //Этим мы получаем экземпляр данных для мира
         operator fun get(world: ServerWorld): GenSaveData
         {
-            return world.savedData.getOrCreate({ GenSaveData() }, DATA_NAME)
+            INSTANCE = world.savedData.getOrCreate(::GenSaveData, DATA_NAME)
+            return  INSTANCE
         }
     }
 }

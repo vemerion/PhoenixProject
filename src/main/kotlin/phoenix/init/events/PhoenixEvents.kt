@@ -24,6 +24,7 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent
 import net.minecraftforge.event.entity.player.PlayerEvent
 import net.minecraftforge.event.village.VillagerTradesEvent
 import net.minecraftforge.event.village.WandererTradesEvent
+import net.minecraftforge.event.world.WorldEvent
 import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.common.Mod
 import org.apache.logging.log4j.Level
@@ -51,23 +52,18 @@ object PhoenixEvents
             world.spawnParticle(ParticleTypes.PORTAL, player.posX, player.posY, player.posZ, 32, 0.1, 2.0, 0.1, 0.5)
         }
     }
-    /*
+
     @JvmStatic
     @SubscribeEvent
-    fun onSave(event: WorldEvent.Save)
+    fun onSave(event: WorldEvent.Load)
     {
         val world = event.world
         if(!event.world.isRemote && world is ServerWorld)
         {
-            LogManager.log(this, "Phoenix is starting saving")
-            val nbt = event.world.worldInfo.getDimensionData(DimensionType.THE_END)
-            StageManager.write(nbt)
-            LogManager.log(this, "${StageManager.getStage()} ${StageManager.getPart()}")
-            event.world.worldInfo.setDimensionData(DimensionType.THE_END, nbt)
-            LogManager.log(this, "Phoenix has ended saving")
+            GenSaveData[world];
         }
     }
-
+    /*
     @JvmStatic
     @SubscribeEvent
     fun onLoad(event: WorldEvent.Load)
@@ -201,21 +197,5 @@ object PhoenixEvents
             splashes.possibleSplashes.add(TextFormatting.BLACK + "Нож в печень, FX вечен!");
         }
     }
-
-    @JvmStatic
-    @SubscribeEvent
-    fun onSave(event: PlayerEvent.PlayerChangedDimensionEvent)
-    {
-        if(!event.player.world.isRemote)
-        {
-            LogManager.log(this, "Phoenix is starting saving")
-            val nbt = event.player.world.worldInfo.getDimensionData(DimensionType.THE_END)
-            StageManager.write(nbt)
-            LogManager.log(this, "${StageManager.getStage()} ${StageManager.getPart()}")
-            event.player.world.worldInfo.setDimensionData(DimensionType.THE_END, nbt)
-            LogManager.log(this, "Phoenix has ended saving")
-        }
-    }
-
      */
 }

@@ -17,6 +17,7 @@ import phoenix.init.PhoenixBlocks.ARMORED_GLASS
 object StageManager
 {
     private var data: CompoundNBT = CompoundNBT()
+
     fun read(nbt: CompoundNBT)
     {
         if (nbt.contains("stage_nbt"))
@@ -47,20 +48,17 @@ object StageManager
         get() = data.getInt("part")
         set(part) = data.putInt("part", part)
 
-    fun setStage(stage: Int, provider: EndBiomeProvider)
+    private fun setStage(stage: Int, provider: EndBiomeProvider)
     {
         data.putInt("stage", stage)
         provider.genBiomes = provider.createLayer(provider.seed)
+        GenSaveData.INSTANCE.markDirty()
     }
 
-    fun addStage()
+    private fun addStage()
     {
-        stage = Math.min(stage + 1, 3)
-    }
-
-    fun addStage(provider: EndBiomeProvider)
-    {
-        setStage(Math.min(stage + 1, 3), provider)
+        setStage((stage + 1).coerceAtMost(3), EndBiomeProvider.INSTANCE)
+        GenSaveData.INSTANCE.markDirty()
     }
 
     fun addPart()
@@ -69,16 +67,6 @@ object StageManager
         if (data.getInt("part") >= 3)
         {
             addStage()
-            part = 0
-        }
-    }
-
-    fun addPart(provider: EndBiomeProvider)
-    {
-        part += 1
-        if (data.getInt("part") >= 3)
-        {
-            addStage(provider)
             part = 0
         }
     }
