@@ -19,7 +19,7 @@ public class DimensionTypeMixin
     @Inject(method = "getEndChunkGenerator", at = @At("HEAD"), cancellable = true)
     private static void getEndChunkGenerator(Registry<Biome> lookUpRegistryBiome, Registry<DimensionSettings> settingsRegistry, long seed, CallbackInfoReturnable<ChunkGenerator> cir)
     {
-        LogManager.error("DimensionTypeMixin", "blin");
+        LogManager.error("DimensionTypeMixin", "Mixed!");
         cir.setReturnValue(new NoiseChunkGenerator(new EndBiomeProvider(lookUpRegistryBiome, seed), seed, () -> settingsRegistry.getOrThrow(DimensionSettings.field_242737_f)));
         cir.cancel();
     }

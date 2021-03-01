@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger
 
 object LogManager
 {
-    val LOGGER : Logger = LogManager.getLogger()!!
+    private val LOGGER : Logger = LogManager.getLogger()!!
 
     @JvmStatic
     fun errorObjects(vararg objects : Any)
@@ -31,8 +31,16 @@ object LogManager
     fun error(message : String)
     {
         val e = Exception()
-        val from = e.stackTrace[1].className.split(".").last()
-        LOGGER.error(from, message)
+        val from = e.stackTrace[2].className.split(".").last()
+        LOGGER.error("<$from> $message")
+    }
+
+    @JvmStatic
+    fun error(obj : Any)
+    {
+        val e = Exception()
+        val from = e.stackTrace[2].className.split(".").last()
+        LOGGER.error("<$from> $obj")
     }
 
     @JvmStatic

@@ -11,7 +11,6 @@ import net.minecraft.network.PacketBuffer
 import net.minecraft.util.JSONUtils
 import net.minecraft.util.RegistryKey
 import net.minecraft.util.ResourceLocation
-import net.minecraft.util.SoundEvent
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.IWorld
 import net.minecraft.world.World
@@ -19,7 +18,6 @@ import net.minecraft.world.biome.Biome
 import net.minecraftforge.registries.ForgeRegistries
 import net.minecraftforge.registries.ForgeRegistry
 import net.minecraftforge.registries.IForgeRegistryEntry
-import phoenix.Phoenix
 import thedarkcolour.kotlinforforge.forge.KDeferredRegister
 import java.lang.Math.sqrt
 import java.util.*
@@ -101,10 +99,7 @@ operator fun BlockPos.minus(s : BlockPos) : Double
 
 infix fun Int.until(int : Int) = this..int-1
 
-fun Biome.getId(): Int
-{
-    return (ForgeRegistries.BIOMES as ForgeRegistry<Biome>).getID(this)
-}
+fun Biome.getId(): Int = (ForgeRegistries.BIOMES as ForgeRegistry<Biome>).getID(this)
 
 fun RegistryKey<Biome>.getId() : Int
 {

@@ -51,8 +51,8 @@ object StageManager
     private fun setStage(stage: Int, provider: EndBiomeProvider)
     {
         data.putInt("stage", stage)
-        provider.genBiomes = provider.createLayer(provider.seed)
         GenSaveData.INSTANCE.markDirty()
+        provider.updateLayer()
     }
 
     private fun addStage()

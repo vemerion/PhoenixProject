@@ -1,17 +1,8 @@
 package phoenix.client.render.entity
 
-import com.mojang.blaze3d.matrix.MatrixStack
-import net.minecraft.client.renderer.entity.EntityRendererManager
-import net.minecraft.client.renderer.entity.MobRenderer
-import net.minecraft.util.ResourceLocation
-import net.minecraft.util.math.vector.Vector3f
-import phoenix.Phoenix
-import phoenix.client.models.entity.Cauda2Model
-import phoenix.client.models.entity.CaudaEyesLayer
-import phoenix.enity.CaudaEntity
-import javax.annotation.Nonnull
+//import phoenix.enity.CaudaEntity
 
-
+/*
 class CaudaRenderer(renderManager: EntityRendererManager) : MobRenderer<CaudaEntity, Cauda2Model<CaudaEntity>>(renderManager, Cauda2Model(), 1.5f)
 {
     @Nonnull
@@ -47,3 +38,5 @@ class CaudaRenderer(renderManager: EntityRendererManager) : MobRenderer<CaudaEnt
         addLayer(CaudaEyesLayer(this))
     }
 }
+
+ */

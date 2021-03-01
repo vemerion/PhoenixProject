@@ -1,6 +1,8 @@
 package phoenix.init.events
 
 import com.google.common.collect.ImmutableList
+import net.minecraft.client.Minecraft
+import net.minecraft.client.gui.screen.MainMenuScreen
 import net.minecraft.entity.Entity
 import net.minecraft.entity.merchant.villager.VillagerProfession
 import net.minecraft.entity.merchant.villager.VillagerTrades
@@ -13,10 +15,12 @@ import net.minecraft.loot.LootTables
 import net.minecraft.particles.ParticleTypes
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.math.BlockPos
+import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.DimensionType
 import net.minecraft.world.IServerWorld
 import net.minecraft.world.gen.feature.template.PlacementSettings
 import net.minecraft.world.server.ServerWorld
+import net.minecraftforge.client.event.GuiOpenEvent
 import net.minecraftforge.event.LootTableLoadEvent
 import net.minecraftforge.event.TickEvent
 import net.minecraftforge.event.TickEvent.WorldTickEvent
@@ -27,98 +31,66 @@ import net.minecraftforge.event.village.WandererTradesEvent
 import net.minecraftforge.event.world.WorldEvent
 import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.common.Mod
-import org.apache.logging.log4j.Level
-import phoenix.Phoenix
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
 import phoenix.init.PhoenixBlocks
 import phoenix.init.PhoenixItems
 import phoenix.utils.LogManager
-import phoenix.utils.LogManager.error
+import phoenix.utils.StringUtils
 import phoenix.utils.Tuple
 import phoenix.world.GenSaveData
 import java.util.*
 
-@Mod.EventBusSubscriber
 object PhoenixEvents
 {
-    @JvmStatic
-    @SubscribeEvent
     fun onPlay(event: PlayerEvent.PlayerRespawnEvent)
     {
         if(!event.player.world.isRemote)
         {
             val world = event.player.world as ServerWorld
             val player = event.player
-            LogManager.debug("Particles!!!")
             world.spawnParticle(ParticleTypes.PORTAL, player.posX, player.posY, player.posZ, 32, 0.1, 2.0, 0.1, 0.5)
         }
     }
 
-    @JvmStatic
-    @SubscribeEvent
-    fun onSave(event: WorldEvent.Load)
+    fun onLoad(event: WorldEvent.Load)
     {
         val world = event.world
         if(!event.world.isRemote && world is ServerWorld)
         {
-            GenSaveData[world];
-        }
-    }
-    /*
-    @JvmStatic
-    @SubscribeEvent
-    fun onLoad(event: WorldEvent.Load)
-    {
-        if(!event.world.isRemote)
-        {
-            LogManager.log(this, "Phoenix is starting loading")
-            val nbt = event.world.worldInfo.getDimensionData(DimensionType.THE_END)
-            StageManager.read(nbt)
-            LogManager.log(this, "${StageManager.getStage()} ${StageManager.getPart()}")
-            NetworkHandler.sendToAll(SyncStagePacket(StageManager.getStage(), StageManager.getPart()))
-            LogManager.log(this, "Phoenix has ended loading")
+            GenSaveData[world]
         }
     }
 
-     */
-
-    @SubscribeEvent
-    @JvmStatic
     fun tradesVillager(event: VillagerTradesEvent)
     {
         if(event.type == VillagerProfession.TOOLSMITH)
         {
-            event.trades.put(1,
-                ImmutableList.of(VillagerTrades.ITrade { _: Entity, _: Random ->
-                    MerchantOffer(
-                        ItemStack(Items.EMERALD, 8), ItemStack(
-                            PhoenixItems.STEEL_AXE
-                        ), 7, 1, 0.1f
-                    )
-                }))
+            event.trades[1] = ImmutableList.of(VillagerTrades.ITrade { _: Entity, _: Random ->
+                MerchantOffer(
+                    ItemStack(Items.EMERALD, 8), ItemStack(
+                        PhoenixItems.STEEL_AXE
+                    ), 7, 1, 0.1f
+                )
+            })
         }
         else if(event.type == VillagerProfession.WEAPONSMITH)
         {
-            event.trades.put(1,
-                ImmutableList.of(VillagerTrades.ITrade { _: Entity, _: Random ->
-                    MerchantOffer(
-                        ItemStack(Items.EMERALD, 8), ItemStack(
-                            PhoenixItems.STEEL_SWORD
-                        ), 7, 1, 0.1f
-                    )
-                }))
+            event.trades[1] = ImmutableList.of(VillagerTrades.ITrade { _: Entity, _: Random ->
+                MerchantOffer(
+                    ItemStack(Items.EMERALD, 8), ItemStack(
+                        PhoenixItems.STEEL_SWORD
+                    ), 7, 1, 0.1f
+                )
+            })
         }
     }
 
-    @SubscribeEvent
-    @JvmStatic
     fun tradesWanderer(event: WandererTradesEvent)
     {
         event.rareTrades.add(VillagerTrades.ITrade { _: Entity, _: Random -> MerchantOffer(ItemStack(Items.EMERALD, 14), ItemStack(PhoenixBlocks.SETA), 7, 1, 0.1f) })
         event.rareTrades.add(VillagerTrades.ITrade { _: Entity, _: Random -> MerchantOffer(ItemStack(Items.EMERALD, 24), ItemStack(PhoenixItems.GOLDEN_SETA, 4), 7, 1, 0.1f) })
     }
 
-    @SubscribeEvent
-    @JvmStatic
     fun lootTables(event: LootTableLoadEvent)
     {
         if(event.name == LootTables.CHESTS_JUNGLE_TEMPLE)
@@ -127,15 +99,13 @@ object PhoenixEvents
         }
     }
 
-    var tasks = ArrayList<Tuple<Int, Int, Runnable>>()
+    private var tasks = ArrayList<Tuple<Int, Int, Runnable>>()
 
-    @JvmStatic
-    @SubscribeEvent
     fun deferredTasks(event: WorldTickEvent)
     {
         if (!event.world.isRemote)
         {
-            if (!tasks.isEmpty()) if (event.phase == TickEvent.Phase.END)
+            if (tasks.isNotEmpty() && event.phase == TickEvent.Phase.END)
             {
                 var i = 0
                 while (i < tasks.size)
@@ -159,43 +129,38 @@ object PhoenixEvents
         tasks.add(Tuple(0, time, r))
     }
 
-    @SubscribeEvent
     fun cornGen(event: EntityJoinWorldEvent)
     {
         val world = event.world
-        if (!world.isRemote && world.dimensionType === DimensionType.END_TYPE && !GenSaveData.get(world as ServerWorld).isCornGenned)
+        if (!world.isRemote && world.dimensionType === DimensionType.END_TYPE && world is ServerWorld && !GenSaveData[world].isCornGenned)
         {
             val manager = world.structureTemplateManager
             val template = manager.getTemplate(ResourceLocation("phoenix:corn/corn"))
             if (template != null)
             {
-                GenSaveData.get(world).setCornGenned()
-                template.func_237144_a_(world as IServerWorld, BlockPos(1000, 100, 1000), PlacementSettings(), world.rand)
-                template.func_237144_a_(world as IServerWorld, BlockPos(-1000, 100, 1000), PlacementSettings(), world.rand)
-                template.func_237144_a_(world as IServerWorld, BlockPos(1000, 100, -1000), PlacementSettings(), world.rand)
-                template.func_237144_a_(world as IServerWorld, BlockPos(-1000, 100, -1000), PlacementSettings(), world.rand
+                GenSaveData[world].setCornGenned()
+                template.func_237144_a_(world, BlockPos(1000, 100, 1000), PlacementSettings(), world.rand)
+                template.func_237144_a_(world, BlockPos(-1000, 100, 1000), PlacementSettings(), world.rand)
+                template.func_237144_a_(world, BlockPos(1000, 100, -1000), PlacementSettings(), world.rand)
+                template.func_237144_a_(world, BlockPos(-1000, 100, -1000), PlacementSettings(), world.rand
                 )
                 LogManager.debug("Corn genned ^)")
-            } else
+            }
+            else
             {
-                error("Phoenix Events Other", "Corn was not genned ^(. template is null... I think it is bad.")
+                LogManager.error("Phoenix Events Other", "Corn was not genned ^(. template is null... I think it is bad.")
             }
         }
     }
-    /*
-    @SubscribeEvent
-    public static void onOpenGui(GuiOpenEvent event)
+
+    fun onClientSetup(event: FMLClientSetupEvent)
     {
-        if(event.getGui() instanceof MainMenuScreen)
-        {
-            Splashes splashes = Minecraft.getInstance().splashes;
-            splashes.possibleSplashes.add(StringUtils.rainbowColor("God is an artist, since there are so many \n colors in the world"));
-            splashes.possibleSplashes.add(TextFormatting.RED + "The essence of life is that it changes itself");
-            splashes.possibleSplashes.add(TextFormatting.BLUE + "Bridge station is absent");
-            splashes.possibleSplashes.add(TextFormatting.DARK_BLUE + "Third child is ann angel!!");
-            splashes.possibleSplashes.add(TextFormatting.BLACK + "Project E.N.D.");
-            splashes.possibleSplashes.add(TextFormatting.BLACK + "Нож в печень, FX вечен!");
-        }
+        val splashes = Minecraft.getInstance().splashes
+        splashes.possibleSplashes.add(StringUtils.rainbowColor("God is an artist, since there are so many \n colors in the world"))
+        splashes.possibleSplashes.add(TextFormatting.RED.toString() + "The essence of life is that it changes itself")
+        splashes.possibleSplashes.add(TextFormatting.BLUE.toString() + "Bridge station is absent")
+        splashes.possibleSplashes.add(TextFormatting.DARK_BLUE.toString() + "Third child is ann angel!!")
+        splashes.possibleSplashes.add(TextFormatting.BLACK.toString() + "Project E.N.D.")
+        splashes.possibleSplashes.add(TextFormatting.BLACK.toString() + "Нож в печень, FX вечен!")
     }
-     */
 }

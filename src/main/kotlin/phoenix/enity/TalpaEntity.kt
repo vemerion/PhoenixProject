@@ -1,19 +1,13 @@
 package phoenix.enity
 
 import net.minecraft.entity.*
-import net.minecraft.entity.ai.attributes.AttributeModifierMap
-import net.minecraft.entity.ai.attributes.AttributeModifierMap.MutableAttribute
-import net.minecraft.entity.ai.attributes.Attributes
-import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes
 import net.minecraft.entity.ai.goal.*
 import net.minecraft.entity.monster.AbstractRaiderEntity
 import net.minecraft.entity.passive.AnimalEntity
 import net.minecraft.entity.player.PlayerEntity
-import net.minecraft.item.Items
 import net.minecraft.item.crafting.Ingredient
 import net.minecraft.util.DamageSource
 import net.minecraft.util.math.AxisAlignedBB
-import net.minecraft.util.math.BlockPos
 import net.minecraft.world.IWorld
 import net.minecraft.world.World
 import net.minecraft.world.server.ServerWorld

@@ -8,7 +8,6 @@ import net.minecraft.world.biome.BiomeMaker
 import net.minecraft.world.gen.GenerationStage
 import net.minecraft.world.gen.feature.Features
 import net.minecraft.world.gen.feature.structure.StructureFeatures
-import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders
 import net.minecraftforge.common.BiomeDictionary
 import net.minecraftforge.registries.ForgeRegistries
 import phoenix.Phoenix

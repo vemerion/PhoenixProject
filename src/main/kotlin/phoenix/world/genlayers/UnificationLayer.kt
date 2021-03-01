@@ -12,11 +12,8 @@ object UnificationLayer : IAreaTransformer2
         return when(val vanila = area2.getValue(x, z))
         {
             SMALL_END_ISLANDS -> if(phoenix == UNDER_SMALL_ISLANDS && random.random(10) == 5) phoenix else vanila
-            END_HIGHLANDS ->
-            {
-                if((phoenix == HEART_VOID || phoenix == UNDER) && random.random(10) == 5) phoenix else vanila
-            }
-            else -> vanila
+            END_HIGHLANDS     -> if((phoenix == HEART_VOID || phoenix == UNDER) && random.random(10) == 5) phoenix else vanila
+            else              -> vanila
         }
     }
 

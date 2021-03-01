@@ -3,13 +3,9 @@ package phoenix.other
 import net.minecraft.client.audio.BackgroundMusicSelector
 import net.minecraft.client.audio.BackgroundMusicTracks
 import net.minecraft.client.audio.MusicTicker
-import net.minecraft.util.ResourceLocation
 import net.minecraft.util.math.MathHelper
 import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.api.distmarker.OnlyIn
-import phoenix.Phoenix
-import phoenix.init.PhoenixSounds
-import phoenix.utils.LogManager
 import phoenix.world.StageManager
 
 @OnlyIn(Dist.CLIENT)

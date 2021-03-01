@@ -6,11 +6,11 @@ import mezz.jei.api.gui.drawable.IDrawable
 import mezz.jei.api.helpers.IGuiHelper
 import mezz.jei.api.ingredients.IIngredients
 import mezz.jei.api.recipe.category.IRecipeCategory
+import net.minecraft.item.ItemStack
+import net.minecraft.util.ResourceLocation
 import phoenix.Phoenix
 import phoenix.init.PhoenixBlocks
 import phoenix.recipes.OvenRecipe
-import net.minecraft.item.ItemStack
-import net.minecraft.util.ResourceLocation
 
 class OvenCategory(private val helper: IGuiHelper) : IRecipeCategory<OvenRecipe>
 {

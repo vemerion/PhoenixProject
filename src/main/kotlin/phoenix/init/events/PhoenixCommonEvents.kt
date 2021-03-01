@@ -8,14 +8,17 @@ import net.minecraft.entity.ai.attributes.Attributes
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes
 import net.minecraft.item.BlockItem
 import net.minecraft.item.Item
+import net.minecraft.item.ItemStack
+import net.minecraft.item.Items
+import net.minecraft.item.crafting.Ingredient
+import net.minecraft.potion.*
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry
 import net.minecraftforge.event.RegistryEvent
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent
 import net.minecraftforge.registries.ForgeRegistries
 import phoenix.Phoenix.ASH
-import phoenix.init.PhoenixBiomes
+import phoenix.init.*
 import phoenix.init.PhoenixBlocks.BLOCKS
-import phoenix.init.PhoenixEntities
-import phoenix.init.PhoenixRecipes
 import phoenix.network.NetworkHandler
 import phoenix.utils.block.ICustomGroup
 import phoenix.utils.block.INonItem
@@ -54,6 +57,8 @@ object PhoenixCommonEvents
         PhoenixRecipes.register()
         PhoenixBiomes.addBiomeTypes()
         GlobalEntityTypeAttributes.put(PhoenixEntities.TALPA, registerTalpaAttributes().create())
+        //PotionUtils.appendEffects(ItemStack(Items.POTION), arrayListOf(EffectInstance(Effects.AW, 120, 1)))
+        //BrewingRecipeRegistry.addRecipe(Ingredient.fromItems(PhoenixBlocks.SETA), Ingredient.fromItems(Items.))
     }
 
     private fun registerTalpaAttributes(): AttributeModifierMap.MutableAttribute

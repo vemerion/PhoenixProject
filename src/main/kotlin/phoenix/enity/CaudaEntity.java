@@ -1,24 +1,6 @@
 package phoenix.enity;
 
-import mcp.MethodsReturnNonnullByDefault;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.controller.BodyController;
-import net.minecraft.entity.monster.PhantomEntity;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
-import phoenix.utils.entity.AbstractFlyingEntity;
-import phoenix.utils.entity.ThreeDimensionsLookHelperController;
-import phoenix.utils.entity.ThreeDimensionsMoveHelperController;
-
-import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
-
+/*
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class CaudaEntity extends AbstractFlyingEntity
@@ -131,3 +113,6 @@ public class CaudaEntity extends AbstractFlyingEntity
         return entitysize.scale((entitysize.width + 0.2F * (float) this.getCaudaSize()) / entitysize.width);
     }
 }
+
+
+ */
