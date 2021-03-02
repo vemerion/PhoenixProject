@@ -41,7 +41,7 @@ object UpdaterBlock : Block(Properties.create(Material.ROCK).setLightLevel { 5 }
                 1f,
                 true
             )
-            StageManager.addPart(EndBiomeProvider.INSTANCE)
+            StageManager.addPart()
             for (entity in worldIn.players)
             {
                 entity.sendStatusMessage(TranslationTextComponent("phoenix.message.newstage"), false)

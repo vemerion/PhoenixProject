@@ -20,7 +20,7 @@ object PhoenixConfiguration
             gameMode = builder.worldRestart().comment("If \"Liahim\" game will be hard and trolling like Misty World or higher" +
                     ", but if \"hohserg\" it will be easier and more simple.")
                     .defineEnum("Game mode", GameMode.normal)
-            BIOME_SIZE = builder.worldRestart().defineInRange("Biome size", 6, 1, 15)
+            BIOME_SIZE = builder.worldRestart().defineInRange("Biome size", 3, 1, 15)
             debug = builder.worldRestart().define("is debug mode", true)
             builder.pop()
         }

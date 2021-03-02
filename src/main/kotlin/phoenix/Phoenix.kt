@@ -46,15 +46,17 @@ object Phoenix
         MOD_BUS.addListener(PhoenixCommonEvents::onRegisterItems)
         MOD_BUS.addListener(PhoenixCommonEvents::init)
         MOD_BUS.addListener(PhoenixClientEvents::onClientSetup)
+        MOD_BUS.addListener(PhoenixEvents::onClientSetup)
         MOD_BUS.addListener(::registerBuilders)
         FORGE_BUS.addListener(::registerBuilders)
+        FORGE_BUS.addListener(PhoenixEvents::onLoad)
         FORGE_BUS.addListener(PhoenixEvents::tradesVillager)
         FORGE_BUS.addListener(PhoenixEvents::tradesWanderer)
         FORGE_BUS.addListener(PhoenixEvents::lootTables)
         FORGE_BUS.addListener(PhoenixEvents::deferredTasks)
         FORGE_BUS.addListener(PhoenixEvents::onPlay)
         FORGE_BUS.addListener(PhoenixEvents::cornGen)
-        FORGE_BUS.addListener(PhoenixEvents::onOpenGui)
+
 
         Registry.register(Registry.BIOME_PROVIDER_CODEC, "the_end", phoenix.world.EndBiomeProvider.CODEC)
     }
