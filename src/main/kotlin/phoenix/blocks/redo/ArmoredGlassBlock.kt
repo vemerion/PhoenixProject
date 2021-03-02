@@ -19,11 +19,6 @@ object ArmoredGlassBlock : AbstractGlassBlock(
     Properties.create(Material.GLASS).doesNotBlockMovement().hardnessAndResistance(20.0f).harvestLevel(3).harvestTool(
         ToolType.PICKAXE).sound(SoundType.GLASS)), ICustomGroup
 {
-    init
-    {
-        BlockTags.DRAGON_IMMUNE.allElements.add(this)
-    }
-    
     override fun getTab() = Phoenix.REDO
 
     override fun getDrops(state: BlockState, builder: LootContext.Builder): MutableList<ItemStack>
