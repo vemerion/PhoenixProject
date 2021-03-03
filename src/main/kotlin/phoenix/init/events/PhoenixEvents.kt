@@ -13,6 +13,7 @@ import net.minecraft.loot.ItemLootEntry
 import net.minecraft.loot.LootPool
 import net.minecraft.loot.LootTables
 import net.minecraft.particles.ParticleTypes
+import net.minecraft.tags.BlockTags
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.text.TextFormatting
@@ -32,6 +33,7 @@ import net.minecraftforge.event.world.WorldEvent
 import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
+import phoenix.blocks.redo.ArmoredGlassBlock
 import phoenix.init.PhoenixBlocks
 import phoenix.init.PhoenixItems
 import phoenix.utils.LogManager
@@ -54,6 +56,7 @@ object PhoenixEvents
 
     fun onLoad(event: WorldEvent.Load)
     {
+        BlockTags.DRAGON_IMMUNE.allElements.add(ArmoredGlassBlock)
         val world = event.world
         if(!event.world.isRemote && world is ServerWorld)
         {

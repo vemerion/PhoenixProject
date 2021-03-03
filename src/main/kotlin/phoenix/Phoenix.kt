@@ -2,11 +2,13 @@ package phoenix
 
 import net.minecraft.block.Blocks
 import net.minecraft.item.ItemGroup
+import net.minecraft.tags.BlockTags
 import net.minecraft.util.registry.Registry
 import net.minecraftforge.common.ForgeConfigSpec
 import net.minecraftforge.fml.ModLoadingContext
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.config.ModConfig
+import phoenix.blocks.redo.ArmoredGlassBlock
 import phoenix.init.*
 import phoenix.init.PhoenixConfiguration.Common
 import phoenix.init.events.PhoenixClientEvents
@@ -56,7 +58,6 @@ object Phoenix
         FORGE_BUS.addListener(PhoenixEvents::deferredTasks)
         FORGE_BUS.addListener(PhoenixEvents::onPlay)
         FORGE_BUS.addListener(PhoenixEvents::cornGen)
-
 
         Registry.register(Registry.BIOME_PROVIDER_CODEC, "the_end", phoenix.world.EndBiomeProvider.CODEC)
     }

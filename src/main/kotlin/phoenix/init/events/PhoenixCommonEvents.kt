@@ -2,6 +2,7 @@ package phoenix.init.events
 
 import net.minecraft.block.Block
 import net.minecraft.block.FlowingFluidBlock
+import net.minecraft.data.BlockTagsProvider
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.ai.attributes.AttributeModifierMap
 import net.minecraft.entity.ai.attributes.Attributes
@@ -16,6 +17,7 @@ import net.minecraft.tags.BlockTags
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry
 import net.minecraftforge.event.RegistryEvent
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent
+import net.minecraftforge.fml.server.ServerLifecycleHooks
 import net.minecraftforge.registries.ForgeRegistries
 import phoenix.Phoenix.ASH
 import phoenix.blocks.redo.ArmoredGlassBlock
@@ -59,7 +61,7 @@ object PhoenixCommonEvents
         PhoenixRecipes.register()
         PhoenixBiomes.addBiomeTypes()
         GlobalEntityTypeAttributes.put(PhoenixEntities.TALPA, registerTalpaAttributes().create())
-        //BlockTags.DRAGON_IMMUNE.allElements.add(ArmoredGlassBlock)
+
         //PotionUtils.appendEffects(ItemStack(Items.POTION), arrayListOf(EffectInstance(Effects.AW, 120, 1)))
         //BrewingRecipeRegistry.addRecipe(Ingredient.fromItems(PhoenixBlocks.SETA), Ingredient.fromItems(Items.))
     }
