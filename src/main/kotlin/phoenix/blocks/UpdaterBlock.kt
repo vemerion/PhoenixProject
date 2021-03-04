@@ -13,6 +13,7 @@ import net.minecraft.util.math.BlockRayTraceResult
 import net.minecraft.util.text.StringTextComponent
 import net.minecraft.util.text.TranslationTextComponent
 import net.minecraft.world.World
+import phoenix.init.PhoenixSounds
 import phoenix.init.PhoenixSounds.CHANGE_STAGE
 import phoenix.world.EndBiomeProvider
 import phoenix.world.StageManager
@@ -23,14 +24,13 @@ object UpdaterBlock : Block(Properties.create(Material.ROCK).setLightLevel { 5 }
         state: BlockState,
         worldIn: World,
         pos: BlockPos,
-        player: PlayerEntity,
+        placer: PlayerEntity,
         handIn: Hand,
         hit: BlockRayTraceResult
     ): ActionResultType
     {
         if (!worldIn.isRemote)
         {
-            val stageOld = StageManager.stage
             worldIn.playSound(
                 pos.x.toDouble(),
                 pos.y.toDouble(),
@@ -51,7 +51,8 @@ object UpdaterBlock : Block(Properties.create(Material.ROCK).setLightLevel { 5 }
                 )
             }
             worldIn.setBlockState(pos, Blocks.AIR.defaultState)
+            worldIn.playSound(pos.x.toDouble(), pos.y.toDouble(), pos.z.toDouble(), CHANGE_STAGE, SoundCategory.BLOCKS, 1.0f, 1.0f, true)
         }
-        return super.onBlockActivated(state, worldIn, pos, player, handIn, hit)
+        return super.onBlockActivated(state, worldIn, pos, placer, handIn, hit)
     }
 }

@@ -61,7 +61,7 @@ object PhoenixCommonEvents
         PhoenixRecipes.register()
         PhoenixBiomes.addBiomeTypes()
         GlobalEntityTypeAttributes.put(PhoenixEntities.TALPA, registerTalpaAttributes().create())
-
+        BlockTags.DRAGON_IMMUNE
         //PotionUtils.appendEffects(ItemStack(Items.POTION), arrayListOf(EffectInstance(Effects.AW, 120, 1)))
         //BrewingRecipeRegistry.addRecipe(Ingredient.fromItems(PhoenixBlocks.SETA), Ingredient.fromItems(Items.))
     }

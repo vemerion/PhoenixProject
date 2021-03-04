@@ -56,7 +56,6 @@ object PhoenixEvents
 
     fun onLoad(event: WorldEvent.Load)
     {
-        BlockTags.DRAGON_IMMUNE.allElements.add(ArmoredGlassBlock)
         val world = event.world
         if(!event.world.isRemote && world is ServerWorld)
         {

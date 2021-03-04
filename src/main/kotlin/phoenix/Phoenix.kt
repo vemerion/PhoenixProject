@@ -58,7 +58,5 @@ object Phoenix
         FORGE_BUS.addListener(PhoenixEvents::deferredTasks)
         FORGE_BUS.addListener(PhoenixEvents::onPlay)
         FORGE_BUS.addListener(PhoenixEvents::cornGen)
-
-        Registry.register(Registry.BIOME_PROVIDER_CODEC, "the_end", phoenix.world.EndBiomeProvider.CODEC)
     }
 }

@@ -30,6 +30,6 @@ object ArmoredGlassBlock : AbstractGlassBlock(
 
     override fun isIn(tagIn: ITag<Block>): Boolean
     {
-        return super.isIn(tagIn) || tagIn == BlockTags.DRAGON_IMMUNE;
+        return super.isIn(tagIn) || tagIn == BlockTags.DRAGON_IMMUNE
     }
 }
