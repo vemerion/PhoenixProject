@@ -1,29 +1,21 @@
 package phoenix.world
 
-import com.mojang.serialization.Codec
-import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.util.SharedSeedRandom
 import net.minecraft.util.registry.Registry
-import net.minecraft.util.registry.RegistryLookupCodec
-import net.minecraft.world.IWorld
-import net.minecraft.world.World
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.gen.IExtendedNoiseRandom
 import net.minecraft.world.gen.LazyAreaLayerContext
 import net.minecraft.world.gen.SimplexNoiseGenerator
 import net.minecraft.world.gen.area.IArea
 import net.minecraft.world.gen.area.IAreaFactory
-import net.minecraft.world.gen.area.LazyArea
 import net.minecraft.world.gen.layer.Layer
 import net.minecraft.world.gen.layer.ZoomLayer
 import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.api.distmarker.OnlyIn
 import phoenix.init.PhoenixBiomes
 import phoenix.init.PhoenixConfiguration
-import phoenix.utils.LogManager
 import phoenix.world.genlayers.*
 import java.util.*
-import java.util.function.BiFunction
 import java.util.function.LongFunction
 
 class EndBiomeProvider(private val lookupRegistry: Registry<Biome>, val seed: Long) : net.minecraft.world.biome.provider.EndBiomeProvider(lookupRegistry, seed)
@@ -80,13 +72,5 @@ class EndBiomeProvider(private val lookupRegistry: Registry<Biome>, val seed: Lo
     companion object
     {
         lateinit var INSTANCE : EndBiomeProvider
-        val CODEC: Codec<EndBiomeProvider> = RecordCodecBuilder.create { builder: RecordCodecBuilder.Instance<EndBiomeProvider> ->
-            builder.group(
-                RegistryLookupCodec.getLookUpCodec(Registry.BIOME_KEY).forGetter(EndBiomeProvider::lookupRegistry),
-                Codec.LONG.fieldOf("seed").stable().forGetter(EndBiomeProvider::seed)
-            ).apply(
-                builder, builder.stable(BiFunction<Registry<Biome>, Long, EndBiomeProvider> { lookupRegistry: Registry<Biome>, seed: Long -> EndBiomeProvider(lookupRegistry, seed) })
-            )
-        }
     }
 }

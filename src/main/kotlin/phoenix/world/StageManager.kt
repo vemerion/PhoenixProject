@@ -1,6 +1,5 @@
 package phoenix.world
 
-import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.block.PaneBlock
 import net.minecraft.client.audio.BackgroundMusicSelector
