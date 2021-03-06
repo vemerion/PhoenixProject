@@ -1,16 +1,21 @@
 package phoenix.world
 
+import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.block.PaneBlock
 import net.minecraft.client.audio.BackgroundMusicSelector
 import net.minecraft.client.audio.BackgroundMusicTracks
+import net.minecraft.client.resources.I18n
 import net.minecraft.entity.EntityType
 import net.minecraft.nbt.CompoundNBT
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.MathHelper
+import net.minecraft.util.text.ITextComponent
+import net.minecraft.util.text.StringTextComponent
 import net.minecraft.world.IServerWorld
 import net.minecraft.world.gen.feature.EndSpikeFeature
 import net.minecraft.world.gen.feature.EndSpikeFeatureConfig
+import net.minecraftforge.client.event.RenderGameOverlayEvent
 import phoenix.init.PhoenixBackgroundMusicTracks
 import phoenix.init.PhoenixBlocks.ARMORED_GLASS
 import java.util.*
@@ -133,6 +138,8 @@ object StageManager
                 }
             }
             override var backgroundSoundSelector: BackgroundMusicSelector = BackgroundMusicTracks.END_MUSIC
+            override val inguiName: ITextComponent
+                get() = StringTextComponent(I18n.format("stage.ash"))
         },
         REDO
         {
@@ -185,8 +192,11 @@ object StageManager
                     world.addEntity(entity)
                     world.setBlockState(BlockPos(spike.centerX, spike.height, spike.centerZ), Blocks.BEDROCK.defaultState, 2)
                 }
+
             }
             override var backgroundSoundSelector = PhoenixBackgroundMusicTracks.REDO_MUSIC
+            override val inguiName: ITextComponent
+                get() = StringTextComponent(I18n.format("stage.redo"))
         },
         REBIRTH
         {
@@ -195,6 +205,8 @@ object StageManager
                 ASH.createTower(worldIn, rand, config, spike)
             }
             override var backgroundSoundSelector = REDO.backgroundSoundSelector
+            override val inguiName: ITextComponent
+                get() = StringTextComponent(I18n.format("stage.rebirth"))
         },
         AIR
         {
@@ -204,9 +216,12 @@ object StageManager
             }
 
             override var backgroundSoundSelector = REBIRTH.backgroundSoundSelector
+            override val inguiName: ITextComponent
+                get() = StringTextComponent(I18n.format("stage.air"))
         };
 
         abstract fun createTower(worldIn : IServerWorld, rand : Random, config : EndSpikeFeatureConfig, spike : EndSpikeFeature.EndSpike)
         abstract var backgroundSoundSelector : BackgroundMusicSelector
+        abstract val inguiName : ITextComponent
     }
 }

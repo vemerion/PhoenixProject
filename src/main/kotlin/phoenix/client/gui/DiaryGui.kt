@@ -30,13 +30,13 @@ class DiaryGui(screenContainer: DiaryContainer, inv: PlayerInventory, titleIn: I
         addButton(InvisibleButton(guiLeft - 40, guiTop, ySize, { book-- }, true))
         addButton(InvisibleButton(guiLeft + xSize - 10, guiTop, ySize, { book++ }, true))
         book = DiaryBook(xSize - 30, ySize, Minecraft.getInstance().fontRenderer)
-        val player = Minecraft.getInstance().player;
+        val player = Minecraft.getInstance().player
         val chapters = (player as IChapterReader).getOpenedChapters()
         for (i in chapters)
         {
-            val ch = Chapters.values()[i.m];
+            val ch = Chapters.values()[i.key];
             val els = DiaryUtils.makeParagraph(font, xSize, arrayOf(ch.getText()))
-            els.add(RightAlignedTextElement(i.v.toString()))
+            els.add(RightAlignedTextElement(i.value.toString()))
             book.add(DiaryChapter(xSize, ySize, els))
         }
 

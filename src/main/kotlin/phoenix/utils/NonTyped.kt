@@ -22,7 +22,7 @@ import thedarkcolour.kotlinforforge.forge.KDeferredRegister
 import java.lang.Math.sqrt
 import java.util.*
 
-data class Pair<M, V>(var v : V, var m : M)
+data class Pair<M, V>(var key : M, var value : V)
 data class Tuple<M, V, K>(var first : V, var second : M, var third : K)
 
 fun World.destroyBlock(pos : BlockPos, shouldDrop : Boolean, entity : Entity?, stack : ItemStack) : Boolean

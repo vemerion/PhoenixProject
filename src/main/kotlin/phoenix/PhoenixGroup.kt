@@ -10,21 +10,10 @@ import net.minecraft.util.NonNullList
 import net.minecraftforge.fml.RegistryObject
 import java.util.*
 
-class PhoenixGroup : ItemGroup
+class PhoenixGroup(name: String, val item: () -> IItemProvider) : ItemGroup(name)
 {
-    var item : () -> IItemProvider
-    constructor(name: String, item: IItemProvider) : super(name)
-    {
-       this.item = {item}
-    }
-    constructor(name: String, item: () -> IItemProvider) : super(name)
-    {
-        this.item = item
-    }
-    constructor(name: String, item: RegistryObject<Block>) : super(name)
-    {
-        this.item = item::get
-    }
+    constructor(name: String, item: IItemProvider) : this(name, {item})
+    constructor(name: String, item: RegistryObject<Block>) : this(name, item::get)
 
     override fun createIcon() = ItemStack(item.invoke())
     override fun hasSearchBar() = false
@@ -35,7 +24,7 @@ class PhoenixGroup : ItemGroup
         Collections.sort(items, ItemStackComparator)
     }
 
-    internal object ItemStackComparator : Comparator<ItemStack>
+    object ItemStackComparator : Comparator<ItemStack>
     {
         override fun compare(i1: ItemStack, i2: ItemStack): Int
         {
@@ -47,9 +36,9 @@ class PhoenixGroup : ItemGroup
                 f < s -> -1
                 else  ->
                 {
-                    val a = i1.displayName
-                    val b = i2.displayName
-                    a.unformattedComponentText.compareTo(b.unformattedComponentText)
+                    val a = i1.displayName.unformattedComponentText
+                    val b = i2.displayName.unformattedComponentText
+                    a.compareTo(b)
                 }
             }
         }

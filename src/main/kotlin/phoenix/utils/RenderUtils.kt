@@ -12,7 +12,6 @@ import net.minecraft.client.renderer.WorldVertexBufferUploader
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats
 import net.minecraft.util.ResourceLocation
 
-
 object RenderUtils
 {
     fun drawWithScale(texture: ResourceLocation?, sizeX: Int, sizeY: Int, x: Int, y: Int, scale: Float)

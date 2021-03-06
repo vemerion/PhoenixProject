@@ -2,6 +2,7 @@ package phoenix.init.events
 
 import com.google.common.collect.ImmutableList
 import net.minecraft.client.Minecraft
+import net.minecraft.client.gui.screen.MainMenuScreen
 import net.minecraft.entity.Entity
 import net.minecraft.entity.merchant.villager.VillagerProfession
 import net.minecraft.entity.merchant.villager.VillagerTrades
@@ -12,12 +13,16 @@ import net.minecraft.loot.ItemLootEntry
 import net.minecraft.loot.LootPool
 import net.minecraft.loot.LootTables
 import net.minecraft.particles.ParticleTypes
+import net.minecraft.tags.BlockTags
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.DimensionType
+import net.minecraft.world.IServerWorld
 import net.minecraft.world.gen.feature.template.PlacementSettings
 import net.minecraft.world.server.ServerWorld
+import net.minecraftforge.client.event.GuiOpenEvent
+import net.minecraftforge.client.gui.ForgeIngameGui
 import net.minecraftforge.event.LootTableLoadEvent
 import net.minecraftforge.event.TickEvent
 import net.minecraftforge.event.TickEvent.WorldTickEvent
@@ -26,7 +31,10 @@ import net.minecraftforge.event.entity.player.PlayerEvent
 import net.minecraftforge.event.village.VillagerTradesEvent
 import net.minecraftforge.event.village.WandererTradesEvent
 import net.minecraftforge.event.world.WorldEvent
+import net.minecraftforge.eventbus.api.SubscribeEvent
+import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
+import phoenix.blocks.redo.ArmoredGlassBlock
 import phoenix.init.PhoenixBlocks
 import phoenix.init.PhoenixItems
 import phoenix.utils.LogManager
@@ -150,12 +158,10 @@ object PhoenixEvents
 
     fun onClientSetup(event: FMLClientSetupEvent)
     {
-        val splashes = Minecraft.getInstance().splashes
-        splashes.possibleSplashes.add(StringUtils.rainbowColor("God is an artist, since there are so many \n colors in the world"))
-        splashes.possibleSplashes.add(TextFormatting.RED.toString() + "The essence of life is that it changes itself")
-        splashes.possibleSplashes.add(TextFormatting.BLUE.toString() + "Bridge station is absent")
-        splashes.possibleSplashes.add(TextFormatting.DARK_BLUE.toString() + "Third child is ann angel!!")
-        splashes.possibleSplashes.add(TextFormatting.BLACK.toString() + "Project E.N.D.")
-        splashes.possibleSplashes.add(TextFormatting.BLACK.toString() + "Нож в печень, FX вечен!")
+        val gui = Minecraft.getInstance().ingameGUI
+        if(gui != null && gui is ForgeIngameGui)
+        {
+            val clas = ForgeIngameGui::class
+        }
     }
 }

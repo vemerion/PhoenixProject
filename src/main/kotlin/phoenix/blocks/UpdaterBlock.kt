@@ -12,8 +12,12 @@ import net.minecraft.util.SoundCategory
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.BlockRayTraceResult
 import net.minecraft.util.text.StringTextComponent
+import net.minecraft.util.text.TextComponent
+import net.minecraft.util.text.TranslationTextComponent
 import net.minecraft.world.World
+import phoenix.init.PhoenixSounds
 import phoenix.init.PhoenixSounds.CHANGE_STAGE
+import phoenix.world.EndBiomeProvider
 import phoenix.world.StageManager
 
 object UpdaterBlock : Block(Properties.create(Material.ROCK).setLightLevel { 5 }.hardnessAndResistance(-1f))

@@ -2,10 +2,13 @@ package phoenix
 
 import net.minecraft.block.Blocks
 import net.minecraft.item.ItemGroup
+import net.minecraft.tags.BlockTags
+import net.minecraft.util.registry.Registry
 import net.minecraftforge.common.ForgeConfigSpec
 import net.minecraftforge.fml.ModLoadingContext
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.config.ModConfig
+import phoenix.blocks.redo.ArmoredGlassBlock
 import phoenix.init.*
 import phoenix.init.PhoenixConfiguration.Common
 import phoenix.init.events.PhoenixClientEvents

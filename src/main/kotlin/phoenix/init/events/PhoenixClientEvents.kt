@@ -4,6 +4,7 @@ import net.minecraft.block.Block
 import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.RenderTypeLookup
+import net.minecraft.util.text.TextFormatting
 import net.minecraftforge.fml.client.registry.ClientRegistry
 import net.minecraftforge.fml.client.registry.RenderingRegistry
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
@@ -19,6 +20,7 @@ import phoenix.init.PhoenixRenderTypes
 import phoenix.init.PhoenixTiles
 import phoenix.network.NetworkHandler
 import phoenix.other.PhoenixMusicTicker
+import phoenix.utils.StringUtils
 import phoenix.utils.block.IColoredBlock
 import thedarkcolour.kotlinforforge.forge.ObjectHolderDelegate
 
@@ -58,5 +60,13 @@ object PhoenixClientEvents
         }
 
         Minecraft.getInstance().musicTicker = PhoenixMusicTicker(Minecraft.getInstance().musicTicker)
+
+        val splashes = Minecraft.getInstance().splashes
+        splashes.possibleSplashes.add(StringUtils.rainbowColor("God is an artist, since there are so many \n colors in the world"))
+        splashes.possibleSplashes.add(TextFormatting.RED.toString() + "The essence of life is that it changes itself")
+        splashes.possibleSplashes.add(TextFormatting.BLUE.toString() + "Bridge station is absent")
+        splashes.possibleSplashes.add(TextFormatting.DARK_BLUE.toString() + "Third child is ann angel!!")
+        splashes.possibleSplashes.add(TextFormatting.BLACK.toString() + "Project E.N.D.")
+        splashes.possibleSplashes.add(TextFormatting.BLACK.toString() + "Нож в печень, FX вечен!")
     }
 }

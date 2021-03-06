@@ -7,8 +7,9 @@ import phoenix.utils.Date
 import phoenix.utils.IChapterReader
 import phoenix.utils.readDate
 import phoenix.utils.writeDate
+import phoenix.utils.Pair
 
-class SyncBookPacket(var list : List<phoenix.utils.Pair<Integer, Date>>): NetworkHandler.Packet()
+class SyncBookPacket(var list : List<Pair<Int, Date>>): NetworkHandler.Packet()
 {
     override fun encode(packet: NetworkHandler.Packet, buf: PacketBuffer)
     {
@@ -18,22 +19,22 @@ class SyncBookPacket(var list : List<phoenix.utils.Pair<Integer, Date>>): Networ
             buf.writeInt(list.size)
             for (i in list)
             {
-                buf.writeInt(i.m.toInt())
-                buf.writeDate(i.v)
+                buf.writeInt(i.key)
+                buf.writeDate(i.value)
             }
         }
     }
 
     override fun decode(buf: PacketBuffer): NetworkHandler.Packet
     {
-        val res = ArrayList<phoenix.utils.Pair<Integer, Date>>()
+        val res = ArrayList<Pair<Int, Date>>()
 
         val count = buf.readInt()
         for (i in 0 until count)
         {
             val id = buf.readInt()
             val date = buf.readDate()
-            res.add(phoenix.utils.Pair<Integer, Date>(date, Integer(id)))
+            res.add(Pair(id, date))
         }
 
         return SyncBookPacket(res)
@@ -44,7 +45,7 @@ class SyncBookPacket(var list : List<phoenix.utils.Pair<Integer, Date>>): Networ
         if(player is IChapterReader)
         {
             for (i in list)
-                player.addChapter(i.m.toInt(), i.v)
+                player.addChapter(i.key, i.value)
         }
     }
 

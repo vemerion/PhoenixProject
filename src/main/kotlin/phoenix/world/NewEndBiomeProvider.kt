@@ -64,7 +64,7 @@ class EndBiomeProvider(private val lookupRegistry: Registry<Biome>, val seed: Lo
             phoenixBiomes = HeartVoidLayer.apply(context.apply(200L), phoenixBiomes)
         }
 
-        for (i in 0..PhoenixConfiguration.COMMON_CONFIG.BIOME_SIZE.get() + 2) phoenixBiomes = ZoomLayer.NORMAL.apply(context.apply(200L), phoenixBiomes)
+        for (i in 0..PhoenixConfiguration.COMMON_CONFIG.BIOME_SIZE.get() + 7) phoenixBiomes = ZoomLayer.NORMAL.apply(context.apply(200L), phoenixBiomes)
 
         return UnificationLayer.apply(context.apply(100L), phoenixBiomes, vanilaBiomes)
     }
