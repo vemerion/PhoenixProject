@@ -27,7 +27,7 @@ object UpdaterBlock : Block(Properties.create(Material.ROCK).setLightLevel { 5 }
         if (!worldIn.isRemote)
         {
             worldIn.playSound(pos.x.toDouble(), pos.y.toDouble(), pos.z.toDouble(), CHANGE_STAGE, SoundCategory.BLOCKS, 1f, 1f, true)
-            StageManager.addPart()
+            StageManager.part++
             for (entity in worldIn.players)
             {
                 entity.sendStatusMessage(StringTextComponent(I18n.format("phoenix.message.newstage")), false)

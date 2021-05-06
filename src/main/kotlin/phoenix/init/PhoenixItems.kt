@@ -51,7 +51,7 @@ object PhoenixItems
     val ZIRCONIUM_AXE                  by ITEMS.register("ceramic_zirconium_axe")     { AxeItem    (PhoenixTiers.ZIRCONIUM_TIER, 9.0f, -3.2f, Item.Properties().group(Phoenix.ASH)) }
     val ZIRCONIUM_PICKAXE              by ITEMS.register("ceramic_zirconium_pickaxe") { PickaxeItem(PhoenixTiers.ZIRCONIUM_TIER, 0, -1f, Item.Properties().group(Phoenix.ASH)) }
     val ZIRCONIUM_SWORD                by ITEMS.register("ceramic_zirconium_sword")   { SwordItem  (PhoenixTiers.ZIRCONIUM_TIER, 2, -0.5f, Item.Properties().group(Phoenix.ASH)) }
-    val ZIRCONIUM_KNIFE                by ITEMS.register("ceramic_zirconium_knife")   { KnifeItem  (PhoenixTiers.ZIRCONIUM_TIER, 3f, -10f, PhoenixConfiguration.COMMON_CONFIG.gameMode.get().maxKnifeUsages, Phoenix.ASH) }
+    val ZIRCONIUM_KNIFE                by ITEMS.register("ceramic_zirconium_knife")   { KnifeItem  (PhoenixTiers.ZIRCONIUM_TIER, 3f, -10f, PhoenixConfiguration.gameMode.maxKnifeUsages, Phoenix.ASH) }
 
     val STEEL_AXE                      by ITEMS.register("steel_axe")     { AxeItem    (PhoenixTiers.STEEL_TIER, 5.0f, -2f, Item.Properties().group(Phoenix.ASH)) }
     val STEEL_PICKAXE                  by ITEMS.register("steel_pickaxe") { PickaxeItem(PhoenixTiers.STEEL_TIER, 0, -2f, Item.Properties().group(Phoenix.ASH)) }
@@ -59,36 +59,30 @@ object PhoenixItems
 
     val STEEL_ARMOR_HEAD               by ITEMS.register("steel_armor_head")      { SteelArmorItem(EquipmentSlotType.HEAD, Item.Properties().group(Phoenix.ASH)) }
     val STEEL_ARMOR_CHES               by ITEMS.register("steel_armor_chestplate"){ SteelArmorItem(EquipmentSlotType.CHEST,Item.Properties().group(Phoenix.ASH)) }
-    val STEEL_ARMOR_LEGG               by ITEMS.register("steel_armor_leggings")  { SteelArmorItem(EquipmentSlotType.LEGS, Item.Properties().group(Phoenix.ASH)) }
+    val STEEL_ARMOR_LEGS               by ITEMS.register("steel_armor_leggings")  { SteelArmorItem(EquipmentSlotType.LEGS, Item.Properties().group(Phoenix.ASH)) }
     val STEEL_ARMOR_BUTS               by ITEMS.register("steel_armor_boots")     { SteelArmorItem(EquipmentSlotType.FEET, Item.Properties().group(Phoenix.ASH)) }
 
-    private fun basicItem() : () -> Item =  basicItem(Item.Properties().group(Phoenix.ASH))
-    private fun basicItem(prop : Item.Properties) : () -> Item =  { Item(prop) }
-    private fun basicFood(food: Food) : () -> Item =  basicFood(food, Phoenix.ASH)
-    private fun basicFood(food: Food, group : ItemGroup) : () -> Item =  { Item(Item.Properties().group(group).food(food)) }
-    private fun form(contains: () -> Item) : () -> Item = { ItemWithContainer(contains) }
+    private fun basicItem() : () -> Item
+            = basicItem(Item.Properties().group(Phoenix.ASH))
+    private fun basicItem(prop : Item.Properties) : () -> Item
+            = { Item(prop) }
+    private fun basicFood(food: Food, group : ItemGroup = ItemGroup.FOOD) : () -> Item
+            = basicFood(food, Item.Properties().group(group))
+    private fun basicFood(food: Food, prop: Item.Properties = Item.Properties().group(Phoenix.ASH)) : () -> Item
+            = { Item(prop.food(food)) }
+    private fun form(contains: () -> Item) : () -> Item
+            = { ItemWithContainer(contains) }
 }
 
-class ItemWithContainer(var contains: () -> Item) : Item(Properties().group(Phoenix.ASH))
+class ItemWithContainer(var contains: () -> Item, prop: Properties = Properties().group(Phoenix.ASH)) : Item(prop)
 {
     override fun getContainerItem(itemStack: ItemStack?) = ItemStack(contains.invoke())
 }
 
 class SteelArmorItem(slot: EquipmentSlotType, builder: Properties) : ArmorItem(PhoenixArmorMaterials.STEEL, slot, builder)
 {
-    override fun getArmorTexture(
-        itemstack: ItemStack?,
-        entity: Entity?,
-        slot: EquipmentSlotType,
-        layer: String?
-    ): String
+    override fun getArmorTexture(itemstack: ItemStack?, entity: Entity?, slot: EquipmentSlotType?, layer: String?): String
     {
-        return if (slot == EquipmentSlotType.LEGS)
-        {
-            Phoenix.MOD_ID + ":textures/models/armor/steel_layer_2.png"
-        } else
-        {
-            Phoenix.MOD_ID + ":textures/models/armor/steel_layer_1.png"
-        }
+        return Phoenix.MOD_ID + ":textures/models/armor/" + if (slot == EquipmentSlotType.LEGS) "steel_layer_2.png" else "steel_layer_1.png"
     }
 }

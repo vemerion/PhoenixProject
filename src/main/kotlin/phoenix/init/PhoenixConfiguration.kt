@@ -9,6 +9,13 @@ object PhoenixConfiguration
 {
     lateinit var COMMON_CONFIG: Common
 
+    val biomeSize: Int
+        get() = COMMON_CONFIG.BIOME_SIZE.get()
+    val isDebugMode: Boolean
+        get() = COMMON_CONFIG.debug.get()
+    val gameMode : GameMode
+        get() = COMMON_CONFIG.gameMode.get()
+
     class Common(builder: ForgeConfigSpec.Builder)
     {
         var gameMode: EnumValue<GameMode>

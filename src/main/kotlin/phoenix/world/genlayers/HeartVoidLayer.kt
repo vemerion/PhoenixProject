@@ -12,15 +12,11 @@ object HeartVoidLayer : ICastleTransformer
 
     private fun isCorrect(a : Int, b : Int, c : Int, d : Int): Boolean
     {
-        if(a == HEART_VOID && b == HEART_VOID && c == HEART_VOID) return true
-        if(b == HEART_VOID && c == HEART_VOID && d == HEART_VOID) return true
-        if(a == HEART_VOID && c == HEART_VOID && d == HEART_VOID) return true
-        if(a == HEART_VOID && b == HEART_VOID && d == HEART_VOID) return true
-        return false
+        return  a == HEART_VOID && b == HEART_VOID && c == HEART_VOID ||
+                d == HEART_VOID && b == HEART_VOID && c == HEART_VOID ||
+                a == HEART_VOID && d == HEART_VOID && c == HEART_VOID ||
+                a == HEART_VOID && b == HEART_VOID && d == HEART_VOID
     }
 
-    private fun isCorrect(a : Int): Boolean
-    {
-        return a == END_HIGHLANDS || a == END_MIDLANDS
-    }
+    private fun isCorrect(a : Int): Boolean = a == END_HIGHLANDS || a == END_MIDLANDS
 }

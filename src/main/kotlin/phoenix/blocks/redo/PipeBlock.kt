@@ -116,11 +116,7 @@ object PipeBlock : BlockWithTile(Properties.create(Material.BAMBOO).notSolid()),
         isMoving: Boolean
     )
     {
-        val ifluidstate = worldIn.getFluidState(pos)
-        worldIn.setBlockState(
-            pos,
-            makeConnections(worldIn, pos).with(BlockStateProperties.WATERLOGGED, ifluidstate.fluid === Fluids.WATER)
-        )
+        worldIn.setBlockState(pos, makeConnections(worldIn, pos).with(BlockStateProperties.WATERLOGGED, worldIn.getFluidState(pos).fluid === Fluids.WATER))
         super.neighborChanged(state, worldIn, pos, blockIn, fromPos, isMoving)
     }
 

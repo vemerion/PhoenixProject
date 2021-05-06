@@ -119,4 +119,3 @@ fun<T> IForgeRegistryEntry<T>.validateRegistryName(nameIn: ResourceLocation)
 {
     if(registryName == null) registryName = nameIn
 }
-

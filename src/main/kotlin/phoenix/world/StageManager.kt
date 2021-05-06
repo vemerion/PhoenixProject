@@ -48,35 +48,26 @@ object StageManager
 
     var stage: Int
         get() = data.getInt("stage")
-        set(stage) = data.putInt("stage", stage)
-    val stageEnum: Stage
-        get() = Stage.values()[min(data.getInt("stage"), Stage.values().size - 1)]
+        set(stage) {
+            data.putInt("stage", stage)
+            EndBiomeProvider.INSTANCE.updateLayer()
+            GenSaveData.INSTANCE.markDirty()
+        }
+
     var part: Int
         get() = data.getInt("part")
-        set(part) = data.putInt("part", part)
-
-    private fun setStage(stage: Int, provider: EndBiomeProvider)
-    {
-        data.putInt("stage", stage)
-        GenSaveData.INSTANCE.markDirty()
-        provider.updateLayer()
-    }
-
-    private fun addStage()
-    {
-        setStage((stage + 1).coerceAtMost(3), EndBiomeProvider.INSTANCE)
-        GenSaveData.INSTANCE.markDirty()
-    }
-
-    fun addPart()
-    {
-        part += 1
-        if (data.getInt("part") >= 3)
-        {
-            addStage()
-            part = 0
+        set(part) {
+            data.putInt("part", part)
+            if (data.getInt("part") >= 3)
+            {
+                stage++
+                this.part = 0
+            }
+            GenSaveData.INSTANCE.markDirty()
         }
-    }
+
+    val stageEnum: Stage
+        get() = Stage.values()[min(data.getInt("stage"), Stage.values().size - 1)]
 
     enum class Stage
     {

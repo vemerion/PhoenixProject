@@ -10,21 +10,13 @@ object UnificationLayer : IAreaTransformer2
     override fun apply(random: INoiseRandom, phoenixBiomes: IArea, vanilaBiomes: IArea, x: Int, z: Int): Int
     {
         val phoenix = phoenixBiomes.getValue(x, z)
-        return when(val vanila = vanilaBiomes.getValue(x, z))
+        val vanila  = vanilaBiomes.getValue(x, z)
+        LogManager.error("$phoenix, $vanila")
+        return when(vanila)
         {
-            SMALL_END_ISLANDS -> if(phoenix == UNDER_SMALL_ISLANDS && random.random(10) >= 5)
-            {
-                LogManager.error("$x $z")
-                phoenix
-            }
-            else vanila
-            END_HIGHLANDS     -> if((phoenix == HEART_VOID || phoenix == UNDER) && random.random(10) >= 5)
-            {
-                LogManager.error("$x $z")
-                phoenix
-            }
-            else vanila
-            else -> vanila
+            SMALL_END_ISLANDS -> if (phoenix == UNDER_SMALL_ISLANDS              && random.random(10) >= 5) phoenix else vanila
+            END_HIGHLANDS     -> if ((phoenix == HEART_VOID || phoenix == UNDER) && random.random(10) >= 5) phoenix else vanila
+            else              -> vanila
         }
     }
 
