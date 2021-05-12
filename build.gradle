@@ -73,22 +73,26 @@ minecraft {
 
 repositories {
     mavenCentral()
-    maven { // Мавен, который поддерживает JEI.
+    maven
+    {
         name = "Progwml6 maven"
         url = "http://dvs1.progwml6.com/files/maven"
     }
-    maven { // Мавен, который поддерживает JEI, для резерва.
+    maven
+    {
         name = "ModMaven"
         url = "modmaven.k-4u.nl"
     }
-    maven {
+    maven
+    {
         name = 'Kotlin for Forge'
         url = 'https://thedarkcolour.github.io/KotlinForForge/'
     }
     jcenter()
 }
 
-dependencies {
+dependencies
+{
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     minecraft 'net.minecraftforge:forge:1.16.4-35.1.29'
     compile fileTree('/libs/')
@@ -97,8 +101,10 @@ dependencies {
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
 }
 
-compileKotlin {
-    kotlinOptions {
+compileKotlin
+{
+    kotlinOptions
+    {
         jvmTarget = '1.8'
         languageVersion = '1.4'
         apiVersion = '1.4'

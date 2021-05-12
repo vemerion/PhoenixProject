@@ -23,8 +23,7 @@ import java.util.function.Supplier
 
 object NetworkHandler
 {
-    private val CHANNEL = NetworkRegistry.newSimpleChannel(
-            ResourceLocation(Phoenix.MOD_ID, "network"), { "2.0" }, { true }) { true }
+    private val CHANNEL = NetworkRegistry.newSimpleChannel(ResourceLocation(Phoenix.MOD_ID, "network"), { "2.0" }, { true }) { true }
 
     @JvmStatic
     fun init()
